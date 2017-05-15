@@ -2,6 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import App from './components/App';
+import Home from './components/pages/Home';
+import LandingPage from './components/pages/LandingPage';
+
+
 import './index.css';
 
 // routes explained
@@ -20,11 +24,11 @@ const routes = (
         <Route path="/" component={App}>
           <IndexRoute component={Home}/>
             <Route path="auth" component={LandingPage}>
-              <Route path="learn-more" component={LearnMore} />
-              <Route path="login" component={Login} />
+              <Route path="auth/learn-more" component={Home} />
+              <Route path="auth/login" component={Home} />
             </Route>
-            <Route path="orders" component={Orders}>
-              <Route path="new-order" component={NewOrder} />
+            <Route path="home/orders" component={Home}>
+              <Route path="home/new-order" component={Home} />
             </Route>
         </Route>
     </Router>

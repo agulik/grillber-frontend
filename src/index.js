@@ -23,12 +23,14 @@ const routes = (
     <Router history={browserHistory}>
         <Route path="/" component={App}>
           <IndexRoute component={Home}/>
-            <Route path="auth" component={LandingPage}>
-              <Route path="auth/learn-more" component={Home} />
-              <Route path="auth/login" component={Home} />
+            <Route path="auth/" component={/* empty */}>
+              <Route path="auth/login" component={Login} />
+              <Route path="auth/signup" component={Singup} />
+              <Route path="auth/billing" component={Billing} />
+              <Route path="auth/me" component={Profile} />
             </Route>
-            <Route path="home/orders" component={Home}>
-              <Route path="home/new-order" component={Home} />
+            <Route path="orders" component={Orders}>
+              <Route path="orders/new" component={NewOrder} />
             </Route>
         </Route>
     </Router>

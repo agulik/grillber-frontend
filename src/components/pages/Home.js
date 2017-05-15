@@ -14,8 +14,7 @@ export default class Home extends Component {
 
     return (
       <div className="home">
-        <h1> the home page !! :) </h1>
-        <Button node='a' waves='light'><Icon right>file_cloud</Icon>button</Button>
+
       </div>
     );
   }

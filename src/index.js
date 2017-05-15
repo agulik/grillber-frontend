@@ -3,19 +3,23 @@ import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import App from './components/App';
 import Home from './components/pages/Home';
-import LandingPage from './components/pages/LandingPage';
+import Signup from './components/pages/Signup';
+import Login from './components/pages/Login';
+import Profile from './components/pages/Profile';
+import Orders from './components/pages/Orders';
+import NewOrder from './components/pages/NewOrder';
 
 
 import './index.css';
 
-
+// ** auth/ path should be empty, it is a redirect
 
 const routes = (
     <Router history={browserHistory}>
         <Route path="/" component={App}>
           <IndexRoute component={Home}/>
-            <Route path="auth/" component={/* empty */}>
-              <Route path="auth/signup" component={Singup} />
+            <Route path="auth/" component={Home}>
+              <Route path="auth/signup" component={Signup} />
               <Route path="auth/login" component={Login} />
               <Route path="auth/me" component={Profile} />
             </Route>

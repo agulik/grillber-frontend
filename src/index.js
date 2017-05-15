@@ -24,9 +24,8 @@ const routes = (
         <Route path="/" component={App}>
           <IndexRoute component={Home}/>
             <Route path="auth/" component={/* empty */}>
-              <Route path="auth/login" component={Login} />
               <Route path="auth/signup" component={Singup} />
-              <Route path="auth/billing" component={Billing} />
+              <Route path="auth/login" component={Login} />
               <Route path="auth/me" component={Profile} />
             </Route>
             <Route path="orders" component={Orders}>

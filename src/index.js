@@ -8,15 +8,6 @@ import LandingPage from './components/pages/LandingPage';
 
 import './index.css';
 
-// routes explained
-
-// App = main App
-// Home = main dashboard page
-// LandingPage = redirect if not logged in
-// LearnMore = panel state load for more info
-// Login = panel state load if 'already have an account'
-// Orders = previous orders / create new order page
-// NewOrder = step 1 of new order page
 
 
 const routes = (

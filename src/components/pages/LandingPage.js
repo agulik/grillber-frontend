@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Row, Col} from 'react-materialize';
+import GrillberHero from '../elements/GrillberHero';
 import './LandingPage.css';
 
 
@@ -15,10 +16,10 @@ export default class LandingPage extends Component {
     return (
       <div className="landing-page">
         <Row>
-          <Col s={6} className='left-side'>
-
+          <Col s={7} className='left-side'>
+            <GrillberHero />
           </Col>
-          <Col s={4} className='right-side'>
+          <Col s={5} className='right-side'>
 
           </Col>
         </Row>

@@ -9,7 +9,7 @@ export default(props) => (
         <h2>Grillber</h2>
         <Modal
           trigger={< a href='' onClick={() => props._handleMenuClick()}><Icon>menu</Icon></a>}>
-          <div className="close" onClick={() => props.closeMenu()}>
+          <div className="close modal-action modal-close" onClick={() => props.closeMenu()}>
             <Icon>close</Icon>
           </div>
           <a href=''><p>FAQ</p></a>

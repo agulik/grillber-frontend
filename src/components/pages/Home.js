@@ -7,27 +7,14 @@ import './Home.css';
 export default class Home extends Component {
   constructor() {
     super();
-    this.state = {
-      isMenuOpen: false
-    };
+    this.state = {};
   }
-
-  _handleMenuClick = () => {
-    let {isMenuOpen} = this.state;
-    console.log("YOOOOOOOO !!!!");
-
-    this.setState({ isMenuOpen: !isMenuOpen })
-  }
-
-  closeMenu = () => this.setState({ isMenuOpen: false })
 
   render() {
 
-    let {isMenuOpen} = this.state
-
     return (
       <div className="home">
-        <GrillberNav _handleMenuClick={this._handleMenuClick} closeMenu={this.closeMenu} />
+        <GrillberNav _handleMenuClick={this._handleMenuClick} />
       </div>
     );
   }

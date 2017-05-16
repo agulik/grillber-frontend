@@ -60,9 +60,17 @@
     cursor: pointer;
   }
 
+  div.modal-content div.close i:hover {
+    color: #fbcd9b;
+  }
+
   div.modal-content p {
     color: #ffffff;
     font-size: 1.8rem;
+  }
+
+  div.modal-content p:hover {
+    color: #fbcd9b;
   }
 
   .modal .modal-footer {

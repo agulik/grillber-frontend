@@ -6,7 +6,7 @@ export default(props) => (
   <div className='nav'>
     <Row>
       <Col s={12}>
-        <h2>Grillber</h2>
+        <a href="/"><h2>Grillber</h2></a>
         <Modal
           trigger={< a href='' onClick={() => props._handleMenuClick()}><Icon>menu</Icon></a>}>
           <div className="close modal-action modal-close" onClick={() => props.closeMenu()}>

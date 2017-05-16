@@ -12,7 +12,6 @@ import NewOrder from './components/pages/NewOrder';
 
 import './index.css';
 
-// ** auth/ path should be empty, it is a redirect
 
 const routes = (
     <Router history={browserHistory}>

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "google-map-react": "^0.24.0",
+    "react-google-maps": "^4.2.0",
     "lodash": "^4.17.4",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
@@ -14,13 +14,9 @@
   },
 
   "devDependencies": {
-    "eslint": "^3.19.0",
-    "eslint-config-airbnb": "^15.0.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^5.0.1",
-    "eslint-plugin-react": "^7.0.1",
     "react-scripts": "0.9.5"
   },
+
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

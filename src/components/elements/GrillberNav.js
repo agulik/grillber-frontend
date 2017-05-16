@@ -1,14 +1,20 @@
 import React from 'react';
-import {Icon, Col, Row} from 'react-materialize';
+import {Icon, Col, Row, Modal} from 'react-materialize';
 import './GrillberNav.css';
 
-export default (props) => (
+export default(props) => (
   <div className='nav'>
-      <Row>
-        <Col s={12}>
-          <h2>Grillber</h2>
-          <a href=''><Icon onClick={() => props._handleMenuClick()} className="menu">menu</Icon></a>
-        </Col>
-      </Row>
+    <Row>
+      <Col s={12}>
+        <h2>Grillber</h2>
+        <Modal
+          header='Modal Header'
+          trigger={< a href = '' onClick = {() => props._handleMenuClick()}><Icon>menu</Icon></a>}>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+          </p>
+        </Modal>
+      </Col>
+    </Row>
   </div>
 );

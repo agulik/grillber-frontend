@@ -23,6 +23,10 @@
     padding-right: 50px;
   }
 
+  i.material-icons:hover {
+    color: #fbcd9b;
+  }
+
   .modal {
     display: none;
     position: fixed;

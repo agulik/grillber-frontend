@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "react-materialize": "^0.18.4",
     "react-google-maps": "^4.2.0",
     "lodash": "^4.17.4",
     "prop-types": "^15.5.10",

@@ -8,11 +8,13 @@ export default(props) => (
       <Col s={12}>
         <h2>Grillber</h2>
         <Modal
-          header='Modal Header'
-          trigger={< a href = '' onClick = {() => props._handleMenuClick()}><Icon>menu</Icon></a>}>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-          </p>
+          trigger={< a href='' onClick={() => props._handleMenuClick()}><Icon>menu</Icon></a>}>
+          <div className="close" onClick={() => props.closeMenu()}>
+            <Icon>close</Icon>
+          </div>
+          <a href=''><p>FAQ</p></a>
+          <a href=''><p>Settings</p></a>
+          <a href=''><p>Logout</p></a>
         </Modal>
       </Col>
     </Row>

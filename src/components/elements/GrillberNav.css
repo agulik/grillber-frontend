@@ -22,3 +22,59 @@
     float: right;
     padding-right: 50px;
   }
+
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0!important;
+    left: 0;
+    right: 0;
+    background-color: #161616;
+    padding: 0;
+    max-height: 100%;
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    overflow-y: auto;
+    border-radius: 2px;
+    will-change: top, opacity;
+}
+
+  .modal-footer {
+    display: none;
+  }
+
+  div.modal-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    text-align: center;
+    background-color: #161616;
+  }
+
+  div.modal-content div.close {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    cursor: pointer;
+  }
+
+  div.modal-content p {
+    color: #ffffff;
+    font-size: 1.8rem;
+  }
+
+  .modal .modal-footer {
+    background-color: #161616;
+  }
+
+  .modal .modal-footer .btn {
+    color: #fd9727;
+  }
+
+  .z-depth-0 {
+  -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0), 0 0 0 0 rgba(0, 0, 0, 0);
+  -moz-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0), 0 0 0 0 rgba(0, 0, 0, 0);
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0), 0 0 0 0 rgba(0, 0, 0);
+}

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Button, Icon, Modal} from 'react-materialize';
 import GrillberNav from '../elements/GrillberNav';
 import './Home.css';
 

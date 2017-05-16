@@ -1,11 +1,14 @@
 import React from 'react';
-import {Navbar, NavItem, Icon} from 'react-materialize';
+import {Icon, Col, Row} from 'react-materialize';
 import './GrillberNav.css';
 
 export default (props) => (
   <div className='nav'>
-    <Navbar brand='Grillber' right className="z-depth-0">
-      <NavItem href=''><Icon>menu</Icon></NavItem>
-    </Navbar>
+      <Row>
+        <Col s={12}>
+          <h2>Grillber</h2>
+          <a href=''><Icon onClick={() => props._handleMenuClick()} className="menu">menu</Icon></a>
+        </Col>
+      </Row>
   </div>
 );

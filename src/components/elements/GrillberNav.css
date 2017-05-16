@@ -13,6 +13,10 @@
     padding-left: 50px;
   }
 
+  h2:hover {
+    color: #fbcd9b;
+  }
+
   i.material-icons {
     display: inline-block;
     font-size: 1.8rem;
@@ -21,6 +25,10 @@
     vertical-align: middle;
     float: right;
     padding-right: 50px;
+  }
+
+  i.material-icons:hover {
+    color: #fbcd9b;
   }
 
   .modal {

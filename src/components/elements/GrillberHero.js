@@ -4,6 +4,6 @@ import './GrillberHero.css';
 
 export default(props) => (
   <div className="background">
-    <h2> this is a test </h2>
+    <h2>Grillber</h2>
   </div>
 );

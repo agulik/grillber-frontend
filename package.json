@@ -1,23 +1,26 @@
 {
- "name": "grillber-front-end",
- "version": "0.1.0",
- "private": true,
- "dependencies": {
-   "react": "^15.5.4",
-   "react-dom": "^15.5.4",
-   "react-router": "^3.0.5",
-   "react-materialize": "^0.18.4",
-   "react-google-maps": "^6.3.0",
-   "lodash": "^4.17.4",
-   "prop-types": "^15.5.10"
- },
- "devDependencies": {
-   "react-scripts": "0.9.5"
- },
- "scripts": {
-   "start": "react-scripts start",
-   "build": "react-scripts build",
-   "test": "react-scripts test --env=jsdom",
-   "eject": "react-scripts eject"
- }
+  "name": "grillber-front-end",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "prop-types": "^15.5.10",
+    "moment": "^2.18.1",
+    "react": "^15.5.4",
+    "rc-time-picker": "^2.4.0",
+    "react-datepicker": "^0.46.0",
+    "react-dom": "^15.5.4",
+    "react-google-maps": "^6.3.0",
+    "react-materialize": "^0.18.4",
+    "react-router": "^3.0.5"
+  },
+  "devDependencies": {
+    "react-scripts": "0.9.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
 }

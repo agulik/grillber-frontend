@@ -26,7 +26,6 @@ export default class Signup extends Component {
       this.setState({currentInput: value})
     } else if (value.length < 7) {
       value = '(' + value.substring(0, 3) + ') ' + value.substring(3, 6);
-      console.log(value)
       this.setState({currentInput: value})
     } else {
       value = '(' + value.substring(0, 3) + ') ' + value.substring(3, 6) + ' - ' + value.substring(6, 10);
@@ -54,27 +53,35 @@ export default class Signup extends Component {
 
     let {error} = this.state;
 
-    let {
-      firstname: {value: firstname},
-      lastname: {value: lastname},
-      phone: {value: phone},
-      email: {value: email},
-      password: {value: password},
-      confirmpassword: {value: confirmpassword}
-    } = this.refs;
+    let firstname = this.refs.firstname.state.value;
+    let lastname = this.refs.lastname.state.value;
+    let phone = this.refs.phone.state.value;
+    let email = this.refs.email.state.value;
+    let password = this.refs.password.state.value;
+    let confirmpassword = this.refs.confirmpassword.state.value;
 
-    if (firstname && lastname && phone && email) {
-      if (password === confirmpassword) {
-        // auth.signup(email, password)
-        // .then(res => this.props.router.push('/login'))
-        // .catch(console.error);
+    if (firstname && lastname && phone && email && password && confirmpassword) {
+
+      if (password.length >= 8) {
+        if (password === confirmpassword) {
+          // sign up the user
+          // auth.signup(email, password)
+          // .then(res => this.props.router.push('/login'))
+          // .catch(console.error);
+        } else {
+          this.setState ({
+            error: "Your passwords do not match"
+          })
+        }
       } else {
         this.setState ({
-          error: "your passwords do not match"
+          error: "Your password must be at least 8 characters long"
         })
       }
     } else {
-      this.setState({ error: "Please complete all the fields"});
+      this.setState ({
+        error: "Please complete all the fields"
+      })
     }
   }
 
@@ -98,7 +105,7 @@ export default class Signup extends Component {
         </div>
         <div className="signup-form">
           <Row>
-            <Input s={6} label="First Name" ref="firstname" />
+            <Input s={6} label="First Name" type="text" ref="firstname" />
             <Input s={6} label="Last Name" ref="lastname" />
             <Input s={12} label="Phone" onInput={this._handlePhoneInput} value={currentInput} ref="phone"/>
             <Input s={12} type="email" label="Email" ref="email" />

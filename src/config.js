@@ -1,3 +1,3 @@
 module.exports = {
-  API_HOST: ""
+  API_HOST: "https://grillber-api-denisvfedas.c9users.io"
 }

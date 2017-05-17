@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Icon, Col, Row, Input, Button} from 'react-materialize';
+import auth from '../../auth';
 import './Signup.css';
 
 const ENTER = 13;
@@ -63,10 +64,9 @@ export default class Signup extends Component {
     if (firstname && lastname && phone && email && password && confirmpassword) {
       if (password.length >= 8) {
         if (password === confirmpassword) {
-          // sign up the user
-          // auth.signup(email, password)
-          // .then(res => this.props.router.push('/login'))
-          // .catch(console.error);
+          auth.signup(firstname, lastname, phone, email, password)
+          .then(res => this.props.router.push('/auth/login'))
+          .catch(console.error);
         } else {
           this.setState ({
             error: "Your passwords do not match"

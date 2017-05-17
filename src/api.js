@@ -1,0 +1,38 @@
+import superagent from 'superagent';
+import { API_HOST } from './config';
+
+class Api {
+
+  requestSignUp = (firstname, lastname, phone, email, password) => (
+    superagent
+    .post(`${API_HOST}/auth/users`)
+    .send({ firstname, lastname, phone, email, password })
+    .catch((e) => {
+      console.log('error', e)
+    })
+  )
+
+  // requestLogin = (email, password) => (
+  //   superagent
+  //   .post(`${API_HOST}/auth/sessions`)
+  //   .send({ email, password })
+  // )
+  //
+  // requestLogout = (token) => (
+  //   superagent
+  //   .delete(`${API_HOST}/auth/sessions`)
+  //   .set('Authorization', `token ${token}`)
+  // )
+  //
+  // getUser = (token) => {
+  //   return superagent
+  //   .get(`${API_HOST}/auth/me`)
+  //   // .send({token})
+  //   // .set('Authorization', `token ${token}`)
+  //   // .set('Accept', 'application/json')
+  // }
+
+
+}
+
+export default new Api();

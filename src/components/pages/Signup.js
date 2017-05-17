@@ -13,6 +13,7 @@ export default class Signup extends Component {
   }
 
   _handlePhoneInput = (event) => {
+
     let value = event.target.value;
 
     value = value.replace(/\D/g, '');
@@ -30,6 +31,22 @@ export default class Signup extends Component {
     } else {
       value = '(' + value.substring(0, 3) + ') ' + value.substring(3, 6) + ' - ' + value.substring(6, 10);
       this.setState({currentInput: value})
+    }
+  }
+
+  _handlePasswordInput = (event) => {
+
+    let {error} = this.state;
+    let value = event.target.value;
+
+    if (value.length < 8 ) {
+      this.setState({
+        error: "your password must be at least 8 characters long"
+      })
+    } else {
+      this.setState ({
+        error: ""
+      })
     }
   }
 
@@ -85,7 +102,7 @@ export default class Signup extends Component {
             <Input s={6} label="Last Name" ref="lastname" />
             <Input s={12} label="Phone" onInput={this._handlePhoneInput} value={currentInput} ref="phone"/>
             <Input s={12} type="email" label="Email" ref="email" />
-            <Input s={12} type="password" label="password" ref="password" />
+            <Input s={12} type="password" label="password" ref="password" onInput={this._handlePasswordInput} />
             <Input s={12} type="password" label="confirm password" ref="confirmpassword" onKeyUp={this._handleEnter}/>
           </Row>
         </div>

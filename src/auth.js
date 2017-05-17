@@ -2,11 +2,11 @@ import api from './api';
 
 module.exports = {
 
-  signup(firstname, lastname, phone, email, password) {
+  signup(firstName, lastName, phone, email, password) {
     if (localStorage.user) {
       throw new Error('User already exists!');
     } else {
-      return api.requestSignUp(firstname, lastname, phone, email, password);
+      return api.requestSignUp(firstName, lastName, phone, email, password);
     }
   },
 

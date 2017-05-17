@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Push } from 'react-router';
 import {Icon, Col, Row, Input, Button} from 'react-materialize';
 import auth from '../../auth';
 import './Signup.css';
@@ -6,8 +7,8 @@ import './Signup.css';
 const ENTER = 13;
 
 export default class Signup extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       currentInput: ""
     };
@@ -54,17 +55,17 @@ export default class Signup extends Component {
 
     let {error} = this.state;
 
-    let firstname = this.refs.firstname.state.value;
-    let lastname = this.refs.lastname.state.value;
+    let firstName = this.refs.firstname.state.value;
+    let lastName = this.refs.lastname.state.value;
     let phone = this.refs.phone.state.value;
     let email = this.refs.email.state.value;
     let password = this.refs.password.state.value;
-    let confirmpassword = this.refs.confirmpassword.state.value;
+    let confirmPassword = this.refs.confirmpassword.state.value;
 
-    if (firstname && lastname && phone && email && password && confirmpassword) {
+    if (firstName && lastName && phone && email && password && confirmPassword) {
       if (password.length >= 8) {
-        if (password === confirmpassword) {
-          auth.signup(firstname, lastname, phone, email, password)
+        if (password === confirmPassword) {
+          auth.signup(firstName, lastName, phone, email, password)
           .then(res => this.props.router.push('/auth/login'))
           .catch(console.error);
         } else {

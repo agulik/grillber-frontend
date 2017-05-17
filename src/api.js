@@ -3,10 +3,10 @@ import { API_HOST } from './config';
 
 class Api {
 
-  requestSignUp = (firstname, lastname, phone, email, password) => (
+  requestSignUp = (firstName, lastName, phone, email, password) => (
     superagent
     .post(`${API_HOST}/auth/users`)
-    .send({ firstname, lastname, phone, email, password })
+    .send({ firstName, lastName, phone, email, password })
     .catch((e) => {
       console.log('error', e)
     })

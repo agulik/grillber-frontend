@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import {Row, Col} from 'react-materialize';
 import GrillberHero from '../elements/GrillberHero';
-import Signup from './Signup';
 import Login from './Login';
-import './LandingPage.css';
+import './LoginPage.css';
 
 
-export default class LandingPage extends Component {
+export default class LoginPage extends Component {
   constructor() {
     super();
     this.state = {};
@@ -16,16 +15,15 @@ export default class LandingPage extends Component {
   render() {
 
     return (
-      <div className="landing-page">
-        {/* <Row>
+      <div>
+        <Row>
           <Col s={7} className='left-side'>
             <GrillberHero />
           </Col>
-          <Col s={5} className='right-side'> */}
-            <Signup />
-            {/* <Login /> */}
-          {/* </Col>
-        </Row> */}
+          <Col s={5} className='right-side'>
+            <Login />
+          </Col>
+        </Row>
       </div>
     );
   }

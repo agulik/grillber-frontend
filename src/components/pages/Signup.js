@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Push } from 'react-router';
+import { browserHistory } from 'react-router';
 import {Icon, Col, Row, Input, Button} from 'react-materialize';
 import auth from '../../auth';
 import './Signup.css';
@@ -66,7 +66,7 @@ export default class Signup extends Component {
       if (password.length >= 8) {
         if (password === confirmPassword) {
           auth.signup(firstName, lastName, phone, email, password)
-          .then(res => this.props.router.push('/auth/login'))
+          .then(res => browserHistory.push('/auth/login'))
           .catch(console.error);
         } else {
           this.setState ({

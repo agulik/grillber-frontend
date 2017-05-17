@@ -6,24 +6,19 @@
 }
 
 .row {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0px;
 }
 
 .background {
-  background:
-    /* top, transparent black, faked with gradient */
-    linear-gradient(
-      rgba(22, 22, 22, 0.92),
-      rgba(22, 22, 22, 0.92)
-    ),
-    /* bottom, image */
-    url("../../../public/grillber-bg-img.jpg");
-    background-size: cover;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
+  background: /* top, transparent black, faked with gradient */
+  linear-gradient( rgba(22, 22, 22, 0.92), rgba(22, 22, 22, 0.92)), /* bottom, image */
+  url("../../../public/grillber-bg-img.jpg");
+  background-size: cover;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 .background h2 {
@@ -31,5 +26,26 @@
   color: #fd9727;
   line-height: 18vh;
   margin: 0;
-  padding-left: 50px;
+  padding-left: 125px;
+}
+
+.tagline {
+  font-size: 2.4rem;
+  color: #ffffff;
+  width: 500px;
+  padding-top: 50px;
+  padding-left: 125px;
+}
+
+.button-div {
+  padding-left: 125px;
+}
+
+.btn:hover, .btn-large:hover {
+  background-color: #fbcd9b;
+}
+
+.btn {
+  background-color: #f4efee;
+  color: #000000;
 }

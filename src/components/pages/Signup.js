@@ -61,7 +61,6 @@ export default class Signup extends Component {
     let confirmpassword = this.refs.confirmpassword.state.value;
 
     if (firstname && lastname && phone && email && password && confirmpassword) {
-
       if (password.length >= 8) {
         if (password === confirmpassword) {
           // sign up the user

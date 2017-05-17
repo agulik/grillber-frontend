@@ -10,7 +10,7 @@ export default class Signup extends Component {
     };
   }
 
-  _handleInput = (event) => {
+  _handlePhoneInput = (event) => {
     let value = event.target.value;
 
     value = value.replace(/\D/g, '');
@@ -40,13 +40,16 @@ export default class Signup extends Component {
         <div className="signup-header">
           <p>Sign up to experience the convenience of grilling anywhere</p>
         </div>
-        <Row>
-          <Input s={6} label="First Name"/>
-          <Input s={6} label="Last Name"/>
-          <Input s={12} label="Phone" onInput={this._handleInput} value={currentInput}/>
-          <Input s={12} type="email" label="Email"/>
-          <Input s={12} type="password" label="password"/>
-        </Row>
+        <div className="signup-form">
+          <Row>
+            <Input s={6} label="First Name"/>
+            <Input s={6} label="Last Name"/>
+            <Input s={12} label="Phone" onInput={this._handlePhoneInput} value={currentInput}/>
+            <Input s={12} type="email" label="Email"/>
+            <Input s={12} type="password" label="password"/>
+            <Input s={12} type="password" label="confirm password"/>
+          </Row>
+        </div>
         <div className="next-section">
           <Button>Sign up</Button>
         </div>

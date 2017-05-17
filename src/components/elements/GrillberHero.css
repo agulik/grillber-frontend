@@ -11,7 +11,7 @@
   margin-bottom: 0px;
 }
 
-.background {
+.grillber-hero-background {
   background: /* top, transparent black, faked with gradient */
   linear-gradient( rgba(22, 22, 22, 0.92), rgba(22, 22, 22, 0.92)), /* bottom, image */
   url("../../../public/grillber-bg-img.jpg");
@@ -21,7 +21,7 @@
   padding: 0;
 }
 
-.background h2 {
+.grillber-hero-background h2 {
   font-size: 1.8rem;
   color: #fd9727;
   line-height: 18vh;

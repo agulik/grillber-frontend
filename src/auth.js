@@ -10,15 +10,10 @@ module.exports = {
     }
   },
 
-  // login(email, pass) {
-  //   if (localStorage.token) {
-  //     throw new Error('Already logged in');
-  //   }
-  //   else {
-  //     return api.requestLogin(email, pass)
-  //     .then(res => localStorage.token = res.body.token)
-  //   }
-  // },
+  login(email, pass) {
+      return api.requestLogin(email, pass)
+      .then(res => localStorage.token = res.body.token)
+  },
   //
   // getToken() {
   //   return localStorage.token

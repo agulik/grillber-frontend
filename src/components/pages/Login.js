@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
+import { browserHistory } from 'react-router';
 import {Icon, Col, Row, Input, Button} from 'react-materialize';
+import auth from '../../auth';
 import './Login.css';
 
 const ENTER = 13;
@@ -11,19 +13,23 @@ export default class Login extends Component {
   }
 
   _handleLogin = () => {
-    // deep destructuring equivalent to (let email = this.refs.email.value;)
-  //   let { email: {value: email}, password: {value: password} } = this.refs;
-  //   if (email && password) {
-  //     auth.login(email, password)
-  //     .then(res => this.props.router.push('/'))
-  //     .catch(console.error);
-  //   }
-  //   else {
-  //     this.setState({ error: "Invalid email and password combination"});
-  //   }
+
+    let {error} = this.state;
+
+    let email = this.refs.email.state.value;
+    let password = this.refs.password.state.value;
+
+    if (email && password) {
+      auth.login(email, password)
+      .then(res => browserHistory.push('/'))
+      .catch(console.error);
+    }
+    else {
+      this.setState({ error: "Invalid email and password combination"});
+    }
   }
 
-  _handleTyping = (e) => {
+  _handleEnter = (e) => {
     if (this.state && this.state.error) {
       this.setState({ error: null });
     }
@@ -37,15 +43,21 @@ export default class Login extends Component {
     let {currentInput, error} = this.state;
 
     return (
-      <div className="login">
-        <span>{error}</span>
-        <input type="text" ref="email" placeholder="email"
-          onKeyUp={this._handleTyping}
-        />
-        <input type="password" ref="password" placeholder="password"
-          onKeyUp={this._handleTyping}
-        />
-        <button onClick={this._handleLogin}>login</button>
+      <div className="login-background">
+        <div className="login-header">
+          <p>Welcome back!</p>
+          <p>please sign in</p>
+        </div>
+        <div className="login-form">
+          <Row>
+            <Input s={12} type="email" label="Email" ref="email" />
+            <Input s={12} type="password" label="password" ref="password" onKeyUp={this._handleEnter} />
+          </Row>
+        </div>
+        <div className="next-section">
+          <Button onClick={this._handleLogin}>Login</Button>
+          <span className="error">{error}</span>
+        </div>
       </div>
     );
   }

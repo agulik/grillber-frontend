@@ -12,11 +12,11 @@ class Api {
     })
   )
 
-  // requestLogin = (email, password) => (
-  //   superagent
-  //   .post(`${API_HOST}/auth/sessions`)
-  //   .send({ email, password })
-  // )
+  requestLogin = (email, password) => (
+    superagent
+    .post(`${API_HOST}/auth/sessions`)
+    .send({ email, password })
+  )
   //
   // requestLogout = (token) => (
   //   superagent

@@ -23,15 +23,14 @@ class Api {
     .delete(`${API_HOST}/auth/sessions`)
     .set('Authorization', `token ${token}`)
   )
-  //
-  // getUser = (token) => {
-  //   return superagent
-  //   .get(`${API_HOST}/auth/me`)
-  //   // .send({token})
-  //   // .set('Authorization', `token ${token}`)
-  //   // .set('Accept', 'application/json')
-  // }
 
+  getUser = (token) => {
+    return superagent
+    .get(`${API_HOST}/auth/me`)
+    // .send({token})
+    // .set('Authorization', `token ${token}`)
+    // .set('Accept', 'application/json')
+  }
 
 }
 

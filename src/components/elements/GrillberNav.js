@@ -15,7 +15,7 @@ export default class GrillberNav extends Component {
   _handleLogout = () => {
       auth.logout(localStorage)
       .then(localStorage.removeItem('token'))
-      .then(res => browserHistory.push('/auth/signup'))
+      .then(res => browserHistory.push('/'))
       .catch(console.error);
     }
 
@@ -28,7 +28,7 @@ export default class GrillberNav extends Component {
             <a href="/"><h2>Grillber</h2></a>
             <Modal
               trigger={< a href='' onClick={() => this.props._handleMenuClick()}><Icon>menu</Icon></a>}>
-              <div className="close modal-action modal-close" onClick={() => this.props.closeMenu()}>
+              <div className="close modal-action modal-close">
                 <Icon>close</Icon>
               </div>
               <a href=''><p>FAQ</p></a>

@@ -49,3 +49,24 @@
   background-color: #f4efee;
   color: #000000;
 }
+
+.learn-more-contents {
+  display: flex;
+  flex-direction: column;
+}
+
+.learn-more-contents h2 {
+  color: #ffffff;
+}
+
+.learn-more-contents h2:hover {
+  color: #ffffff;
+}
+
+.learn-more-contents p {
+  color: #fbcd9b;
+}
+
+.learn-more-contents p:hover {
+  color: #fbcd9b;
+}

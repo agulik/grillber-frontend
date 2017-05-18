@@ -6,7 +6,6 @@ import Home from './components/pages/Home';
 import SignupPage from './components/pages/SignupPage';
 import LoginPage from './components/pages/LoginPage';
 import Profile from './components/pages/Profile';
-import PlaceOrders from './components/pages/PlaceOrders';
 import OrderHistory from './components/pages/OrderHistory';
 import NewOrder from './components/pages/NewOrder';
 import Settings from './components/pages/Settings';
@@ -35,7 +34,6 @@ const routes = (
             <Route path="/auth/signup" component={SignupPage} />
             <Route path="/auth/login" component={LoginPage} />
             <Route path="/auth/me" component={Profile} onEnter={requireAuth} />
-            <Route path="orders" component={PlaceOrders} onEnter={requireAuth} />
             <Route path="orders/new" component={NewOrder} onEnter={requireAuth} />
             <Route path="orders/history" component={OrderHistory} onEnter={requireAuth} />
             <Route path="user/settings" component={Settings} onEnter={requireAuth} />

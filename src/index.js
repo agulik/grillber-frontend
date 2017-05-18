@@ -22,6 +22,7 @@ const routes = (
             <Route path="/auth/signup" component={SignupPage} />
             <Route path="/auth/login" component={LoginPage} />
             <Route path="/auth/me" component={Profile} />
+            <Route path="settings" component={Settings} />
             <Route path="orders" component={Orders}>
               <Route path="orders/new" component={NewOrder} />
             </Route>

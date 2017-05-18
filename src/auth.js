@@ -29,4 +29,9 @@ module.exports = {
   //   return !!localStorage.token
   // },
 
+  schedule(time, date) {
+    return api.requestLogin(time, date)
+    .then(res => localStorage.token = res.body.token)
+  },
+
 };

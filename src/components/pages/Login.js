@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { browserHistory, Link } from 'react-router';
-import {Icon, Col, Row, Input, Button} from 'react-materialize';
+import { Row, Input, Button} from 'react-materialize';
 import auth from '../../auth';
 import './Login.css';
 
@@ -22,7 +22,7 @@ export default class Login extends Component {
     // need to add if statement for password
     // if password doesn't match the one in the database,
     // show error: "your password is incorrect"
-    
+
     if (email && password) {
       auth.login(email, password)
       .then(res => browserHistory.push('/'))

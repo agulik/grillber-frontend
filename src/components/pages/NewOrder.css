@@ -1,0 +1,16 @@
+.new-order {
+  height: 100vh;
+  width: 100vw;
+  background-color: #161616
+}
+
+.neworder-white-line {
+  border-left: 1px solid #f4efee;
+}
+.drop-off-btn {
+  margin-top: 60px;
+}
+
+.drop-off-two {
+  margin-left: 20px;
+}

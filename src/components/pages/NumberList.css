@@ -1,0 +1,55 @@
+.inline {
+  display: inline;
+  padding-left: 23px;
+}
+
+.all-circles {
+  background-color: White;
+  display: inline;
+  border: 3px solid White;
+  border-radius: 50%;
+  width: 10%;
+  height: 10%;
+  padding-left: 15px;
+  color: #353434;
+}
+
+.number-all {
+  color: #ffffff;
+  font-size: 30px;
+  display: flex;
+  text-align: left;
+  /*align-items: center;*/
+  /*justify-content: center;*/
+}
+
+.conditional-css {
+  background-color: #808080;
+  display: inline;
+  border: 3px solid #808080;
+  border-radius: 50%;
+  width: 10%;
+  height: 10%;
+  padding-left: 15px;
+  color: #353434;
+}
+
+.conditional-css2 {
+  display: inline;
+  padding-left: 23px;
+  color: #808080;
+}
+
+ol {
+    counter-reset: item;
+    list-style-type: none;
+}
+
+li {
+  display: block;
+}
+
+li:before {
+    content: counter(item) "  ";
+    counter-increment: item
+}

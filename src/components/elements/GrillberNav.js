@@ -27,7 +27,7 @@ export default class GrillberNav extends Component {
       <div className='nav'>
         <Row>
           <Col s={12}>
-            <a href="/"><h2>Grillber</h2></a>
+            <Link to="/"><h2>Grillber</h2></Link>
             <Modal
               trigger={< a href='' onClick={() => this.props._handleMenuClick()}><Icon>menu</Icon></a>}>
               <div className="close modal-action modal-close">

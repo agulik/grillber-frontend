@@ -11,7 +11,7 @@ class AltNumberList1 extends Component {
 
         <div className='number-one number-all'>
           <p className='one-circle all-circles'>1</p>
-          <p className='inline'>Arrange pick-up</p>
+          <p className='inline'>Arrange delivery & pickup</p>
         </div>
 
       </div>

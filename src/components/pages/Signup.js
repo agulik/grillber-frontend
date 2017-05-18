@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { browserHistory, Link } from 'react-router';
-import {Icon, Col, Row, Input, Button} from 'react-materialize';
+import { Row, Input, Button} from 'react-materialize';
 import auth from '../../auth';
 // import { API_HOST } from './config';
 import './Signup.css';
@@ -43,7 +43,7 @@ export default class Signup extends Component {
 
     if (value.length < 8 ) {
       this.setState({
-        error: "your password must be at least 8 characters long"
+        error: "Your password must be at least 8 characters long"
       })
     } else {
       this.setState ({

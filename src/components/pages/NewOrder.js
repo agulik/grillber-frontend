@@ -15,6 +15,7 @@ import Date from '../elements/Date';
 import Time from '../elements/Time';
 import Map from '../elements/Map';
 import DateTime from '../elements/DateTime';
+import auth from '../../auth';
 
 class NewOrder extends Component {
   constructor() {
@@ -63,6 +64,19 @@ class NewOrder extends Component {
     });
   }
 
+  // _handleDateTime = () => {
+  //
+  //   let time = this.refs.time.state.value;
+  //   let date = this.refs.date.state.value;
+  //
+  //   if (time && date) {
+  //     auth.login(time, date)
+  //     .then(res => browserHistory.push('/'))
+  //     .catch(console.error);
+  //   }
+  // }
+
+
 
   render() {
     const listNum1 = this.state.listNum1
@@ -78,9 +92,19 @@ class NewOrder extends Component {
             <Row>
               <Col s={6}> <AltNumberList1 /> <NumberList2 /> <NumberList3 /> <NumberList4 /></Col>
               <Col s={6} className='neworder-white-line'>
-                <Date />
-                <Time className="new-order-time"/>
+                <div className="new-order-delivery">
+                  <h2>Delivery Time:</h2>
+                  <br/>
+                  <Date />
+                  <Time className="new-order-time"/>
+                </div>
                 <br/>
+                  <div className="new-order-pickup">
+                    <h2>Pickup Time:</h2>
+                    <br/>
+                    <Date />
+                    <Time className="new-order-time"/>
+                </div>
                 <Button onClick={this._handleListItem2}>Continue</Button>
               </Col>
             </Row>

@@ -32,6 +32,12 @@ class Api {
     // .set('Accept', 'application/json')
   }
 
+  requestSchedule = (time, date) => (
+    superagent
+    .post(`${API_HOST}/auth/sessions`)
+    .send({ time, date })
+  )
+
 }
 
 export default new Api();

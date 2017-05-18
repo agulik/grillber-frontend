@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 import {Icon, Col, Row, Input, Button} from 'react-materialize';
 import auth from '../../auth';
 import './Login.css';
@@ -19,6 +19,10 @@ export default class Login extends Component {
     let email = this.refs.email.state.value;
     let password = this.refs.password.state.value;
 
+    // need to add if statement for password
+    // if password doesn't match the one in the database,
+    // show error: "your password is incorrect"
+    
     if (email && password) {
       auth.login(email, password)
       .then(res => browserHistory.push('/'))
@@ -58,6 +62,7 @@ export default class Login extends Component {
           <Button onClick={this._handleLogin}>Login</Button>
           <span className="error">{error}</span>
         </div>
+        <Link to="/auth/signup">I'm not yet a member</Link>
       </div>
     );
   }

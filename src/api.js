@@ -20,7 +20,7 @@ class Api {
 
   requestLogout = (token) => (
     superagent
-    .delete(`${API_HOST}/auth/sessions`)
+    .del(`${API_HOST}/auth/sessions`)
     .set('Authorization', `token ${token}`)
   )
 

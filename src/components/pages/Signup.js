@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 import {Icon, Col, Row, Input, Button} from 'react-materialize';
 import auth from '../../auth';
+// import { API_HOST } from './config';
 import './Signup.css';
 
 const ENTER = 13;
@@ -117,6 +118,7 @@ export default class Signup extends Component {
           <Button onClick={this._handleSignUp}>Sign up</Button>
           <span className="error">{error}</span>
         </div>
+        <Link to="/auth/login">I already have an account</Link>
       </div>
     );
   }

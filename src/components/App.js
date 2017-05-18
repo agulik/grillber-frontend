@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import api from '../api';
 // import { Link } from 'react-router';
 
 // import Map from './elements/Map.js'
@@ -11,6 +12,21 @@ import React, { Component } from 'react';
 
 
 class App extends Component {
+
+  componentDidMount() {
+    if(localStorage.token) {
+      api.getUser()
+      .then((user) => console.log(user)
+      // {
+      //   this.setState({
+      //     user: user
+      //   })
+      // }
+    )
+    }
+  }
+
+
   render() {
     return (
       <div className="App">

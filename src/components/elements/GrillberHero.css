@@ -1,0 +1,72 @@
+.row .col {
+  float: left;
+  box-sizing: border-box;
+  padding: 0;
+  min-height: 1px;
+}
+
+.row {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0px;
+}
+
+.grillber-hero-background {
+  background: /* top, transparent black, faked with gradient */
+  linear-gradient( rgba(22, 22, 22, 0.92), rgba(22, 22, 22, 0.92)), /* bottom, image */
+  url("../../../public/grillber-bg-img.jpg");
+  background-size: cover;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.grillber-hero-background h2 {
+  font-size: 1.8rem;
+  color: #fd9727;
+  line-height: 18vh;
+  margin: 0;
+  padding-left: 125px;
+}
+
+.tagline {
+  font-size: 2.4rem;
+  color: #ffffff;
+  width: 500px;
+  padding-top: 50px;
+  padding-left: 125px;
+}
+
+.button-div {
+  padding-left: 125px;
+}
+
+.btn:hover, .btn-large:hover {
+  background-color: #fbcd9b;
+}
+
+.btn {
+  background-color: #f4efee;
+  color: #000000;
+}
+
+.learn-more-contents {
+  display: flex;
+  flex-direction: column;
+}
+
+.learn-more-contents h2 {
+  color: #ffffff;
+}
+
+.learn-more-contents h2:hover {
+  color: #ffffff;
+}
+
+.learn-more-contents p {
+  color: #fbcd9b;
+}
+
+.learn-more-contents p:hover {
+  color: #fbcd9b;
+}

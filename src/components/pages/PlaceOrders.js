@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import './PlaceOrders.css'
 
 
-class PlaceOrders extends Component {
+export default class PlaceOrders extends Component {
   render() {
 
     return (
@@ -14,5 +14,3 @@ class PlaceOrders extends Component {
     );
   }
 }
-
-export default PlaceOrders;

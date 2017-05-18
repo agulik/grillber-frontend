@@ -16,6 +16,7 @@ import Time from '../elements/Time';
 import Map from '../elements/Map';
 import DateTime from '../elements/DateTime';
 import auth from '../../auth';
+import CardCheckout from './CardCheckout';
 
 class NewOrder extends Component {
   constructor() {
@@ -150,6 +151,7 @@ class NewOrder extends Component {
             <Row>
               <Col s={6}> <NumberList1 /> <NumberList2 /> <NumberList3 /> <AltNumberList4 /></Col>
               <Col s={6} className='neworder-white-line'>
+                <CardCheckout />
                 <Button onClick={this._handleListItem3}>Back</Button>
                 <Button className="drop-off-two">Place order</Button>
               </Col>

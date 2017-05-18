@@ -16,20 +16,30 @@ import Faq from './components/pages/Faq';
 
 import './index.css';
 
+function requireAuth(nextState, replace, next) {
+  if (!localStorage.token) {
+    replace({
+      pathname: "/auth/signup",
+      state: {nextPathname: nextState.location.pathname}
+    });
+  }
+  next();
+}
+
 
 const routes = (
     <Router history={browserHistory}>
         <Route path="/" component={App}>
-          <IndexRoute component={Home}/>
+          <IndexRoute component={Home} onEnter={requireAuth}/>
             <Route path="auth" component={SignupPage} />
             <Route path="/auth/signup" component={SignupPage} />
             <Route path="/auth/login" component={LoginPage} />
-            <Route path="/auth/me" component={Profile} />
-            <Route path="orders" component={PlaceOrders} />
-            <Route path="orders/new" component={NewOrder} />
-            <Route path="orders/history" component={OrderHistory}/>
-            <Route path="user/settings" component={Settings}/>
-            <Route path="faq" component={Faq}/>
+            <Route path="/auth/me" component={Profile} onEnter={requireAuth} />
+            <Route path="orders" component={PlaceOrders} onEnter={requireAuth} />
+            <Route path="orders/new" component={NewOrder} onEnter={requireAuth} />
+            <Route path="orders/history" component={OrderHistory} onEnter={requireAuth} />
+            <Route path="user/settings" component={Settings} onEnter={requireAuth} />
+            <Route path="faq" component={Faq} onEnter={requireAuth}/>
         </Route>
     </Router>
 );

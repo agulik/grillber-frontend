@@ -2,7 +2,7 @@
 import _ from "lodash";
 import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
-import SearchBox from "react-google-maps/lib/places/SearchBox"
+import SearchBox from "react-google-maps/lib/places/SearchBox";
 
 const INPUT_STYLE = {
   boxSizing: `border-box`,
@@ -22,6 +22,7 @@ const INPUT_STYLE = {
 const MyGoogleMap = withGoogleMap(props => (
     <GoogleMap defaultZoom={18}
       defaultCenter={{ lat: 45.5017, lng: -73.5673 }}
+      center={props.center}
       ref={props.onMapMounted}
       onClick={props.onMapClick}
       onBoundsChanged={props.onBoundsChanged}>
@@ -53,15 +54,24 @@ class Map extends Component {
       lat: 45.5017,
       lng: -73.5673,
     },
-    markers: [{
-      position: {
-        lat: 45.5017,
-        lng: -73.5673,
-      },
-      key: `Montreal`,
-      defaultAnimation: 2,
-    }],
+    markers: [],
   };
+
+  // state = {
+  //   bounds: defaultBounds,
+  //   center: {
+  //     lat: 45.5017,
+  //     lng: -73.5673,
+  //   },
+  //   markers: [{
+  //     position: {
+  //       lat: 45.5017,
+  //       lng: -73.5673,
+  //     },
+  //     key: `Montreal`,
+  //     defaultAnimation: 2,
+  //   }],
+  // };
 
   handleMapMounted = this.handleMapMounted.bind(this);
   handleBoundsChanged = this.handleBoundsChanged.bind(this);
@@ -88,7 +98,7 @@ class Map extends Component {
       {
         position: event.latLng,
         defaultAnimation: 2,
-        key: Date.now(), // Add a key property for: http://fb.me/react-warning-keys
+        key: Date.now(),
       },
     ];
     this.setState({
@@ -127,11 +137,10 @@ class Map extends Component {
 
 
   render() {
-    // const markers = this.props.markers || []
-
     return (
 
       <MyGoogleMap
+        center={this.state.center}
         onMapMounted={this.handleMapMounted}
         containerElement={<div style={{height: 300+'px'}} />}
         mapElement={<div style={{height: 600+'px'}} />}

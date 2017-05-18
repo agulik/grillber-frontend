@@ -19,10 +19,10 @@ module.exports = {
   //   return localStorage.token
   // },
   //
-  // logout() {
-  //   return api.requestLogout(localStorage.token)
-  //   .then(res => delete localStorage.token);
-  // },
+  logout() {
+    return api.requestLogout(localStorage.token)
+    .then(res => delete localStorage.token);
+  },
   //
   // isLoggedIn() {
   //   return !!localStorage.token

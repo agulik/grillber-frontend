@@ -17,12 +17,12 @@ class Api {
     .post(`${API_HOST}/auth/sessions`)
     .send({ email, password })
   )
-  //
-  // requestLogout = (token) => (
-  //   superagent
-  //   .delete(`${API_HOST}/auth/sessions`)
-  //   .set('Authorization', `token ${token}`)
-  // )
+
+  requestLogout = (token) => (
+    superagent
+    .delete(`${API_HOST}/auth/sessions`)
+    .set('Authorization', `token ${token}`)
+  )
   //
   // getUser = (token) => {
   //   return superagent

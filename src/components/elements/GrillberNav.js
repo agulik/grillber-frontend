@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { browserHistory } from 'react-router';
 import {Icon, Col, Row, Modal} from 'react-materialize';
 import auth from '../../auth';
 import './GrillberNav.css';
@@ -12,14 +13,10 @@ export default class GrillberNav extends Component {
   }
 
   _handleLogout = () => {
-        if (localStorage.token) {
-          auth.logout()
-          .then(localStorage.removeItem('token'))
-          .catch(console.error);
-        }
-      else {
-        this.setState({ error: "You are not logged in!"});
-      }
+      auth.logout(localStorage)
+      .then(localStorage.removeItem('token'))
+      .then(res => browserHistory.push('/auth/signup'))
+      .catch(console.error);
     }
 
   render() {

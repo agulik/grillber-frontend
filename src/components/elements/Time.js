@@ -2,7 +2,6 @@
 import 'rc-time-picker/assets/index.css'; // Change CSS to match the date compenent
 
 import React, { Component } from 'react';
-// import ReactDom from 'react-dom';
 import moment from 'moment';
 import TimePicker from 'rc-time-picker';
 

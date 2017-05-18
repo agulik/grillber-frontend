@@ -6,7 +6,8 @@ import Home from './components/pages/Home';
 import Signup from './components/pages/Signup';
 import Login from './components/pages/Login';
 import Profile from './components/pages/Profile';
-import Orders from './components/pages/Orders';
+import PlaceOrders from './components/pages/PlaceOrders';
+import OrderHistory from './components/pages/OrderHistory';
 import NewOrder from './components/pages/NewOrder';
 
 
@@ -22,9 +23,10 @@ const routes = (
               <Route path="auth/login" component={Login} />
               <Route path="auth/me" component={Profile} />
             </Route>
-            <Route path="orders" component={Orders}>
-              <Route path="orders/new" component={NewOrder} />
-            </Route>
+            <Route path="orders" component={PlaceOrders} />
+            <Route path="orders/new" component={NewOrder} />
+            <Route path="orders/history" component={OrderHistory}/>
+
         </Route>
     </Router>
 );

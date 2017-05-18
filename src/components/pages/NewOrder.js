@@ -27,6 +27,15 @@ class NewOrder extends Component {
     };
   }
 
+  _handleListItem1 = () => {
+    this.setState({
+      listNum1: true,
+      listNum2: false,
+      listNum3: false,
+      listNum4: false
+    });
+  }
+
   _handleListItem2 = () => {
     this.setState({
       listNum1: false,
@@ -70,7 +79,8 @@ class NewOrder extends Component {
               <Col s={6}> <AltNumberList1 /> <NumberList2 /> <NumberList3 /> <NumberList4 /></Col>
               <Col s={6} className='neworder-white-line'>
                 <Date />
-                <Time />
+                <Time className="new-order-time"/>
+                <br/>
                 <Button onClick={this._handleListItem2}>Continue</Button>
               </Col>
             </Row>
@@ -85,7 +95,8 @@ class NewOrder extends Component {
             <Row>
               <Col s={6}> <NumberList1 /> <AltNumberList2 /> <NumberList3 /> <NumberList4 /></Col>
               <Col s={6} className='neworder-white-line'>
-                <Button onClick={this._handleListItem3}>Continue</Button>
+                <Button onClick={this._handleListItem1}>Back</Button>
+                <Button className="drop-off-two" onClick={this._handleListItem3}>Continue</Button>
               </Col>
             </Row>
           </div>);
@@ -99,7 +110,9 @@ class NewOrder extends Component {
             <Row>
               <Col s={6}> <NumberList1 /> <NumberList2 /> <AltNumberList3 /> <NumberList4 /></Col>
               <Col s={6} className='neworder-white-line'>
-                <Button onClick={this._handleListItem4}>Continue</Button>
+                <Map />
+                <Button className="drop-off-btn" onClick={this._handleListItem2}>Back</Button>
+                <Button className="drop-off-btn drop-off-two" onClick={this._handleListItem4}>Continue</Button>
               </Col>
             </Row>
           </div>);
@@ -113,7 +126,8 @@ class NewOrder extends Component {
             <Row>
               <Col s={6}> <NumberList1 /> <NumberList2 /> <NumberList3 /> <AltNumberList4 /></Col>
               <Col s={6} className='neworder-white-line'>
-                <Button>Place order</Button>
+                <Button onClick={this._handleListItem3}>Back</Button>
+                <Button className="drop-off-two">Place order</Button>
               </Col>
             </Row>
           </div>);

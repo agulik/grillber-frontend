@@ -1,0 +1,36 @@
+.login-background {
+  background-color: #fbfbfb;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-background p {
+  text-align: center;
+}
+
+.login-header {
+  margin-top: 60px;
+  font-weight: 600;
+}
+
+.login-form {
+  max-width: 80vw;
+  padding-left: 50px;
+}
+
+  .next-section i.material-icons:hover {
+    color: #fbcd9b;
+  }
+
+.next-section {
+  padding-top: 10px;
+  padding-left: 50px;
+}
+
+.error {
+  padding-left: 10px;
+  color: #e74c3c;
+}

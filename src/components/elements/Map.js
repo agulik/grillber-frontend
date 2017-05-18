@@ -13,7 +13,7 @@ const INPUT_STYLE = {
   marginTop: `8px`,
   padding: `0 12px`,
   borderRadius: `1px`,
-  boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
+  boxShadow: `0 2px 6px rgba(0, 0, 0, 0.7)`,
   fontSize: `14px`,
   outline: `none`,
   textOverflow: `ellipses`,
@@ -143,7 +143,7 @@ class Map extends Component {
         center={this.state.center}
         onMapMounted={this.handleMapMounted}
         containerElement={<div style={{height: 300+'px'}} />}
-        mapElement={<div style={{height: 600+'px'}} />}
+        mapElement={<div style={{height: 350+'px'}} />}
         // containerElement={
         //   <div style={{ height: `100%` }} />
         // }

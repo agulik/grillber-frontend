@@ -30,6 +30,7 @@ class Api {
     .send({token})
     .set('Authorization', `token ${token}`)
     .set('Accept', 'application/json')
+    .then(res => res.body)
   }
 
 }

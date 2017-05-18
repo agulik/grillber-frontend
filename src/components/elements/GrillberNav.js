@@ -1,15 +1,28 @@
 import React, {Component} from 'react';
 import { browserHistory, Link } from 'react-router';
 import {Icon, Col, Row, Modal} from 'react-materialize';
+import api from '../../api';
 import auth from '../../auth';
 import './GrillberNav.css';
-
-
 
 export default class GrillberNav extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      user: ""
+    };
+  }
+
+  componentDidMount() {
+    let token = localStorage.token;
+    if(token) {
+      api.getUser(token)
+      .then((user) => {
+        this.setState({
+          user: user
+        })
+      })
+    }
   }
 
   _handleLogout = (event) => {
@@ -17,17 +30,20 @@ export default class GrillberNav extends Component {
 
       auth.logout(localStorage)
       .then(localStorage.removeItem('token'))
-      .then(res => browserHistory.push('/'))
+      .then((res) => browserHistory.push('/'))
       .catch(console.error);
     }
 
   render() {
+
+    let {user} = this.state
 
     return (
       <div className='nav'>
         <Row>
           <Col s={12}>
             <Link to="/"><h2>Grillber</h2></Link>
+            {/* <p >Welcome {user.users_firstName}!</p> */}
             <Modal
               trigger={< a href='' onClick={() => this.props._handleMenuClick()}><Icon>menu</Icon></a>}>
               <div className="close modal-action modal-close">

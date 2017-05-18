@@ -9,6 +9,8 @@ import Profile from './components/pages/Profile';
 import PlaceOrders from './components/pages/PlaceOrders';
 import OrderHistory from './components/pages/OrderHistory';
 import NewOrder from './components/pages/NewOrder';
+import Settings from './components/pages/Settings';
+import Faq from './components/pages/Faq';
 
 
 
@@ -26,6 +28,8 @@ const routes = (
             <Route path="orders" component={PlaceOrders} />
             <Route path="orders/new" component={NewOrder} />
             <Route path="orders/history" component={OrderHistory}/>
+            <Route path="user/settings" component={Settings}/>
+            <Route path="faq" component={Faq}/>
         </Route>
     </Router>
 );

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 import {Icon, Col, Row, Modal} from 'react-materialize';
 import auth from '../../auth';
 import './GrillberNav.css';
@@ -12,7 +12,9 @@ export default class GrillberNav extends Component {
     this.state = {};
   }
 
-  _handleLogout = () => {
+  _handleLogout = (event) => {
+    event.preventDefault();
+
       auth.logout(localStorage)
       .then(localStorage.removeItem('token'))
       .then(res => browserHistory.push('/'))
@@ -31,9 +33,9 @@ export default class GrillberNav extends Component {
               <div className="close modal-action modal-close">
                 <Icon>close</Icon>
               </div>
-              <a href=''><p>FAQ</p></a>
-              <a href=''><p>Settings</p></a>
-              <a href='' onClick={this._handleLogout}><p>Logout</p></a>
+              <Link to="faq" className="close modal-action modal-close faq-link">FAQ</Link>
+              <Link to="/user/settings" className="close modal-action modal-close settings-link">Settings</Link>
+              <a href='#' onClick={this._handleLogout}><p>Logout</p></a>
             </Modal>
           </Col>
         </Row>

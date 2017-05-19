@@ -15,7 +15,7 @@ import Date from '../elements/Date';
 import Time from '../elements/Time';
 import Map from '../elements/Map';
 import DateTime from '../elements/DateTime';
-import auth from '../../auth';
+import auth from '../../api';
 import CardCheckout from './CardCheckout';
 
 
@@ -30,21 +30,22 @@ export default class NewOrder extends Component {
     };
   }
 
-  // _handleDateTime = () => {
-  //
-  //   let time = this.refs.time.state.value;
-  //   let date = this.refs.date.state.value;
-  //
-  //   if (time && date) {
-  //     auth.login(time, date)
-  //     .then(res => browserHistory.push('/'))
-  //     .catch(console.error);
-  //   }
-  // }
-
   _handleListItem1 = () => this.setState({listNum1: true, listNum2: false, listNum3: false, listNum4: false});
-  _handleListItem2 = () => this.setState({listNum1: false, listNum2: true, listNum3: false, listNum4: false});
+
+  _handleListItem2 = () => {
+    let {deliveryDate, deliveryTime, pickupDate, pickupTime} = this.state
+
+    this.setState({
+      listNum1: false,
+      listNum2: true,
+      listNum3: false,
+      listNum4: false
+    })
+    console.log(deliveryDate)
+  }
+
   _handleListItem3 = () => this.setState({listNum1: false, listNum2: false, listNum3: true, listNum4: false});
+
   _handleListItem4 = () => this.setState({listNum1: false, listNum2: false, listNum3: false, listNum4: true});
 
   _saveDeliveryDate = (deliveryDate) => this.setState({deliveryDate})

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router';
 import GrillberNav from '../elements/GrillberNav';
-// import GrillberHero from '../elements/GrillberHero';
 import './Home.css';
 import { Row, Col } from 'react-materialize';
 import PlaceOrders from './PlaceOrders';

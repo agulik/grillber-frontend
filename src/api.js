@@ -33,7 +33,7 @@ class Api {
     .then(res => res.body)
   }
 
-  requestSchedule = (time, date) => (
+  requestAvailableProducts = (time, date) => (
     superagent
     .post(`${API_HOST}/auth/sessions`)
     .send({ time, date })

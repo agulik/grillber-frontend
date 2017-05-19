@@ -30,7 +30,11 @@ export default class GrillberNav extends Component {
 
       auth.logout(localStorage)
       .then(localStorage.removeItem('token'))
-      .then((res) => browserHistory.push('/'))
+      .then((res) => {
+        console.log("hello")
+        browserHistory.push('/auth/login')
+        console.log("hello")
+      })
       .catch(console.error);
     }
 
@@ -51,7 +55,7 @@ export default class GrillberNav extends Component {
               </div>
               <Link to="faq" className="close modal-action modal-close faq-link">FAQ</Link>
               <Link to="/user/settings" className="close modal-action modal-close settings-link">Settings</Link>
-              <a href='#' onClick={this._handleLogout}><p>Logout</p></a>
+              <a href='#' onClick={this._handleLogout} className="close modal-action modal-close"><p>Logout</p></a>
             </Modal>
           </Col>
         </Row>

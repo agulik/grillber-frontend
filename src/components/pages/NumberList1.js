@@ -11,7 +11,7 @@ class NumberList1 extends Component {
 
         <div className='number-one number-all'>
           <p className='one-circle conditional-css'>1</p>
-          <p className='conditional-css2'>Arrange pick-up</p>
+          <p className='conditional-css2'>Arrange delivery & pickup</p>
         </div>
 
       </div>

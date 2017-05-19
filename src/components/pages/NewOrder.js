@@ -30,7 +30,7 @@ export default class NewOrder extends Component {
       listNum4: false
     };
   }
-
+  
   _handleListItem1 = () => this.setState({listNum1: true, listNum2: false, listNum3: false, listNum4: false});
 
   _handleListItem2 = () => {
@@ -63,7 +63,6 @@ export default class NewOrder extends Component {
   _savePickupDate = (pickupDate) => this.setState({pickupDate})
 
   _savePickupTime = (pickupTime) => this.setState({pickupTime})
-
 
   render() {
     const {listNum1, listNum2, listNum3, listNum4} = this.state

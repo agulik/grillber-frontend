@@ -6,26 +6,38 @@ import Home from './components/pages/Home';
 import SignupPage from './components/pages/SignupPage';
 import LoginPage from './components/pages/LoginPage';
 import Profile from './components/pages/Profile';
-import PlaceOrders from './components/pages/PlaceOrders';
 import OrderHistory from './components/pages/OrderHistory';
 import NewOrder from './components/pages/NewOrder';
+import Settings from './components/pages/Settings';
+import Faq from './components/pages/Faq';
 
 
 
 import './index.css';
 
+function requireAuth(nextState, replace, next) {
+  if (!localStorage.token) {
+    replace({
+      pathname: "/auth/signup",
+      state: {nextPathname: nextState.location.pathname}
+    });
+  }
+  next();
+}
+
 
 const routes = (
     <Router history={browserHistory}>
         <Route path="/" component={App}>
-          <IndexRoute component={Home}/>
+          <IndexRoute component={Home} onEnter={requireAuth}/>
             <Route path="auth" component={SignupPage} />
             <Route path="/auth/signup" component={SignupPage} />
             <Route path="/auth/login" component={LoginPage} />
-            <Route path="/auth/me" component={Profile} />
-            <Route path="orders" component={PlaceOrders} />
-            <Route path="orders/new" component={NewOrder} />
-            <Route path="orders/history" component={OrderHistory}/>
+            <Route path="/auth/me" component={Profile} onEnter={requireAuth} />
+            <Route path="orders/new" component={NewOrder} onEnter={requireAuth} />
+            <Route path="orders/history" component={OrderHistory} onEnter={requireAuth} />
+            <Route path="user/settings" component={Settings} onEnter={requireAuth} />
+            <Route path="faq" component={Faq} onEnter={requireAuth}/>
         </Route>
     </Router>
 );

@@ -7,3 +7,25 @@
 .home-white-line {
   border-left: 1px solid #f4efee;
 }
+
+.grillberorder-topdiv {
+}
+
+.grillberorder-left-border {
+  border-left: 1px solid #f4efee;
+}
+
+.grillberorder-place-order {
+  color: #ffffff;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grillberorder-both-div {
+  height:70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

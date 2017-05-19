@@ -7,6 +7,7 @@ import 'react-datepicker/dist/react-datepicker.css'; // Change CSS to match the 
 class Date extends Component {
   render() {
     return <DatePicker
+        dateFormat="YYYY/MM/DD"
         selected={this.props.data}
         onChange={this.props.saveData}
     />;

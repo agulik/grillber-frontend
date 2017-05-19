@@ -1,0 +1,9 @@
+.settings-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 100px;
+  text-align: center;
+  width: 600px;
+  color: #ffffff;
+}

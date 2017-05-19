@@ -16,7 +16,7 @@ import Time from '../elements/Time';
 import Map from '../elements/Map';
 import moment from 'moment';
 import DateTime from '../elements/DateTime';
-import auth from '../../api';
+import api from '../../api';
 import CardCheckout from './CardCheckout';
 
 

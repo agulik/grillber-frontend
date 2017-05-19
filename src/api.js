@@ -27,12 +27,13 @@ class Api {
   getUser = (token) => {
     return superagent
     .get(`${API_HOST}/auth/me`)
-    // .send({token})
-    // .set('Authorization', `token ${token}`)
-    // .set('Accept', 'application/json')
+    .send({token})
+    .set('Authorization', `token ${token}`)
+    .set('Accept', 'application/json')
+    .then(res => res.body)
   }
 
-  getProducts = (date) => (
+  requestAvailableProducts = (time, date) => (
     superagent
     .get(`${API_HOST}/products/availableProducts/${date}`)
   )

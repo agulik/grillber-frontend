@@ -56,18 +56,14 @@ export default class NewOrder extends Component {
     // generate all data from order and send off to database
   }
 
-  _saveDeliveryDate = (deliveryDate) => {
-    this.setState({deliveryDate})
-  }
-  _saveDeliveryTime = (deliveryTime) => {
-    this.setState({deliveryTime})
-  }
-  _savePickupDate = (pickupDate) => {
-    this.setState({pickupDate})
-  }
-  _savePickupTime = (pickupTime) => {
-    this.setState({pickupTime})
-  }
+  _saveDeliveryDate = (deliveryDate) => this.setState({deliveryDate})
+
+  _saveDeliveryTime = (deliveryTime) => this.setState({deliveryTime})
+
+  _savePickupDate = (pickupDate) => this.setState({pickupDate})
+
+  _savePickupTime = (pickupTime) => this.setState({pickupTime})
+
 
   render() {
     const {listNum1, listNum2, listNum3, listNum4} = this.state

@@ -15,7 +15,7 @@ import Date from '../elements/Date';
 import Time from '../elements/Time';
 import Map from '../elements/Map';
 import DateTime from '../elements/DateTime';
-import auth from '../../auth';
+import api from '../../api';
 import CardCheckout from './CardCheckout';
 
 
@@ -26,26 +26,34 @@ export default class NewOrder extends Component {
       listNum1: true,
       listNum2: false,
       listNum3: false,
-      listNum4: false
+      listNum4: false,
+      productList: []
     };
   }
 
-  // _handleDateTime = () => {
-  //
-  //   let time = this.refs.time.state.value;
-  //   let date = this.refs.date.state.value;
-  //
-  //   if (time && date) {
-  //     auth.login(time, date)
-  //     .then(res => browserHistory.push('/'))
-  //     .catch(console.error);
-  //   }
-  // }
+  _handleProducts = () => {
+    let date = this.refs.date.state.value;
+
+    if (date) {
+      api.getProducts(date)
+      .then(res => res.map(() => {
+        return this.state.productList
+      })).then(this.state.productList.filter(() => {
+
+      }))
+      .catch(console.error);
+    }
+  }
 
   _handleListItem1 = () => this.setState({listNum1: true, listNum2: false, listNum3: false, listNum4: false});
   _handleListItem2 = () => this.setState({listNum1: false, listNum2: true, listNum3: false, listNum4: false});
   _handleListItem3 = () => this.setState({listNum1: false, listNum2: false, listNum3: true, listNum4: false});
   _handleListItem4 = () => this.setState({listNum1: false, listNum2: false, listNum3: false, listNum4: true});
+
+  _onClick = () => {
+    this._handleProducts();
+    this._handleListItem2();
+  }
 
   _saveDeliveryDate = (deliveryDate) => this.setState({deliveryDate})
   _saveDeliveryTime = (deliveryTime) => this.setState({deliveryTime})
@@ -77,10 +85,10 @@ export default class NewOrder extends Component {
               <div className="new-order-pickup">
                 <h2>Pickup Time:</h2>
                 <br/>
-                <Date data={pickupDate} saveData={this._savePickupDate}/>
-                <Time data={pickupTime} saveData={this._savePickupTime} className="new-order-time"/>
+                <Date ref="lastname" data={pickupDate} saveData={this._savePickupDate}/>
+                <Time ref="lastname" data={pickupTime} saveData={this._savePickupTime} className="new-order-time"/>
               </div>
-              <Button onClick={this._handleListItem2}>Continue</Button>
+              <Button onClick={this._onClick}>Continue</Button>
             </Col>
           </Row>
         </div>

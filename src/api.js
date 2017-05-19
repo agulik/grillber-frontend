@@ -32,10 +32,9 @@ class Api {
     // .set('Accept', 'application/json')
   }
 
-  requestSchedule = (time, date) => (
+  getProducts = (date) => (
     superagent
-    .post(`${API_HOST}/auth/sessions`)
-    .send({ time, date })
+    .get(`${API_HOST}/products/availableProducts/${date}`)
   )
 
 }

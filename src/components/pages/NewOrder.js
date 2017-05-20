@@ -57,7 +57,6 @@ export default class NewOrder extends Component {
         products[i].id = [products[i].id]
 
         productData.push(products[i])
-        console.log("Product added");
       }
       else {
         productData[position].id.push(products[i].id);
@@ -66,8 +65,6 @@ export default class NewOrder extends Component {
     this.setState({
       productData: productData
     })
-    console.log(productData);
-    console.log(productData[0].id.length);
     })
   }
 
@@ -96,7 +93,6 @@ export default class NewOrder extends Component {
       listNum4: true
        });
 
-    console.log(lat, lng)
   }
 
 

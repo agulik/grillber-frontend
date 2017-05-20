@@ -44,6 +44,17 @@ class Api {
     .then(res => res.body)
 
   }
+
+  getOrderHistory = () => {
+    let token = localStorage.token
+    return superagent
+    .get(`${API_HOST}/bookings`)
+    .send({token})
+    .set('Authorization', `token ${token}`)
+    .set('Accept', 'application/json')
+    .then(res => res.body)
+  }
+  
 }
 
 export default new Api();

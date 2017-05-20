@@ -69,9 +69,33 @@ export default class NewOrder extends Component {
     })
   }
 
-  _handleListItem3 = () => this.setState({listNum1: false, listNum2: false, listNum3: true, listNum4: false});
+  _handleListItem3 = () => {
 
-  _handleListItem4 = () => this.setState({listNum1: false, listNum2: false, listNum3: false, listNum4: true});
+    this.setState({
+      listNum1: false,
+      listNum2: false,
+      listNum3: true,
+      listNum4: false
+    });
+
+  }
+
+  _handleListItem4 = () => {
+
+    let {location} = this.refs;
+
+    let lat = location.state.bounds.f.b;
+    let lng = location.state.bounds.b.b
+
+    this.setState({
+      listNum1: false,
+      listNum2: false,
+      listNum3: false,
+      listNum4: true
+       });
+
+    console.log(lat, lng)
+  }
 
 
   _handleConfirmOrder = () => {
@@ -87,6 +111,8 @@ export default class NewOrder extends Component {
   _savePickupDate = (pickupDate) => this.setState({pickupDate})
 
   _savePickupTime = (pickupTime) => this.setState({pickupTime})
+
+  _saveLocation = (location) => this.setState({location})
 
   render() {
     const {listNum1, listNum2, listNum3, listNum4} = this.state
@@ -175,7 +201,7 @@ export default class NewOrder extends Component {
               <AltNumberList3/>
               <NumberList4/></Col>
             <Col s={6} className='neworder-white-line'>
-              <Map/>
+              <Map ref="location" />
               <Button className="drop-off-btn" onClick={this._handleListItem2}>Back</Button>
               <Button className="drop-off-btn drop-off-two" onClick={this._handleListItem4}>Continue</Button>
             </Col>

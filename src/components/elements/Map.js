@@ -137,6 +137,7 @@ class Map extends Component {
 
 
   render() {
+
     return (
 
       <MyGoogleMap
@@ -156,7 +157,10 @@ class Map extends Component {
         onSearchBoxMounted={this.handleSearchBoxMounted}
         bounds={this.state.bounds}
         onPlacesChanged={this.handlePlacesChanged}
-        onMarkerRightClick={this.handleMarkerRightClick} />
+        onMarkerRightClick={this.handleMarkerRightClick}
+        // onChange={this.props.saveData}
+        // value={this.props.data}
+       />
     );
   }
 }

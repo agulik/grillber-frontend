@@ -38,7 +38,7 @@ export default class GrillberNav extends Component {
 
   render() {
 
-    let {user} = this.state
+    // let {user} = this.state
 
     return (
       <div className='nav'>

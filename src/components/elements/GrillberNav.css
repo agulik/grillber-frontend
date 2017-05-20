@@ -79,6 +79,7 @@
   div.modal-content p {
     color: #ffffff;
     font-size: 1.8rem;
+    margin: 0;
   }
 
   div.modal-content p:hover {

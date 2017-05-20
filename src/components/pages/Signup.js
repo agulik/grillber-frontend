@@ -101,10 +101,10 @@ export default class Signup extends Component {
 
     return (
       <div className="signup-background">
-        <div className="signup-header">
-          <p>Sign up to experience the convenience of grilling anywhere</p>
-        </div>
         <div className="signup-form">
+          <div className="signup-header">
+            <p>Sign up to experience the convenience of grilling anywhere</p>
+          </div>
           <Row>
             <Input s={6} label="First Name" type="text" ref="firstname" />
             <Input s={6} label="Last Name" ref="lastname" />
@@ -113,12 +113,10 @@ export default class Signup extends Component {
             <Input s={12} type="password" label="password" ref="password" onInput={this._handlePasswordInput} />
             <Input s={12} type="password" label="confirm password" ref="confirmpassword" onKeyUp={this._handleEnter}/>
           </Row>
+            <Button onClick={this._handleSignUp}>Sign up ></Button>
+            <span className="error">{error}</span>
+          <Link to="/auth/login">I already have an account</Link>
         </div>
-        <div className="next-section">
-          <Button onClick={this._handleSignUp}>Sign up</Button>
-          <span className="error">{error}</span>
-        </div>
-        <Link to="/auth/login">I already have an account</Link>
       </div>
     );
   }

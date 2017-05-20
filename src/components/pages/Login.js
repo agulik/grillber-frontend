@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, {Component} from 'react';
 import { browserHistory, Link } from 'react-router';
 import { Row, Input, Button} from 'react-materialize';
@@ -48,21 +49,24 @@ export default class Login extends Component {
 
     return (
       <div className="login-background">
+      
+        <div className="login-form">
+        
         <div className="login-header">
           <p>Welcome back!</p>
-          <p>please sign in</p>
+          <p>Please sign in</p>
         </div>
-        <div className="login-form">
+        
           <Row>
             <Input s={12} type="email" label="Email" ref="email" />
             <Input s={12} type="password" label="password" ref="password" onKeyUp={this._handleEnter} />
           </Row>
-        </div>
-        <div className="next-section">
+          
           <Button onClick={this._handleLogin}>Login</Button>
           <span className="error">{error}</span>
+          <Link to="/auth/signup">I'm not yet a member</Link>          
         </div>
-        <Link to="/auth/signup">I'm not yet a member</Link>
+
       </div>
     );
   }

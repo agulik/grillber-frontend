@@ -29,14 +29,23 @@ export default class NewOrder extends Component {
       listNum2: false,
       listNum3: false,
       listNum4: false,
-      productList: []
+      productList: [],
+      collapsibleClick1: false,
+      collapsibleClick2: false,
+      collapsibleClick3: false,
+      collapsibleClick4: false,
+      collapsibleExpand1: false,
+      collapsibleExpand2: false,
+      collapsibleExpand3: false,
+      collapsibleExpand4: false,
     };
   }
 
   _handleListItem1 = () => this.setState({listNum1: true, listNum2: false, listNum3: false, listNum4: false});
 
   _handleListItem2 = () => {
-    let {deliveryDate, productData} = this.state
+    let {deliveryDate} = this.state
+    // let {productData} = this.state
     deliveryDate = moment(deliveryDate).format('YYYY-MM-DD');
 
     this.setState({
@@ -48,12 +57,12 @@ export default class NewOrder extends Component {
 
   api.requestAvailableProducts(deliveryDate)
   .then((products) => {
-    var productData = new Array();
+    var productData = [];
 
     for ( var i = 0, l = products.length; i < l; i++) {
       var position = productData.map(function(item){ return item.title }).indexOf(products[i].title);
 
-      if ( position == -1 ) {
+      if ( position === -1 ) {
         products[i].id = [products[i].id]
 
         productData.push(products[i])
@@ -97,7 +106,7 @@ export default class NewOrder extends Component {
 
 
   _handleConfirmOrder = () => {
-    let {deliveryDate, deliveryTime, pickupDate, pickupTime} = this.state
+    // let {deliveryDate, deliveryTime, pickupDate, pickupTime} = this.state
 
     // generate all data from order and send off to database
   }
@@ -117,10 +126,62 @@ export default class NewOrder extends Component {
 
   _saveLocation = (location) => this.setState({location})
 
+
+  _handleCollapsibleClick1 = () => {
+    this.setState({
+      collapsibleClick1: true,
+      collapsibleExpand1: true,
+      collapsibleClick2: false,
+      collapsibleExpand2: false,
+      collapsibleClick3: false,
+      collapsibleExpand3: false,
+      collapsibleClick4: false,
+      collapsibleExpand4: false,
+     });
+  }
+
+  _handleCollapsibleClick2 = () => {
+    this.setState({
+      collapsibleClick1: false,
+      collapsibleExpand1: false,
+      collapsibleClick2: true,
+      collapsibleExpand2: true,
+      collapsibleClick3: false,
+      collapsibleExpand3: false,
+      collapsibleClick4: false,
+      collapsibleExpand4: false,
+     });
+  }
+
+  _handleCollapsibleClick3 = () => {
+    this.setState({
+      collapsibleClick1: false,
+      collapsibleExpand1: false,
+      collapsibleClick2: false,
+      collapsibleExpand2: false,
+      collapsibleClick3: true,
+      collapsibleExpand3: true,
+      collapsibleClick4: false,
+      collapsibleExpand4: false,
+     });
+  }
+
+  _handleCollapsibleClick4 = () => {
+    this.setState({
+      collapsibleClick1: false,
+      collapsibleExpand1: false,
+      collapsibleClick2: false,
+      collapsibleExpand2: false,
+      collapsibleClick3: false,
+      collapsibleExpand3: false,
+      collapsibleClick4: true,
+      collapsibleExpand4: true,
+     });
+  }
+
   render() {
     const {listNum1, listNum2, listNum3, listNum4} = this.state
-    const {deliveryDate, deliveryTime, pickupDate, pickupTime} = this.state
-    const {productData} = this.state
+    const {deliveryDate, deliveryTime, pickupDate, pickupTime, productData} = this.state
 
     if (listNum1) {
       return (
@@ -143,8 +204,8 @@ export default class NewOrder extends Component {
               <div className="new-order-pickup">
                 <h2>Pickup Time:</h2>
                 <br/>
-                <Date ref="lastname" data={pickupDate} saveData={this._savePickupDate} className="new-order-date"/>
-                <Time ref="lastname" data={pickupTime} saveData={this._savePickupTime} className="new-order-time"/>
+                <Date data={pickupDate} saveData={this._savePickupDate} className="new-order-date"/>
+                <Time data={pickupTime} saveData={this._savePickupTime} className="new-order-time"/>
               </div>
               <Button onClick={this._handleListItem2}>Continue</Button>
             </Col>
@@ -164,25 +225,36 @@ export default class NewOrder extends Component {
               <div className="popout-panels">
                 <Col s={6} className='neworder-white-line'>
                   <Collapsible popout>
-                    <CollapsibleItem /* header={ productData[0].title} */ icon='whatshot'>
+                    <CollapsibleItem expanded={this.state.collapsibleExpand1} onClick={this._handleCollapsibleClick1} header={productData[0].title} icon='whatshot'>
                       <div>
-                        {/* {productData[0].description} */}
-                      </div>
-                      {/* <div className="dangerous-text" dangerouslySetInnerHTML={{__html: productData[0].description}} /> */}
-                    </CollapsibleItem>
-                    <CollapsibleItem /* header={productData[1].title} */ icon='whatshot'>
-                      <div>
-                        {/* {productData[1].description} */}
+                        {productData[0].description}
+                        <br/>
+                        <img alt='' className="new-order-images" src={productData[0].imageFrontUrl} />
+                        <img alt='' className="new-order-images" src={productData[0].imageOpenUrl} />
                       </div>
                     </CollapsibleItem>
-                    <CollapsibleItem /* header={productData[2].title} */icon='whatshot'>
+                    <CollapsibleItem expanded={this.state.collapsibleExpand2} onClick={this._handleCollapsibleClick2} header={productData[1].title} icon='whatshot'>
                       <div>
-                        {/* {productData[2].description} */}
+                        {productData[1].description}
+                        <br/>
+                        <img alt='' className="new-order-images" src={productData[1].imageFrontUrl} />
+                        <img alt='' className="new-order-images" src={productData[1].imageOpenUrl} />
                       </div>
                     </CollapsibleItem>
-                    <CollapsibleItem /* header={productData[3].title} */icon='whatshot'>
+                    <CollapsibleItem expanded={this.state.collapsibleExpand3} onClick={this._handleCollapsibleClick3} header={productData[2].title} icon='whatshot'>
                       <div>
-                        {/* {productData[3].description} */}
+                        {productData[2].description}
+                        <br/>
+                        <img alt='' className="new-order-images" src={productData[2].imageFrontUrl} />
+                        <img alt='' className="new-order-images" src={productData[2].imageOpenUrl} />
+                      </div>
+                    </CollapsibleItem>
+                    <CollapsibleItem expanded={this.state.collapsibleExpand4} onClick={this._handleCollapsibleClick4} header={productData[3].title} icon='whatshot'>
+                      <div>
+                        {productData[3].description}
+                        <br/>
+                        <img alt='' className="new-order-images" src={productData[3].imageFrontUrl} />
+                        <img alt='' className="new-order-images" src={productData[3].imageOpenUrl} />
                       </div>
                     </CollapsibleItem>
                   </Collapsible>

@@ -21,67 +21,44 @@ const INPUT_STYLE = {
 
 
 const MyGoogleMap = withGoogleMap(props => (
-    <GoogleMap defaultZoom={18}
-      defaultCenter={{ lat: 45.5017, lng: -73.5673 }}
-      center={props.center}
-      ref={props.onMapMounted}
-      onClick={props.onMapClick}
-      onBoundsChanged={props.onBoundsChanged}>
-
-        {props.markers.map((marker, index) => (
-        <Marker {...marker}
-        onRightClick={() => props.onMarkerRightClick(marker)} />
-      ))}
-
-
-      <SearchBox
-        ref={props.onSearchBoxMounted}
-        bounds={props.bounds}
-        controlPosition={google.maps.ControlPosition.TOP_LEFT}
-        onPlacesChanged={props.onPlacesChanged}
-        inputPlaceholder="Search a location"
-        inputStyle={INPUT_STYLE}
-      />
-    </GoogleMap>
+  <GoogleMap
+    ref={props.onMapMounted}
+    defaultZoom={18}
+    center={props.center}
+    onBoundsChanged={props.onBoundsChanged}
+  >
+    <SearchBox
+      ref={props.onSearchBoxMounted}
+      bounds={props.bounds}
+      controlPosition={google.maps.ControlPosition.TOP_LEFT}
+      onPlacesChanged={props.onPlacesChanged}
+      inputPlaceholder="Search a location"
+      inputStyle={INPUT_STYLE}
+    />
+    {props.markers.map((marker, index) => (
+      <Marker position={marker.position} key={index} />
+    ))}
+  </GoogleMap>
 ));
 
-const defaultBounds = new google.maps.LatLngBounds(
-  new google.maps.LatLng(45.5017, -73.5673));
+// const defaultBounds = new google.maps.LatLngBounds(
+//   new google.maps.LatLng(45.5017, -73.5673));
 
 class Map extends Component {
 
   state = {
-    bounds: defaultBounds,
-    center: {
-      lat: 45.5017,
-      lng: -73.5673,
-    },
+    bounds: null,
+      center: {
+        lat: 45.5017,
+        lng: -73.5673,
+      },
     markers: [],
   };
 
-  // state = {
-  //   bounds: defaultBounds,
-  //   center: {
-  //     lat: 45.5017,
-  //     lng: -73.5673,
-  //   },
-  //   markers: [{
-  //     position: {
-  //       lat: 45.5017,
-  //       lng: -73.5673,
-  //     },
-  //     key: `Montreal`,
-  //     defaultAnimation: 2,
-  //   }],
-  // };
-
   handleMapMounted = this.handleMapMounted.bind(this);
   handleBoundsChanged = this.handleBoundsChanged.bind(this);
-  handleMapClick = this.handleMapClick.bind(this);
-  handleMarkerRightClick = this.handleMarkerRightClick.bind(this);
   handleSearchBoxMounted = this.handleSearchBoxMounted.bind(this);
   handlePlacesChanged = this.handlePlacesChanged.bind(this);
-
 
   handleMapMounted(map) {
     this._map = map;
@@ -93,30 +70,6 @@ class Map extends Component {
       center: this._map.getCenter(),
     });
   }
-
-  handleMapClick(event) {
-    const nextMarkers = [
-      ...this.state.markers,
-      {
-        position: event.latLng,
-        defaultAnimation: 2,
-        key: Date.now(),
-      },
-    ];
-    this.setState({
-      markers: nextMarkers,
-    });
-  }
-
-
-  handleMarkerRightClick(targetMarker) {
-    const nextMarkers = this.state.markers.filter(marker => marker !== targetMarker);
-
-    this.setState({
-      markers: nextMarkers,
-    });
-  }
-
 
   handleSearchBoxMounted(searchBox) {
     this._searchBox = searchBox;
@@ -139,27 +92,22 @@ class Map extends Component {
 
 
   render() {
-
     return (
-      <MyGoogleMap
-        center={this.state.center}
-        onMapMounted={this.handleMapMounted}
-        containerElement={<div style={{height: 300+'px'}} />}
-        mapElement={<div style={{height: 350+'px'}} />}
-        // containerElement={
-        //   <div style={{ height: `100%` }} />
-        // }
-        // mapElement={
-        //   <div style={{ height: `100%` }} />
-        // }
-        onMapClick={this.handleMapClick}
-        markers={this.state.markers}
-        onBoundsChanged={this.handleBoundsChanged}
-        onSearchBoxMounted={this.handleSearchBoxMounted}
-        bounds={this.state.bounds}
-        onPlacesChanged={this.handlePlacesChanged}
-        onMarkerRightClick={this.handleMarkerRightClick}
-       />
+        <MyGoogleMap
+          containerElement={
+            <div style={{ height: 300+'px' }} />
+          }
+          mapElement={
+            <div style={{ height: 350+'px' }} />
+          }
+          center={this.state.center}
+          onMapMounted={this.handleMapMounted}
+          onBoundsChanged={this.handleBoundsChanged}
+          onSearchBoxMounted={this.handleSearchBoxMounted}
+          bounds={this.state.bounds}
+          onPlacesChanged={this.handlePlacesChanged}
+          markers={this.state.markers}
+        />
     );
   }
 }

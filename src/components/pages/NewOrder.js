@@ -19,6 +19,8 @@ import api from '../../api';
 import CardCheckout from './CardCheckout';
 
 
+var masterDeliveryDate = ""
+
 export default class NewOrder extends Component {
   constructor(props) {
     super(props);
@@ -104,7 +106,12 @@ export default class NewOrder extends Component {
     // generate all data from order and send off to database
   }
 
-  _saveDeliveryDate = (deliveryDate) => this.setState({deliveryDate})
+  _saveDeliveryDate = (deliveryDate) => {
+    masterDeliveryDate = moment(deliveryDate).format('YYYY-MM-DD');
+    this.setState({
+      deliveryDate: deliveryDate
+    })
+  }
 
   _saveDeliveryTime = (deliveryTime) => this.setState({deliveryTime})
 
@@ -219,6 +226,13 @@ export default class NewOrder extends Component {
               <NumberList3/>
               <AltNumberList4/></Col>
             <Col s={6} className='neworder-white-line'>
+              <div>
+                <h2>Order Overview</h2>
+                <p>drop off date: {masterDeliveryDate}</p>
+                <p>drop off time: {deliveryTime}</p>
+                <p>pick up date:</p>
+                <p>pick up time:</p>
+              </div>
               <CardCheckout/>
               <Button onClick={this._handleListItem3}>Back</Button>
               <Button className="drop-off-two" onClick={this._handleConfirmOrder}>Place order</Button>

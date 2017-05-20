@@ -19,6 +19,7 @@ const INPUT_STYLE = {
   textOverflow: `ellipses`,
 };
 
+
 const MyGoogleMap = withGoogleMap(props => (
     <GoogleMap defaultZoom={18}
       defaultCenter={{ lat: 45.5017, lng: -73.5673 }}
@@ -31,6 +32,7 @@ const MyGoogleMap = withGoogleMap(props => (
         <Marker {...marker}
         onRightClick={() => props.onMarkerRightClick(marker)} />
       ))}
+
 
       <SearchBox
         ref={props.onSearchBoxMounted}
@@ -139,7 +141,6 @@ class Map extends Component {
   render() {
 
     return (
-
       <MyGoogleMap
         center={this.state.center}
         onMapMounted={this.handleMapMounted}
@@ -158,8 +159,6 @@ class Map extends Component {
         bounds={this.state.bounds}
         onPlacesChanged={this.handlePlacesChanged}
         onMarkerRightClick={this.handleMarkerRightClick}
-        // onChange={this.props.saveData}
-        // value={this.props.data}
        />
     );
   }

@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
-import { browserHistory, Link } from 'react-router';
-import {Icon, Col, Row, Input, Button} from 'react-materialize';
+// import { browserHistory, Link } from 'react-router';
+// import {Icon, Col, Row, Input, Button} from 'react-materialize';
 import GrillberNav from '../elements/GrillberNav';
-import auth from '../../auth';
+// import auth from '../../auth';
 import './Settings.css';
 
 
 export default class Settings extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {};
+  // }
 
   render() {
 

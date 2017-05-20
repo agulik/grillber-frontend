@@ -33,11 +33,17 @@ class Api {
     .then(res => res.body)
   }
 
-  requestAvailableProducts = (time, date) => (
-    superagent
-    .get(`${API_HOST}/products/availableProducts/${date}`)
-  )
+  requestAvailableProducts = (deliveryDate) => {
+    let token = localStorage.token
 
+    return superagent
+    .get(`${API_HOST}/products/availableProducts/${deliveryDate}`)
+    .send({token})
+    .set('Authorization', `token ${token}`)
+    .set('Accept', 'application/json')
+    .then(res => res.body)
+
+  }
 }
 
 export default new Api();

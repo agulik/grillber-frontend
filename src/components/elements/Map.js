@@ -19,6 +19,7 @@ const INPUT_STYLE = {
   textOverflow: `ellipses`,
 };
 
+
 const MyGoogleMap = withGoogleMap(props => (
   <GoogleMap
     ref={props.onMapMounted}

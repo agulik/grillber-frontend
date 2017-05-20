@@ -19,6 +19,8 @@ import api from '../../api';
 import CardCheckout from './CardCheckout';
 
 
+var masterDeliveryDate = ""
+
 export default class NewOrder extends Component {
   constructor(props) {
     super(props);
@@ -72,13 +74,35 @@ export default class NewOrder extends Component {
     this.setState({
       productData: productData
     })
-    console.log(productData)
     })
   }
 
-  _handleListItem3 = () => this.setState({listNum1: false, listNum2: false, listNum3: true, listNum4: false});
+  _handleListItem3 = () => {
 
-  _handleListItem4 = () => this.setState({listNum1: false, listNum2: false, listNum3: false, listNum4: true});
+    this.setState({
+      listNum1: false,
+      listNum2: false,
+      listNum3: true,
+      listNum4: false
+    });
+
+  }
+
+  _handleListItem4 = () => {
+
+    let {location} = this.refs;
+
+    let lat = location.state.bounds.f.b;
+    let lng = location.state.bounds.b.b
+
+    this.setState({
+      listNum1: false,
+      listNum2: false,
+      listNum3: false,
+      listNum4: true
+       });
+
+  }
 
 
   _handleConfirmOrder = () => {
@@ -87,13 +111,20 @@ export default class NewOrder extends Component {
     // generate all data from order and send off to database
   }
 
-  _saveDeliveryDate = (deliveryDate) => this.setState({deliveryDate})
+  _saveDeliveryDate = (deliveryDate) => {
+    masterDeliveryDate = moment(deliveryDate).format('YYYY-MM-DD');
+    this.setState({
+      deliveryDate: deliveryDate
+    })
+  }
 
   _saveDeliveryTime = (deliveryTime) => this.setState({deliveryTime})
 
   _savePickupDate = (pickupDate) => this.setState({pickupDate})
 
   _savePickupTime = (pickupTime) => this.setState({pickupTime})
+
+  _saveLocation = (location) => this.setState({location})
 
 
   _handleCollapsibleClick1 = () => {
@@ -245,7 +276,7 @@ export default class NewOrder extends Component {
               <AltNumberList3/>
               <NumberList4/></Col>
             <Col s={6} className='neworder-white-line'>
-              <Map/>
+              <Map ref="location" />
               <Button className="drop-off-btn" onClick={this._handleListItem2}>Back</Button>
               <Button className="drop-off-btn drop-off-two" onClick={this._handleListItem4}>Continue</Button>
             </Col>
@@ -263,6 +294,13 @@ export default class NewOrder extends Component {
               <NumberList3/>
               <AltNumberList4/></Col>
             <Col s={6} className='neworder-white-line'>
+              <div>
+                <h2>Order Overview</h2>
+                <p>drop off date: {masterDeliveryDate}</p>
+                <p>drop off time: {deliveryTime}</p>
+                <p>pick up date:</p>
+                <p>pick up time:</p>
+              </div>
               <CardCheckout/>
               <Button onClick={this._handleListItem3}>Back</Button>
               <Button className="drop-off-two" onClick={this._handleConfirmOrder}>Place order</Button>

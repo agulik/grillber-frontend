@@ -10,17 +10,15 @@ const now = moment().hour(0).minute(0);
 
 
 class Time extends Component {
-  constructor(props) {
-    super(props)
-  }
-  
+  // constructor(props) {
+  //   super(props)
+  // }
+
   render() {
     return (
       <TimePicker
-
         value={this.props.data}
         onChange={this.props.saveData}
-
         showSecond={false}
         defaultValue={now}
         className="xxx"

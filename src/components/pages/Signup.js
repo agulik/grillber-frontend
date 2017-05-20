@@ -38,7 +38,7 @@ export default class Signup extends Component {
 
   _handlePasswordInput = (event) => {
 
-    let {error} = this.state;
+    // let {error} = this.state;
     let value = event.target.value;
 
     if (value.length < 8 ) {
@@ -54,7 +54,7 @@ export default class Signup extends Component {
 
   _handleSignUp = () => {
 
-    let {error} = this.state;
+    // let {error} = this.state;
 
     let firstName = this.refs.firstname.state.value;
     let lastName = this.refs.lastname.state.value;

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import { browserHistory, Link } from 'react-router';
-import {Icon, Col, Row, Input, Button} from 'react-materialize';
+// import { browserHistory, Link } from 'react-router';
+// import {Icon, Col, Row, Input, Button} from 'react-materialize';
 import GrillberNav from '../elements/GrillberNav';
-import auth from '../../auth';
+// import auth from '../../auth';
 import './Faq.css';
 
 

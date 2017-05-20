@@ -34,7 +34,8 @@ export default class NewOrder extends Component {
   _handleListItem1 = () => this.setState({listNum1: true, listNum2: false, listNum3: false, listNum4: false});
 
   _handleListItem2 = () => {
-    let {deliveryDate, productData} = this.state
+    let {deliveryDate} = this.state
+    // let {productData} = this.state
     deliveryDate = moment(deliveryDate).format('YYYY-MM-DD');
 
     this.setState({
@@ -46,12 +47,12 @@ export default class NewOrder extends Component {
 
   api.requestAvailableProducts(deliveryDate)
   .then((products) => {
-    var productData = new Array();
+    var productData = [];
 
     for ( var i = 0, l = products.length; i < l; i++) {
       var position = productData.map(function(item){ return item.title }).indexOf(products[i].title);
 
-      if ( position == -1 ) {
+      if ( position === -1 ) {
         products[i].id = [products[i].id]
 
         productData.push(products[i])
@@ -75,7 +76,7 @@ export default class NewOrder extends Component {
 
 
   _handleConfirmOrder = () => {
-    let {deliveryDate, deliveryTime, pickupDate, pickupTime} = this.state
+    // let {deliveryDate, deliveryTime, pickupDate, pickupTime} = this.state
 
     // generate all data from order and send off to database
   }
@@ -91,7 +92,7 @@ export default class NewOrder extends Component {
   render() {
     const {listNum1, listNum2, listNum3, listNum4} = this.state
     const {deliveryDate, deliveryTime, pickupDate, pickupTime} = this.state
-    const {productData} = this.state
+    // const {productData} = this.state
 
     if (listNum1) {
       return (
@@ -114,8 +115,8 @@ export default class NewOrder extends Component {
               <div className="new-order-pickup">
                 <h2>Pickup Time:</h2>
                 <br/>
-                <Date ref="lastname" data={pickupDate} saveData={this._savePickupDate} className="new-order-date"/>
-                <Time ref="lastname" data={pickupTime} saveData={this._savePickupTime} className="new-order-time"/>
+                <Date data={pickupDate} saveData={this._savePickupDate} className="new-order-date"/>
+                <Time data={pickupTime} saveData={this._savePickupTime} className="new-order-time"/>
               </div>
               <Button onClick={this._handleListItem2}>Continue</Button>
             </Col>
@@ -135,23 +136,23 @@ export default class NewOrder extends Component {
               <div className="popout-panels">
                 <Col s={6} className='neworder-white-line'>
                   <Collapsible popout>
-                    <CollapsibleItem /* header={ productData[0].title} */ icon='whatshot'>
+                    <CollapsibleItem /* header={ productData[0].title} */ header='filler' icon='whatshot'>
                       <div>
                         {/* {productData[0].description} */}
                       </div>
                       {/* <div className="dangerous-text" dangerouslySetInnerHTML={{__html: productData[0].description}} /> */}
                     </CollapsibleItem>
-                    <CollapsibleItem /* header={productData[1].title} */ icon='whatshot'>
+                    <CollapsibleItem /* header={productData[1].title} */ header='filler' icon='whatshot'>
                       <div>
                         {/* {productData[1].description} */}
                       </div>
                     </CollapsibleItem>
-                    <CollapsibleItem /* header={productData[2].title} */icon='whatshot'>
+                    <CollapsibleItem /* header={productData[2].title} */ header='filler' icon='whatshot'>
                       <div>
                         {/* {productData[2].description} */}
                       </div>
                     </CollapsibleItem>
-                    <CollapsibleItem /* header={productData[3].title} */icon='whatshot'>
+                    <CollapsibleItem /* header={productData[3].title} */ header='filler' icon='whatshot'>
                       <div>
                         {/* {productData[3].description} */}
                       </div>

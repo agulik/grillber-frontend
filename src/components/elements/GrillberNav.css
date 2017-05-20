@@ -2,6 +2,11 @@
     height: 18vh;
   }
 
+  .nav p {
+    padding-left: 15px;
+    display: inline;
+    color: #ffffff;
+  }
   h2 {
     display: inline-block;
     font-size: 1.8rem;

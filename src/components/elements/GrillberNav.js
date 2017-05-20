@@ -31,23 +31,21 @@ export default class GrillberNav extends Component {
       auth.logout(localStorage)
       .then(localStorage.removeItem('token'))
       .then((res) => {
-        console.log("hello")
         browserHistory.push('/auth/login')
-        console.log("hello")
       })
       .catch(console.error);
     }
 
   render() {
 
-    // let {user} = this.state
+    let {user} = this.state
 
     return (
       <div className='nav'>
         <Row>
           <Col s={12}>
             <Link to="/"><h2>Grillber</h2></Link>
-            {/* <p >Welcome {user.users_firstName}!</p> */}
+            <p>Welcome {user.users_firstName}!</p>
             <Modal
               trigger={< a href='' onClick={() => this.props._handleMenuClick()}><Icon>menu</Icon></a>}>
               <div className="close modal-action modal-close">

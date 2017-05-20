@@ -51,23 +51,8 @@ popout-panels i.material-icons:hover {
   display: none;
 }
 
-/*<div>
-  <p>The SIGNET™ 90 features 635 sq. in. total cooking space including  a porcelain coated warming rack, reversible heavy-duty cast iron cooking grids, stainless steel Flav-R-Wave cooking system, 3 stainless steel Dual-Tube burners, and stainless steel drop-down side shelves and enclosed cabinet base.
-  </p>
-</div>
-<div>
-  <h3>40,000 BTU</h3>
-  <h5>Main Burner Output</h5>
-  <br />
-  <h3>3</h3>
-  <h5>Burners</h5>
-  <br />
-  <h3>10,000 BTU</h3>
-  <h5>Side Burner</h5>
-  <br />
-  <h3>15,000 BTU</h3>
-  <h5>Rotisserie Burner</h5>
-  <br />
-  <h3>400 sq. in.</h3>
-  <h5>Primary Cooking Space</h5>
-</div>*/
+.new-order-images {
+  height: 150px;
+  length: 150px;
+  margin-right: 80px;
+}

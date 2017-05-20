@@ -14,7 +14,7 @@ export default class Login extends Component {
 
   _handleLogin = () => {
 
-    let {error} = this.state;
+    // let {error} = this.state;
 
     let email = this.refs.email.state.value;
     let password = this.refs.password.state.value;

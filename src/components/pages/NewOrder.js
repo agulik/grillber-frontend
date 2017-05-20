@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Button} from 'react-materialize';
 import GrillberNav from '../elements/GrillberNav';
 import './NewOrder.css';
-import {Row, Col} from 'react-materialize';
+import {Row, Col, Collapsible, CollapsibleItem} from 'react-materialize';
 import NumberList1 from './NumberList1';
 import NumberList2 from './NumberList2';
 import NumberList3 from './NumberList3';
@@ -15,7 +15,6 @@ import Date from '../elements/Date';
 import Time from '../elements/Time';
 import Map from '../elements/Map';
 import moment from 'moment';
-import DateTime from '../elements/DateTime';
 import api from '../../api';
 import CardCheckout from './CardCheckout';
 
@@ -27,14 +26,15 @@ export default class NewOrder extends Component {
       listNum1: true,
       listNum2: false,
       listNum3: false,
-      listNum4: false
+      listNum4: false,
+      productList: []
     };
   }
-  
+
   _handleListItem1 = () => this.setState({listNum1: true, listNum2: false, listNum3: false, listNum4: false});
 
   _handleListItem2 = () => {
-    let {deliveryDate} = this.state
+    let {deliveryDate, productData} = this.state
     deliveryDate = moment(deliveryDate).format('YYYY-MM-DD');
 
     this.setState({
@@ -43,12 +43,36 @@ export default class NewOrder extends Component {
       listNum3: false,
       listNum4: false
     })
-    console.log(deliveryDate)
+
+  api.requestAvailableProducts(deliveryDate)
+  .then((products) => {
+    var productData = new Array();
+
+    for ( var i = 0, l = products.length; i < l; i++) {
+      var position = productData.map(function(item){ return item.title }).indexOf(products[i].title);
+
+      if ( position == -1 ) {
+        products[i].id = [products[i].id]
+
+        productData.push(products[i])
+        console.log("Product added");
+      }
+      else {
+        productData[position].id.push(products[i].id);
+      }
+    }
+    this.setState({
+      productData: productData
+    })
+    console.log(productData);
+    console.log(productData[0].id.length);
+    })
   }
 
   _handleListItem3 = () => this.setState({listNum1: false, listNum2: false, listNum3: true, listNum4: false});
 
   _handleListItem4 = () => this.setState({listNum1: false, listNum2: false, listNum3: false, listNum4: true});
+
 
   _handleConfirmOrder = () => {
     let {deliveryDate, deliveryTime, pickupDate, pickupTime} = this.state
@@ -67,6 +91,7 @@ export default class NewOrder extends Component {
   render() {
     const {listNum1, listNum2, listNum3, listNum4} = this.state
     const {deliveryDate, deliveryTime, pickupDate, pickupTime} = this.state
+    const {productData} = this.state
 
     if (listNum1) {
       return (
@@ -82,15 +107,15 @@ export default class NewOrder extends Component {
               <div className="new-order-delivery">
                 <h2>Delivery Time:</h2>
                 <br/>
-                <Date data={deliveryDate} saveData={this._saveDeliveryDate}/>
+                <Date data={deliveryDate} saveData={this._saveDeliveryDate} className="new-order-date"/>
                 <Time data={deliveryTime} saveData={this._saveDeliveryTime} className="new-order-time"/>
               </div>
               <br/>
               <div className="new-order-pickup">
                 <h2>Pickup Time:</h2>
                 <br/>
-                <Date data={pickupDate} saveData={this._savePickupDate}/>
-                <Time data={pickupTime} saveData={this._savePickupTime} className="new-order-time"/>
+                <Date ref="lastname" data={pickupDate} saveData={this._savePickupDate} className="new-order-date"/>
+                <Time ref="lastname" data={pickupTime} saveData={this._savePickupTime} className="new-order-time"/>
               </div>
               <Button onClick={this._handleListItem2}>Continue</Button>
             </Col>
@@ -107,10 +132,35 @@ export default class NewOrder extends Component {
               <AltNumberList2/>
               <NumberList3/>
               <NumberList4/></Col>
-            <Col s={6} className='neworder-white-line'>
-              <Button onClick={this._handleListItem1}>Back</Button>
-              <Button className="drop-off-two" onClick={this._handleListItem3}>Continue</Button>
-            </Col>
+              <div className="popout-panels">
+                <Col s={6} className='neworder-white-line'>
+                  <Collapsible popout>
+                    <CollapsibleItem /* header={ productData[0].title} */ icon='whatshot'>
+                      <div>
+                        {/* {productData[0].description} */}
+                      </div>
+                      {/* <div className="dangerous-text" dangerouslySetInnerHTML={{__html: productData[0].description}} /> */}
+                    </CollapsibleItem>
+                    <CollapsibleItem /* header={productData[1].title} */ icon='whatshot'>
+                      <div>
+                        {/* {productData[1].description} */}
+                      </div>
+                    </CollapsibleItem>
+                    <CollapsibleItem /* header={productData[2].title} */icon='whatshot'>
+                      <div>
+                        {/* {productData[2].description} */}
+                      </div>
+                    </CollapsibleItem>
+                    <CollapsibleItem /* header={productData[3].title} */icon='whatshot'>
+                      <div>
+                        {/* {productData[3].description} */}
+                      </div>
+                    </CollapsibleItem>
+                  </Collapsible>
+                  <Button onClick={this._handleListItem1}>Back</Button>
+                  <Button className="drop-off-two" onClick={this._handleListItem3}>Continue</Button>
+                </Col>
+            </div>
           </Row>
         </div>
       );
@@ -160,8 +210,7 @@ export default class NewOrder extends Component {
               <NumberList2/>
               <NumberList3/>
               <NumberList4/></Col>
-            <Col s={6} className='neworder-white-line'>
-              <DateTime/></Col>
+            <Col s={6} className='neworder-white-line'></Col>
           </Row>
         </div>
       );

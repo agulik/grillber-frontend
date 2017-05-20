@@ -7,6 +7,7 @@
 .neworder-white-line {
   border-left: 1px solid #f4efee;
 }
+
 .drop-off-btn {
   margin-top: 60px;
 }
@@ -18,3 +19,55 @@
 .new-order-time {
   margin-left: 20px;
 }
+
+.new-order-date {
+  margin-left: 20px;
+}
+
+.popout-panels i.material-icons {
+  display: inline-block;
+  font-size: 1.8rem;
+  color: #fd9727;
+  line-height: 100%;
+  vertical-align: middle;
+  float: inherit;
+  padding-right: 0;
+}
+
+popout-panels i.material-icons:hover {
+  color: #fbcd9b;
+}
+
+.dangerous-text {
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.dangerous-text br, h3:nth-child(1) {
+  display: none;
+}
+
+.dangerous-text h5:nth-child(1), h5:nth-child(3), h5:nth-child(4) {
+  display: none;
+}
+
+/*<div>
+  <p>The SIGNET™ 90 features 635 sq. in. total cooking space including  a porcelain coated warming rack, reversible heavy-duty cast iron cooking grids, stainless steel Flav-R-Wave cooking system, 3 stainless steel Dual-Tube burners, and stainless steel drop-down side shelves and enclosed cabinet base.
+  </p>
+</div>
+<div>
+  <h3>40,000 BTU</h3>
+  <h5>Main Burner Output</h5>
+  <br />
+  <h3>3</h3>
+  <h5>Burners</h5>
+  <br />
+  <h3>10,000 BTU</h3>
+  <h5>Side Burner</h5>
+  <br />
+  <h3>15,000 BTU</h3>
+  <h5>Rotisserie Burner</h5>
+  <br />
+  <h3>400 sq. in.</h3>
+  <h5>Primary Cooking Space</h5>
+</div>*/

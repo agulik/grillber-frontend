@@ -15,10 +15,6 @@ import Date from '../elements/Date';
 import Time from '../elements/Time';
 import Map from '../elements/Map';
 import moment from 'moment';
-<<<<<<< HEAD
-=======
-import DateTime from '../elements/DateTime';
->>>>>>> 85d59f032c4276b55ed11f62623a3640304f7651
 import api from '../../api';
 import CardCheckout from './CardCheckout';
 

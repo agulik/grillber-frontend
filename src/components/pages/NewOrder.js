@@ -20,6 +20,9 @@ import CardCheckout from './CardCheckout';
 
 
 var masterDeliveryDate = ""
+var masterDeliveryTime = ""
+var masterPickupDate = ""
+var masterPickupTime = ""
 
 export default class NewOrder extends Component {
   constructor(props) {
@@ -118,11 +121,20 @@ export default class NewOrder extends Component {
     })
   }
 
-  _saveDeliveryTime = (deliveryTime) => this.setState({deliveryTime})
+  _saveDeliveryTime = (deliveryTime) => {
+    masterDeliveryTime = moment(deliveryTime).format('hh:mm');
+    this.setState({deliveryTime})
+  }
 
-  _savePickupDate = (pickupDate) => this.setState({pickupDate})
+  _savePickupDate = (pickupDate) => {
+    masterPickupDate = moment(pickupDate).format('YYYY-MM-DD');
+    this.setState({pickupDate})
+  }
 
-  _savePickupTime = (pickupTime) => this.setState({pickupTime})
+  _savePickupTime = (pickupTime) => {
+    masterPickupTime = moment(pickupTime).format('hh:mm');
+    this.setState({pickupTime})
+  }
 
   _saveLocation = (location) => this.setState({location})
 
@@ -297,9 +309,9 @@ export default class NewOrder extends Component {
               <div>
                 <h2>Order Overview</h2>
                 <p>drop off date: {masterDeliveryDate}</p>
-                <p>drop off time: {deliveryTime}</p>
-                <p>pick up date:</p>
-                <p>pick up time:</p>
+                <p>drop off time: {masterDeliveryTime}</p>
+                <p>pick up date: {masterPickupDate}</p>
+                <p>pick up time: {masterPickupTime}</p>
               </div>
               <CardCheckout/>
               <Button onClick={this._handleListItem3}>Back</Button>

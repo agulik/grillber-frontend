@@ -84,8 +84,6 @@ export default class NewOrder extends Component {
 
     const {product0, product1, product2, product3} = this.state
 
-    console.log(product0, product1, product2, product3)
-
     this.setState({
       listNum1: false,
       listNum2: false,
@@ -251,11 +249,6 @@ export default class NewOrder extends Component {
       currentQuantity2Input,
       currentQuantity3Input
     } = this.state
-
-    console.log(currentQuantity0Input)
-    console.log(currentQuantity1Input)
-    console.log(currentQuantity2Input)
-    console.log(currentQuantity3Input)
 
 
     if (listNum1) {

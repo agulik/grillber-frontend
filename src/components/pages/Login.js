@@ -45,7 +45,8 @@ export default class Login extends Component {
 
   render() {
 
-    let {currentInput, error} = this.state;
+    let {error} = this.state;
+    // let {currentInput} = this.state;
 
     return (
       <div className="login-background">

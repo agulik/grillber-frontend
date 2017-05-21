@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import GrillberNav from '../elements/GrillberNav';
-import { Row, Col } from 'react-materialize';
+// import { Row, Col } from 'react-materialize';
 import api from '../../api';
 import './OrderHistory.css'
 

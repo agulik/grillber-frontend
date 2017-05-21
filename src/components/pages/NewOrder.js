@@ -427,6 +427,10 @@ export default class NewOrder extends Component {
                 <p>drop off time: {masterDeliveryTime}</p>
                 <p>pick up date: {masterPickupDate}</p>
                 <p>pick up time: {masterPickupTime}</p>
+                { currentQuantity0Input > 0 ? <p>{productData[0].title} Quantity: {currentQuantity0Input}</p> : null}
+                { currentQuantity1Input > 0 ? <p>{productData[1].title} Quantity: {currentQuantity1Input}</p> : null}
+                { currentQuantity2Input > 0 ? <p>{productData[2].title} Quantity: {currentQuantity2Input}</p> : null}
+                { currentQuantity3Input > 0 ? <p>{productData[3].title} Quantity: {currentQuantity3Input}</p> : null}
               </div>
               <CardCheckout/>
               <Button onClick={this._handleListItem3}>Back</Button>

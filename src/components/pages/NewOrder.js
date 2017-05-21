@@ -107,7 +107,6 @@ export default class NewOrder extends Component {
 
   }
 
-
   _handleConfirmOrder = () => {
     // let {deliveryDate, deliveryTime, pickupDate, pickupTime} = this.state
 
@@ -148,7 +147,7 @@ export default class NewOrder extends Component {
       collapsibleClick3: false,
       collapsibleExpand3: false,
       collapsibleClick4: false,
-      collapsibleExpand4: false,
+      collapsibleExpand4: false
      });
   }
 
@@ -161,7 +160,7 @@ export default class NewOrder extends Component {
       collapsibleClick3: false,
       collapsibleExpand3: false,
       collapsibleClick4: false,
-      collapsibleExpand4: false,
+      collapsibleExpand4: false
      });
   }
 
@@ -174,7 +173,7 @@ export default class NewOrder extends Component {
       collapsibleClick3: true,
       collapsibleExpand3: true,
       collapsibleClick4: false,
-      collapsibleExpand4: false,
+      collapsibleExpand4: false
      });
   }
 
@@ -187,7 +186,7 @@ export default class NewOrder extends Component {
       collapsibleClick3: false,
       collapsibleExpand3: false,
       collapsibleClick4: true,
-      collapsibleExpand4: true,
+      collapsibleExpand4: true
      });
   }
 
@@ -237,7 +236,7 @@ export default class NewOrder extends Component {
               <div className="popout-panels">
                 <Col s={6} className='neworder-white-line'>
                   <Collapsible popout className="new-order-product-description">
-                    <CollapsibleItem expanded={this.state.collapsibleExpand1} onClick={this._handleCollapsibleClick1} header={productData[0].title} icon='whatshot'>
+                    <CollapsibleItem onClick={this._handleCollapsibleClick1} expanded={this.state.collapsibleExpand1} header={productData[0].title} icon='whatshot'>
                       <Row>
                         <Col s={8}>
                           {productData[0].description}
@@ -246,9 +245,9 @@ export default class NewOrder extends Component {
                           <img alt='' className="new-order-images" src={productData[0].imageFrontUrl} />
                           <img alt='' className="new-order-images" src={productData[0].imageOpenUrl} />
                         </Col>
-                    </Row>
+                      </Row>
                     </CollapsibleItem>
-                    <CollapsibleItem expanded={this.state.collapsibleExpand2} onClick={this._handleCollapsibleClick2} header={productData[1].title} icon='whatshot'>
+                    <CollapsibleItem onClick={this._handleCollapsibleClick2} expanded={this.state.collapsibleExpand2} header={productData[1].title} icon='whatshot'>
                       <Row>
                         <Col s={8}>
                           {productData[1].description}
@@ -257,9 +256,9 @@ export default class NewOrder extends Component {
                           <img alt='' className="new-order-images" src={productData[1].imageFrontUrl} />
                           <img alt='' className="new-order-images" src={productData[1].imageOpenUrl} />
                         </Col>
-                    </Row>
+                      </Row>
                     </CollapsibleItem>
-                    <CollapsibleItem expanded={this.state.collapsibleExpand3} onClick={this._handleCollapsibleClick3} header={productData[2].title} icon='whatshot'>
+                    <CollapsibleItem onClick={this._handleCollapsibleClick3} expanded={this.state.collapsibleExpand3} header={productData[2].title} icon='whatshot'>
                       <Row>
                         <Col s={8}>
                           {productData[2].description}
@@ -268,9 +267,9 @@ export default class NewOrder extends Component {
                           <img alt='' className="new-order-images" src={productData[2].imageFrontUrl} />
                           <img alt='' className="new-order-images" src={productData[2].imageOpenUrl} />
                         </Col>
-                    </Row>
+                      </Row>
                     </CollapsibleItem>
-                    <CollapsibleItem expanded={this.state.collapsibleExpand4} onClick={this._handleCollapsibleClick4} header={productData[3].title} icon='whatshot'>
+                    <CollapsibleItem onClick={this._handleCollapsibleClick4} expanded={this.state.collapsibleExpand4} header={productData[3].title} icon='whatshot'>
                       <Row>
                         <Col s={8}>
                           {productData[3].description}
@@ -279,7 +278,7 @@ export default class NewOrder extends Component {
                           <img alt='' className="new-order-images" src={productData[3].imageFrontUrl} />
                           <img alt='' className="new-order-images" src={productData[3].imageOpenUrl} />
                         </Col>
-                    </Row>
+                      </Row>
                     </CollapsibleItem>
                   </Collapsible>
                   <Button onClick={this._handleListItem1}>Back</Button>

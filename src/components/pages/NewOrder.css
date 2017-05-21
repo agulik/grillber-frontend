@@ -56,3 +56,11 @@ popout-panels i.material-icons:hover {
   length: 150px;
   margin-right: 80px;
 }
+
+a.rc-time-picker-panel-clear-btn::after {
+  display: none;
+}
+
+.new-order-product-description {
+  color: #ffffff;
+}

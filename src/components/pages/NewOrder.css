@@ -56,3 +56,12 @@ popout-panels i.material-icons:hover {
   length: 150px;
   margin-right: 80px;
 }
+
+.order-summary {
+  margin-left: 20px;
+  color: #ffffff;
+}
+
+.product-info {
+  color: #ffffff;
+}

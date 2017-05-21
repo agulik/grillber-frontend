@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Button} from 'react-materialize';
 import GrillberNav from '../elements/GrillberNav';
 import './NewOrder.css';
-import {Row, Col, Collapsible, CollapsibleItem} from 'react-materialize';
+import {Row, Col, Collapsible, CollapsibleItem, Input} from 'react-materialize';
 import NumberList1 from './NumberList1';
 import NumberList2 from './NumberList2';
 import NumberList3 from './NumberList3';
@@ -257,6 +257,7 @@ export default class NewOrder extends Component {
                         <br/>
                         <img alt='' className="new-order-images" src={productData[0].imageFrontUrl} />
                         <img alt='' className="new-order-images" src={productData[0].imageOpenUrl} />
+                        <Input />
                       </div>
                     </CollapsibleItem>
                     <CollapsibleItem expanded={this.state.collapsibleExpand2} onClick={this._handleCollapsibleClick2} header={productData[1].title} icon='whatshot'>
@@ -320,7 +321,7 @@ export default class NewOrder extends Component {
               <NumberList3/>
               <AltNumberList4/></Col>
             <Col s={6} className='neworder-white-line'>
-              <div>
+              <div className="order-summary">
                 <h2>Order Overview</h2>
                 <p>drop off date: {masterDeliveryDate}</p>
                 <p>drop off time: {masterDeliveryTime}</p>

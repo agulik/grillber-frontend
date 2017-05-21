@@ -167,19 +167,6 @@ export default class NewOrder extends Component {
     this.setState({currentQuantity3Input: value3})
   }
 
-  _saveProduct1Quantity = (product1) => {
-    this.setState({product1})
-  }
-
-  _saveProduct2Quantity = (product2) => {
-    this.setState({product2})
-  }
-
-  _saveProduct3Quantity = (product3) => {
-    this.setState({product3})
-  }
-
-
   _handleCollapsibleClick1 = () => {
     this.setState({
       collapsibleClick1: true,
@@ -266,9 +253,9 @@ export default class NewOrder extends Component {
     } = this.state
 
     console.log(currentQuantity0Input)
-    // console.log(currentQuantity1Input)
-    // console.log(currentQuantity2Input)
-    // console.log(currentQuantity3Input)
+    console.log(currentQuantity1Input)
+    console.log(currentQuantity2Input)
+    console.log(currentQuantity3Input)
 
 
     if (listNum1) {

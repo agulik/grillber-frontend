@@ -1,4 +1,4 @@
-/* eslint-disable */
+/*eslint-disable*/
 import React, {Component} from 'react';
 import {Button} from 'react-materialize';
 import GrillberNav from '../elements/GrillberNav';
@@ -52,7 +52,7 @@ export default class NewOrder extends Component {
     for ( var i = 0, l = products.length; i < l; i++) {
       var position = productData.map(function(item){ return item.title }).indexOf(products[i].title);
 
-      if ( position == -1 ) {
+      if ( position === -1 ) {
         products[i].id = [products[i].id]
 
         productData.push(products[i])

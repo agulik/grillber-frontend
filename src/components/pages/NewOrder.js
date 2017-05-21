@@ -144,12 +144,27 @@ export default class NewOrder extends Component {
 
 
   _saveProduct0Quantity = (event) => {
-    let {currentQuantityInput} = this.state
-      let value = event.target.value;
+    let {currentQuantity0Input} = this.state
+    let value0 = event.target.value;
+    this.setState({currentQuantity0Input: value0})
+  }
 
-    this.setState({currentQuantityInput: value})
+  _saveProduct1Quantity = (event) => {
+    let {currentQuantity1Input} = this.state
+    let value1 = event.target.value;
+    this.setState({currentQuantity1Input: value1})
+  }
 
-    console.log(currentQuantityInput)
+  _saveProduct2Quantity = (event) => {
+    let {currentQuantity2Input} = this.state
+    let value2 = event.target.value;
+    this.setState({currentQuantity2Input: value2})
+  }
+
+  _saveProduct3Quantity = (event) => {
+    let {currentQuantity3Input} = this.state
+    let value3 = event.target.value;
+    this.setState({currentQuantity3Input: value3})
   }
 
   _saveProduct1Quantity = (product1) => {
@@ -243,7 +258,18 @@ export default class NewOrder extends Component {
     const {listNum1, listNum2, listNum3, listNum4} = this.state
     const {deliveryDate, deliveryTime, pickupDate, pickupTime, productData} = this.state
     const {product0, product1, product2, product3} = this.state
-    const {currentQuantityInput} = this.state
+    const {
+      currentQuantity0Input,
+      currentQuantity1Input,
+      currentQuantity2Input,
+      currentQuantity3Input
+    } = this.state
+
+    console.log(currentQuantity0Input)
+    // console.log(currentQuantity1Input)
+    // console.log(currentQuantity2Input)
+    // console.log(currentQuantity3Input)
+
 
     if (listNum1) {
       return (
@@ -293,7 +319,7 @@ export default class NewOrder extends Component {
                           {productData[0].description}
                           <div className="bbq-quantity">
                             <Row>
-                              <Input s={12} type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct0Quantity} value={currentQuantityInput}>
+                              <Input s={12} type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct0Quantity} value={currentQuantity0Input}>
                                 <option value='0'>0</option>
                                 <option value='1'>1</option>
                                 <option value='2'>2</option>
@@ -314,7 +340,7 @@ export default class NewOrder extends Component {
                           {productData[1].description}
                           <div className="bbq-quantity">
                             <Row>
-                              <Input s={12} type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct1Quantity} value={product1}>
+                              <Input s={12} type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct1Quantity} value={currentQuantity1Input}>
                                 <option value='0'>0</option>
                                 <option value='1'>1</option>
                                 <option value='2'>2</option>
@@ -335,7 +361,7 @@ export default class NewOrder extends Component {
                           {productData[2].description}
                           <div className="bbq-quantity">
                             <Row>
-                              <Input s={12} type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct2Quantity} value={product2}>
+                              <Input s={12} type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct2Quantity} value={currentQuantity2Input}>
                                 <option value='0'>0</option>
                                 <option value='1'>1</option>
                                 <option value='2'>2</option>
@@ -356,7 +382,7 @@ export default class NewOrder extends Component {
                           {productData[3].description}
                           <div className="bbq-quantity">
                             <Row>
-                              <Input s={12} type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct3Quantity} value={product3}>
+                              <Input s={12} type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct3Quantity} value={currentQuantity3Input}>
                                 <option value='0'>0</option>
                                 <option value='1'>1</option>
                                 <option value='2'>2</option>

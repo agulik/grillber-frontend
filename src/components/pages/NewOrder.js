@@ -179,6 +179,20 @@ export default class NewOrder extends Component {
      });
   }
 
+  // helper function to be passed down as props to the child component (searchBox)
+  // we need to retrieve the exact final input of what was rendered in that searchBox
+
+  _getInputLocation = (event) => {
+
+      let value = event.target.value;
+
+      this.setState({currentLocationInput: value})
+
+      console.log(value)
+
+
+  }
+
   render() {
     const {listNum1, listNum2, listNum3, listNum4} = this.state
     const {deliveryDate, deliveryTime, pickupDate, pickupTime, productData} = this.state
@@ -276,7 +290,7 @@ export default class NewOrder extends Component {
               <AltNumberList3/>
               <NumberList4/></Col>
             <Col s={6} className='neworder-white-line'>
-              <Map ref="location" />
+              <Map ref="location" onInput={this._getInputLocation} value={this.currentLocationInput} />
               <Button className="drop-off-btn" onClick={this._handleListItem2}>Back</Button>
               <Button className="drop-off-btn drop-off-two" onClick={this._handleListItem4}>Continue</Button>
             </Col>

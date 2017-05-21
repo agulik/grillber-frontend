@@ -34,6 +34,8 @@ const MyGoogleMap = withGoogleMap(props => (
       onPlacesChanged={props.onPlacesChanged}
       inputPlaceholder="Search a location"
       inputStyle={INPUT_STYLE}
+      // onInput={this.props._getInputLocation}
+      // value={this.props.currentLocationInput}
     />
     {props.markers.map((marker, index) => (
       <Marker position={marker.position} key={index} />

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Button} from 'react-materialize';
 import GrillberNav from '../elements/GrillberNav';
 import './NewOrder.css';
-import {Row, Col, Collapsible, CollapsibleItem} from 'react-materialize';
+import {Row, Col, Collapsible, CollapsibleItem, Input} from 'react-materialize';
 import NumberList1 from './NumberList1';
 import NumberList2 from './NumberList2';
 import NumberList3 from './NumberList3';
@@ -190,6 +190,20 @@ export default class NewOrder extends Component {
      });
   }
 
+  // helper function to be passed down as props to the child component (searchBox)
+  // we need to retrieve the exact final input of what was rendered in that searchBox
+
+  _getInputLocation = (event) => {
+
+      let value = event.target.value;
+
+      this.setState({currentLocationInput: value})
+
+      console.log(value)
+
+
+  }
+
   render() {
     const {listNum1, listNum2, listNum3, listNum4} = this.state
     const {deliveryDate, deliveryTime, pickupDate, pickupTime, productData} = this.state
@@ -240,6 +254,16 @@ export default class NewOrder extends Component {
                       <Row>
                         <Col s={8}>
                           {productData[0].description}
+                          <div className="bbq-quantity">
+                            <Row>
+                              <Input s={12} type='select' label="Quantity" defaultValue='0'>
+                                <option value='0'>0</option>
+                                <option value='1'>1</option>
+                                <option value='2'>2</option>
+                                <option value='3'>3</option>
+                              </Input>
+                            </Row>
+                          </div>
                         </Col>
                         <Col s={4}>
                           <img alt='' className="new-order-images" src={productData[0].imageFrontUrl} />
@@ -251,6 +275,16 @@ export default class NewOrder extends Component {
                       <Row>
                         <Col s={8}>
                           {productData[1].description}
+                          <div className="bbq-quantity">
+                            <Row>
+                              <Input s={12} type='select' label="Quantity" defaultValue='0'>
+                                <option value='0'>0</option>
+                                <option value='1'>1</option>
+                                <option value='2'>2</option>
+                                <option value='3'>3</option>
+                              </Input>
+                            </Row>
+                          </div>
                         </Col>
                         <Col s={4}>
                           <img alt='' className="new-order-images" src={productData[1].imageFrontUrl} />
@@ -262,6 +296,16 @@ export default class NewOrder extends Component {
                       <Row>
                         <Col s={8}>
                           {productData[2].description}
+                          <div className="bbq-quantity">
+                            <Row>
+                              <Input s={12} type='select' label="Quantity" defaultValue='0'>
+                                <option value='0'>0</option>
+                                <option value='1'>1</option>
+                                <option value='2'>2</option>
+                                <option value='3'>3</option>
+                              </Input>
+                            </Row>
+                          </div>
                         </Col>
                         <Col s={4}>
                           <img alt='' className="new-order-images" src={productData[2].imageFrontUrl} />
@@ -273,6 +317,16 @@ export default class NewOrder extends Component {
                       <Row>
                         <Col s={8}>
                           {productData[3].description}
+                          <div className="bbq-quantity">
+                            <Row>
+                              <Input s={12} type='select' label="Quantity" defaultValue='0'>
+                                <option value='0'>0</option>
+                                <option value='1'>1</option>
+                                <option value='2'>2</option>
+                                <option value='3'>3</option>
+                              </Input>
+                            </Row>
+                          </div>
                         </Col>
                         <Col s={4}>
                           <img alt='' className="new-order-images" src={productData[3].imageFrontUrl} />
@@ -299,7 +353,7 @@ export default class NewOrder extends Component {
               <AltNumberList3/>
               <NumberList4/></Col>
             <Col s={6} className='neworder-white-line'>
-              <Map ref="location" />
+              <Map ref="location" onInput={this._getInputLocation} value={this.currentLocationInput} />
               <Button className="drop-off-btn" onClick={this._handleListItem2}>Back</Button>
               <Button className="drop-off-btn drop-off-two" onClick={this._handleListItem4}>Continue</Button>
             </Col>
@@ -317,7 +371,7 @@ export default class NewOrder extends Component {
               <NumberList3/>
               <AltNumberList4/></Col>
             <Col s={6} className='neworder-white-line'>
-              <div>
+              <div className="order-summary">
                 <h2>Order Overview</h2>
                 <p>drop off date: {masterDeliveryDate}</p>
                 <p>drop off time: {masterDeliveryTime}</p>

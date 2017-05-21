@@ -40,7 +40,7 @@ export default class NewOrder extends Component {
       collapsibleExpand1: false,
       collapsibleExpand2: false,
       collapsibleExpand3: false,
-      collapsibleExpand4: false,
+      collapsibleExpand4: false
     };
   }
 
@@ -236,38 +236,50 @@ export default class NewOrder extends Component {
               <NumberList4/></Col>
               <div className="popout-panels">
                 <Col s={6} className='neworder-white-line'>
-                  <Collapsible popout>
+                  <Collapsible popout className="new-order-product-description">
                     <CollapsibleItem expanded={this.state.collapsibleExpand1} onClick={this._handleCollapsibleClick1} header={productData[0].title} icon='whatshot'>
-                      <div>
-                        {productData[0].description}
-                        <br/>
-                        <img alt='' className="new-order-images" src={productData[0].imageFrontUrl} />
-                        <img alt='' className="new-order-images" src={productData[0].imageOpenUrl} />
-                      </div>
+                      <Row>
+                        <Col s={8}>
+                          {productData[0].description}
+                        </Col>
+                        <Col s={4}>
+                          <img alt='' className="new-order-images" src={productData[0].imageFrontUrl} />
+                          <img alt='' className="new-order-images" src={productData[0].imageOpenUrl} />
+                        </Col>
+                    </Row>
                     </CollapsibleItem>
                     <CollapsibleItem expanded={this.state.collapsibleExpand2} onClick={this._handleCollapsibleClick2} header={productData[1].title} icon='whatshot'>
-                      <div>
-                        {productData[1].description}
-                        <br/>
-                        <img alt='' className="new-order-images" src={productData[1].imageFrontUrl} />
-                        <img alt='' className="new-order-images" src={productData[1].imageOpenUrl} />
-                      </div>
+                      <Row>
+                        <Col s={8}>
+                          {productData[1].description}
+                        </Col>
+                        <Col s={4}>
+                          <img alt='' className="new-order-images" src={productData[1].imageFrontUrl} />
+                          <img alt='' className="new-order-images" src={productData[1].imageOpenUrl} />
+                        </Col>
+                    </Row>
                     </CollapsibleItem>
                     <CollapsibleItem expanded={this.state.collapsibleExpand3} onClick={this._handleCollapsibleClick3} header={productData[2].title} icon='whatshot'>
-                      <div>
-                        {productData[2].description}
-                        <br/>
-                        <img alt='' className="new-order-images" src={productData[2].imageFrontUrl} />
-                        <img alt='' className="new-order-images" src={productData[2].imageOpenUrl} />
-                      </div>
+                      <Row>
+                        <Col s={8}>
+                          {productData[2].description}
+                        </Col>
+                        <Col s={4}>
+                          <img alt='' className="new-order-images" src={productData[2].imageFrontUrl} />
+                          <img alt='' className="new-order-images" src={productData[2].imageOpenUrl} />
+                        </Col>
+                    </Row>
                     </CollapsibleItem>
                     <CollapsibleItem expanded={this.state.collapsibleExpand4} onClick={this._handleCollapsibleClick4} header={productData[3].title} icon='whatshot'>
-                      <div>
-                        {productData[3].description}
-                        <br/>
-                        <img alt='' className="new-order-images" src={productData[3].imageFrontUrl} />
-                        <img alt='' className="new-order-images" src={productData[3].imageOpenUrl} />
-                      </div>
+                      <Row>
+                        <Col s={8}>
+                          {productData[3].description}
+                        </Col>
+                        <Col s={4}>
+                          <img alt='' className="new-order-images" src={productData[3].imageFrontUrl} />
+                          <img alt='' className="new-order-images" src={productData[3].imageOpenUrl} />
+                        </Col>
+                    </Row>
                     </CollapsibleItem>
                   </Collapsible>
                   <Button onClick={this._handleListItem1}>Back</Button>

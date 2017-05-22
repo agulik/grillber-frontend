@@ -95,11 +95,6 @@ export default class NewOrder extends Component {
 
   _handleListItem4 = () => {
 
-    let {location} = this.refs;
-
-    let lat = location.state.bounds.f.b;
-    let lng = location.state.bounds.b.b
-
     this.setState({
       listNum1: false,
       listNum2: false,
@@ -107,6 +102,12 @@ export default class NewOrder extends Component {
       listNum4: true
        });
 
+  }
+
+  _handlePlacesChanged = (places) => {
+    this.setState({
+      places: places
+    })
   }
 
 
@@ -137,9 +138,6 @@ export default class NewOrder extends Component {
     masterPickupTime = moment(pickupTime).format('hh:mm');
     this.setState({pickupTime})
   }
-
-  _saveLocation = (location) => this.setState({location})
-
 
   _saveProduct0Quantity = (event) => {
     let {currentQuantity0Input} = this.state
@@ -217,27 +215,6 @@ export default class NewOrder extends Component {
      });
   }
 
-  // helper function to be passed down as props to the child component (searchBox)
-  // we need to retrieve the exact final input of what was rendered in that searchBox
-
-  _getInputLocation = (event) => {
-
-      let value = event.target.value;
-
-      this.setState({currentLocationInput: value})
-
-      console.log(value)
-  }
-
-  // _handleBbqQuantity = () => {
-  //   let product0 = this.refs.product0.state.value;
-  //   let product1 = this.refs.product1.state.value;
-  //   let product2 = this.refs.product2.state.value;
-  //   let product3 = this.refs.product3.state.value;
-  //
-  // }
-
-
 
   render() {
     const {listNum1, listNum2, listNum3, listNum4} = this.state
@@ -249,7 +226,7 @@ export default class NewOrder extends Component {
       currentQuantity2Input,
       currentQuantity3Input
     } = this.state
-
+    const {places} = this.state
 
     if (listNum1) {
       return (
@@ -396,7 +373,7 @@ export default class NewOrder extends Component {
               <AltNumberList3/>
               <NumberList4/></Col>
             <Col s={6} className='neworder-white-line'>
-              <Map ref="location" onInput={this._getInputLocation} value={this.currentLocationInput} />
+              <Map _handlePlacesChanged={this._handlePlacesChanged} onInput={this._getInputLocation} value={this.currentLocationInput} />
               <Button className="drop-off-btn" onClick={this._handleListItem2}>Back</Button>
               <Button className="drop-off-btn drop-off-two" onClick={this._handleListItem4}>Continue</Button>
             </Col>
@@ -416,14 +393,16 @@ export default class NewOrder extends Component {
             <Col s={6} className='neworder-white-line'>
               <div className="order-summary">
                 <h2>Order Overview</h2>
-                <p>drop off date: {masterDeliveryDate}</p>
-                <p>drop off time: {masterDeliveryTime}</p>
-                <p>pick up date: {masterPickupDate}</p>
-                <p>pick up time: {masterPickupTime}</p>
                 { currentQuantity0Input > 0 ? <p>{productData[0].title} Quantity: {currentQuantity0Input}</p> : null}
                 { currentQuantity1Input > 0 ? <p>{productData[1].title} Quantity: {currentQuantity1Input}</p> : null}
                 { currentQuantity2Input > 0 ? <p>{productData[2].title} Quantity: {currentQuantity2Input}</p> : null}
                 { currentQuantity3Input > 0 ? <p>{productData[3].title} Quantity: {currentQuantity3Input}</p> : null}
+                <p>drop off date: {masterDeliveryDate}</p>
+                <p>drop off time: {masterDeliveryTime}</p>
+                <p>pick up date: {masterPickupDate}</p>
+                <p>pick up time: {masterPickupTime}</p>
+                <p>Dropoff & pickup address: {places[0].formatted_address}</p>
+                <p>total cost: </p>
               </div>
               <CardCheckout/>
               <Button onClick={this._handleListItem3}>Back</Button>

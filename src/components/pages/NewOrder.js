@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, {Component} from 'react';
 import {Button} from 'react-materialize';
 import GrillberNav from '../elements/GrillberNav';
@@ -135,7 +136,10 @@ export default class NewOrder extends Component {
     } if (currentQuantity3Input === 3) {
         product0IdArray.push(productData[3].id[0], productData[3].id[1], productData[3].id[2])
     }
-
+// DEFINE UNDEFINED
+    var deliveryDate;
+    var pickupDate;
+// END   
     var date1 = moment(deliveryDate);
     var date2 = moment(pickupDate);
     var timeDiff = Math.abs(date2.valueOf() - date1.valueOf());
@@ -265,20 +269,20 @@ export default class NewOrder extends Component {
               <NumberList3/>
               <NumberList4/></Col>
             <Col s={6} className='neworder-white-line'>
-              <div className="new-order-delivery">
-                <h2>Delivery Time:</h2>
-                <br/>
-                <Date data={deliveryDate} saveData={this._saveDeliveryDate} className="new-order-date"/>
-                <Time data={deliveryTime} saveData={this._saveDeliveryTime} className="new-order-time"/>
-              </div>
-              <br/>
-              <div className="new-order-pickup">
-                <h2>Pickup Time:</h2>
-                <br/>
-                <Date data={pickupDate} saveData={this._savePickupDate} className="new-order-date"/>
-                <Time data={pickupTime} saveData={this._savePickupTime} className="new-order-time"/>
-              </div>
-              <Button onClick={this._handleListItem2}>Continue</Button>
+                <div className="new-order-delivery">
+                  <h2>Delivery Time:</h2>
+                  <br/>
+                  <Date data={deliveryDate} saveData={this._saveDeliveryDate} className="new-order-date"/>
+                  <Time data={deliveryTime} saveData={this._saveDeliveryTime} className="new-order-time"/>
+                  <br/>
+                  <div className="new-order-pickup">
+                    <h2>Pickup Time:</h2>
+                    <br/>
+                    <Date data={pickupDate} saveData={this._savePickupDate} className="new-order-date"/>
+                    <Time data={pickupTime} saveData={this._savePickupTime} className="new-order-time"/>
+                  </div>
+                  <Button onClick={this._handleListItem2}>Continue</Button>
+                </div>
             </Col>
           </Row>
         </div>
@@ -431,16 +435,13 @@ export default class NewOrder extends Component {
                 { currentQuantity1Input > 0 ? <p>{productData[1].title} Quantity: {currentQuantity1Input}</p> : null}
                 { currentQuantity2Input > 0 ? <p>{productData[2].title} Quantity: {currentQuantity2Input}</p> : null}
                 { currentQuantity3Input > 0 ? <p>{productData[3].title} Quantity: {currentQuantity3Input}</p> : null}
-                <p>Drop-off date: {masterDeliveryDate}</p>
-                <p>Drop-off time: {masterDeliveryTime}</p>
-                <p>Pickup date: {masterPickupDate}</p>
-                <p>Pickup time: {masterPickupTime}</p>
-                <p>Dropoff & pickup address: {places[0].formatted_address}</p>
-                <p>Total cost: $ {productPrice0 + productPrice1 + productPrice2 + productPrice3}</p>
+                <ul>
+                 <li><p className="over">Drop-off:</p><p className="overRes"> {masterDeliveryDate} at {masterDeliveryTime}</p></li>
+                 <li><p className="over">Pick-up: </p><p className="overRes"> {masterPickupDate} at {masterPickupTime}</p></li>
+                 <li><p className="over">Dropoff & pickup address: </p><p className="overRes"> {places[0].formatted_address}</p></li>
+                 <li><p className="over">Total cost: </p><p className="overRes">$ {productPrice0 + productPrice1 + productPrice2 + productPrice3}</p></li>
+                </ul>
               </div>
-              <CardCheckout/>
-              <Button onClick={this._handleListItem3}>Back</Button>
-              <Button className="drop-off-two" onClick={this._handleConfirmOrder}>Place order</Button>
             </Col>
           </Row>
         </div>

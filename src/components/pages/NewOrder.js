@@ -78,9 +78,12 @@ export default class NewOrder extends Component {
         productData.push(products[i])
       }
       else {
-        productData[position].id.push(products[i].id);
+        if (productData[position].id.indexOf(products[i].id) === -1) {
+          productData[position].id.push(products[i].id);
+        }
       }
     }
+
     this.setState({
       productData: productData
     })
@@ -103,25 +106,27 @@ export default class NewOrder extends Component {
   _handleListItem4 = () => {
 
     let {currentQuantity0Input, currentQuantity1Input, currentQuantity2Input, currentQuantity3Input} = this.state
-    let {productData} = this.state
+    let {productData, deliveryDate, pickupDate} = this.state
 
     currentQuantity0Input = parseInt(currentQuantity0Input)
     currentQuantity1Input = parseInt(currentQuantity1Input)
     currentQuantity2Input = parseInt(currentQuantity2Input)
     currentQuantity3Input = parseInt(currentQuantity3Input)
 
+    let quantity = [parseInt(currentQuantity0Input), parseInt(currentQuantity1Input), parseInt(currentQuantity2Input),parseInt(currentQuantity3Input)];
+
     if (currentQuantity0Input === 1) {
          product0IdArray.push(productData[0].id[0])
     } if (currentQuantity0Input === 2) {
-        product0IdArray.push(productData[0].id[0], productData[1].id[1])
+        product0IdArray.push(productData[0].id[0], productData[0].id[1])
     } if (currentQuantity0Input === 3) {
-        product0IdArray.push(productData[0].id[0], productData[1].id[1], productData[0].id[2])
+        product0IdArray.push(productData[0].id[0], productData[0].id[1], productData[0].id[2])
     } if (currentQuantity1Input === 1) {
         product0IdArray.push(productData[1].id[0])
     } if (currentQuantity1Input === 2) {
         product0IdArray.push(productData[1].id[0], productData[1].id[1])
     } if (currentQuantity1Input === 3) {
-        product0IdArray.push(productData[1].id[0], productData[1].id[1], productData[0].id[2])
+        product0IdArray.push(productData[1].id[0], productData[1].id[1], productData[1].id[2])
     } if (currentQuantity2Input === 1) {
         product0IdArray.push(productData[2].id[0])
     } if (currentQuantity2Input === 2) {
@@ -154,6 +159,9 @@ export default class NewOrder extends Component {
         productPrice3 = diffDays * productData[3].priceDaily * product3IdArray.length
     }
 
+    let finalProductArray = Array.from(new Set(product0IdArray))
+    console.log(finalProductArray)
+
     this.setState({
       listNum1: false,
       listNum2: false,
@@ -173,6 +181,8 @@ export default class NewOrder extends Component {
   _handleConfirmOrder = () => {
     let {productId, deliveryDate, pickupDate, places, user } = this.state
     places = places[0].formatted_address
+
+    console.log(productId)
 
     console.log(places)
 

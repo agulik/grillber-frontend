@@ -24,12 +24,21 @@ var masterDeliveryTime = ""
 var masterPickupDate = ""
 var masterPickupTime = ""
 
-// var date1 = new Date("7/13/2010");
-// var date2 = new Date("12/15/2010");
-// var timeDiff = Math.abs(date2.getTime() - date1.getTime());
-// var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-// console.log(diffDays);
 
+const product0IdArray = []
+const product1IdArray = []
+const product2IdArray = []
+const product3IdArray = []
+
+var productPrice0 = ''
+var productPrice1 = ''
+var productPrice2 = ''
+var productPrice3 = ''
+
+// var date1 = ''
+// var date2 = ''
+// var timeDiff = ''
+// var diffDays = ''
 
 export default class NewOrder extends Component {
   constructor(props) {
@@ -39,15 +48,7 @@ export default class NewOrder extends Component {
       listNum2: false,
       listNum3: false,
       listNum4: false,
-      productList: [],
-      collapsibleClick1: false,
-      collapsibleClick2: false,
-      collapsibleClick3: false,
-      collapsibleClick4: false,
-      collapsibleExpand1: false,
-      collapsibleExpand2: false,
-      collapsibleExpand3: false,
-      collapsibleExpand4: false
+      productList: []
     };
   }
 
@@ -84,11 +85,12 @@ export default class NewOrder extends Component {
     this.setState({
       productData: productData
     })
-    console.log(productData[0].id[0])
     })
   }
 
   _handleListItem3 = () => {
+
+    const {product0, product1, product2, product3} = this.state
 
     this.setState({
       listNum1: false,
@@ -99,122 +101,144 @@ export default class NewOrder extends Component {
 
   }
 
-  _handleListItem4 = () => {
 
-    let {location} = this.refs;
-
-    let lat = location.state.bounds.f.b;
-    let lng = location.state.bounds.b.b
-
+  _handlePlacesChanged = (places) => {
     this.setState({
-      listNum1: false,
-      listNum2: false,
-      listNum3: false,
-      listNum4: true
-       });
-
+      places: places
+    })
   }
 
   _handleConfirmOrder = () => {
-    // let {deliveryDate, deliveryTime, pickupDate, pickupTime} = this.state
+    let {productId, deliveryDate, pickupDate, location } = this.state
 
-    // generate all data from order and send off to database
   }
 
   _saveDeliveryDate = (deliveryDate) => {
-    masterDeliveryDate = moment(deliveryDate).format('YYYY-MM-DD');
+    masterDeliveryDate = moment(deliveryDate).format('MM-DD-YYYY');
     this.setState({
       deliveryDate: deliveryDate
     })
   }
 
   _saveDeliveryTime = (deliveryTime) => {
-    masterDeliveryTime = moment(deliveryTime).format('hh:mm');
+    masterDeliveryTime = moment(deliveryTime).format('HH:mm');
     this.setState({deliveryTime})
   }
 
   _savePickupDate = (pickupDate) => {
-    masterPickupDate = moment(pickupDate).format('YYYY-MM-DD');
+    masterPickupDate = moment(pickupDate).format('MM-DD-YYYY');
     this.setState({pickupDate})
   }
 
   _savePickupTime = (pickupTime) => {
-    masterPickupTime = moment(pickupTime).format('hh:mm');
+    masterPickupTime = moment(pickupTime).format('HH:mm');
     this.setState({pickupTime})
   }
 
-  _saveLocation = (location) => this.setState({location})
 
+    _handleListItem4 = () => {
 
-  _handleCollapsibleClick1 = () => {
-    this.setState({
-      collapsibleClick1: true,
-      collapsibleExpand1: true,
-      collapsibleClick2: false,
-      collapsibleExpand2: false,
-      collapsibleClick3: false,
-      collapsibleExpand3: false,
-      collapsibleClick4: false,
-      collapsibleExpand4: false
-     });
+      let {currentQuantity0Input, currentQuantity1Input, currentQuantity2Input, currentQuantity3Input} = this.state
+      let {productData} = this.state
+      let {productId, deliveryDate, pickupDate} = this.state
+
+      currentQuantity0Input = parseInt(currentQuantity0Input)
+      currentQuantity1Input = parseInt(currentQuantity1Input)
+      currentQuantity2Input = parseInt(currentQuantity2Input)
+      currentQuantity3Input = parseInt(currentQuantity3Input)
+
+      if (currentQuantity0Input === 1) {
+        console.log("hello");
+           product0IdArray.push(productData[0].id[0])
+      } if (currentQuantity0Input === 2) {
+          product0IdArray.push(productData[0].id[0], productData[1].id[1])
+      } if (currentQuantity0Input === 3) {
+          product0IdArray.push(productData[0].id[0], productData[1].id[1], productData[0].id[2])
+      } if (currentQuantity1Input === 1) {
+          product1IdArray.push(productData[1].id[0])
+      } if (currentQuantity1Input === 2) {
+          product1IdArray.push(productData[1].id[0], productData[1].id[1])
+      } if (currentQuantity1Input === 3) {
+          product1IdArray.push(productData[1].id[0], productData[1].id[1], productData[0].id[2])
+      } if (currentQuantity2Input === 1) {
+          product2IdArray.push(productData[2].id[0])
+      } if (currentQuantity2Input === 2) {
+          product2IdArray.push(productData[2].id[0], productData[2].id[1])
+      } if (currentQuantity2Input === 3) {
+          product2IdArray.push(productData[2].id[0], productData[2].id[1], productData[2].id[2])
+      } if (currentQuantity3Input === 1) {
+          product3IdArray.push(productData[3].id[0])
+      } if (currentQuantity3Input === 2) {
+          product3IdArray.push(productData[3].id[0], productData[3].id[1])
+      } if (currentQuantity3Input === 3) {
+          product3IdArray.push(productData[3].id[0], productData[3].id[1], productData[3].id[2])
+      }
+
+      var date1 = moment(deliveryDate);
+      var date2 = moment(pickupDate);
+      var timeDiff = Math.abs(date2.valueOf() - date1.valueOf());
+      var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+      if (diffDays && product0IdArray.length !== 0) {
+          productPrice0 = diffDays * productData[0].priceDaily * product0IdArray.length
+      }
+      if (diffDays && product1IdArray.length !== 0) {
+          productPrice1 = diffDays * productData[1].priceDaily * product1IdArray.length
+      }
+      if (diffDays && product2IdArray.length !== 0) {
+          productPrice2 = diffDays * productData[2].priceDaily * product2IdArray.length
+      }
+      if (diffDays && product3IdArray.length !== 0) {
+          productPrice3 = diffDays * productData[3].priceDaily * product3IdArray.length
+      }
+
+      console.log(productPrice0, productPrice1)
+
+      this.setState({
+        listNum1: false,
+        listNum2: false,
+        listNum3: false,
+        listNum4: true
+         });
+
+    }
+
+  _saveProduct0Quantity = (event) => {
+    let {currentQuantity0Input} = this.state
+    let value0 = event.target.value;
+    this.setState({currentQuantity0Input: value0})
   }
 
-  _handleCollapsibleClick2 = () => {
-    this.setState({
-      collapsibleClick1: false,
-      collapsibleExpand1: false,
-      collapsibleClick2: true,
-      collapsibleExpand2: true,
-      collapsibleClick3: false,
-      collapsibleExpand3: false,
-      collapsibleClick4: false,
-      collapsibleExpand4: false
-     });
+  _saveProduct1Quantity = (event) => {
+    let {currentQuantity1Input} = this.state
+    let value1 = event.target.value;
+    this.setState({currentQuantity1Input: value1})
   }
 
-  _handleCollapsibleClick3 = () => {
-    this.setState({
-      collapsibleClick1: false,
-      collapsibleExpand1: false,
-      collapsibleClick2: false,
-      collapsibleExpand2: false,
-      collapsibleClick3: true,
-      collapsibleExpand3: true,
-      collapsibleClick4: false,
-      collapsibleExpand4: false
-     });
+  _saveProduct2Quantity = (event) => {
+    let {currentQuantity2Input} = this.state
+    let value2 = event.target.value;
+    this.setState({currentQuantity2Input: value2})
   }
 
-  _handleCollapsibleClick4 = () => {
-    this.setState({
-      collapsibleClick1: false,
-      collapsibleExpand1: false,
-      collapsibleClick2: false,
-      collapsibleExpand2: false,
-      collapsibleClick3: false,
-      collapsibleExpand3: false,
-      collapsibleClick4: true,
-      collapsibleExpand4: true
-     });
+  _saveProduct3Quantity = (event) => {
+    let {currentQuantity3Input} = this.state
+    let value3 = event.target.value;
+    this.setState({currentQuantity3Input: value3})
   }
 
-  // helper function to be passed down as props to the child component (searchBox)
-  // we need to retrieve the exact final input of what was rendered in that searchBox
-
-  _getInputLocation = (event) => {
-
-      let value = event.target.value;
-
-      this.setState({currentLocationInput: value})
-
-      console.log(value)
-
-
-  }
 
   render() {
     const {listNum1, listNum2, listNum3, listNum4} = this.state
     const {deliveryDate, deliveryTime, pickupDate, pickupTime, productData} = this.state
+    const {product0, product1, product2, product3} = this.state
+    const {
+      currentQuantity0Input,
+      currentQuantity1Input,
+      currentQuantity2Input,
+      currentQuantity3Input
+    } = this.state
+    const {places, collapsibleClick1} = this.state
 
     if (listNum1) {
       return (
@@ -258,13 +282,13 @@ export default class NewOrder extends Component {
               <div className="popout-panels">
                 <Col s={6} className='neworder-white-line'>
                   <Collapsible popout className="new-order-product-description">
-                    <CollapsibleItem onClick={this._handleCollapsibleClick1} expanded={this.state.collapsibleExpand1} header={productData[0].title} icon='whatshot'>
+                    <CollapsibleItem header={productData[0].title} icon='whatshot'>
                       <Row>
                         <Col s={8}>
                           {productData[0].description}
                           <div className="bbq-quantity">
                             <Row>
-                              <Input s={12} type='select' label="Quantity" defaultValue='0'>
+                              <Input s={12} type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct0Quantity} value={currentQuantity0Input}>
                                 <option value='0'>0</option>
                                 <option value='1'>1</option>
                                 <option value='2'>2</option>
@@ -281,13 +305,13 @@ export default class NewOrder extends Component {
                         </Col>
                       </Row>
                     </CollapsibleItem>
-                    <CollapsibleItem onClick={this._handleCollapsibleClick2} expanded={this.state.collapsibleExpand2} header={productData[1].title} icon='whatshot'>
+                    <CollapsibleItem header={productData[1].title} icon='whatshot'>
                       <Row>
                         <Col s={8}>
                           {productData[1].description}
                           <div className="bbq-quantity">
                             <Row>
-                              <Input s={12} type='select' label="Quantity" defaultValue='0'>
+                              <Input s={12} type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct1Quantity} value={currentQuantity1Input}>
                                 <option value='0'>0</option>
                                 <option value='1'>1</option>
                                 <option value='2'>2</option>
@@ -304,13 +328,13 @@ export default class NewOrder extends Component {
                         </Col>
                       </Row>
                     </CollapsibleItem>
-                    <CollapsibleItem onClick={this._handleCollapsibleClick3} expanded={this.state.collapsibleExpand3} header={productData[2].title} icon='whatshot'>
+                    <CollapsibleItem header={productData[2].title} icon='whatshot'>
                       <Row>
                         <Col s={8}>
                           {productData[2].description}
                           <div className="bbq-quantity">
                             <Row>
-                              <Input s={12} type='select' label="Quantity" defaultValue='0'>
+                              <Input s={12} type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct2Quantity} value={currentQuantity2Input}>
                                 <option value='0'>0</option>
                                 <option value='1'>1</option>
                                 <option value='2'>2</option>
@@ -327,13 +351,13 @@ export default class NewOrder extends Component {
                         </Col>
                       </Row>
                     </CollapsibleItem>
-                    <CollapsibleItem onClick={this._handleCollapsibleClick4} expanded={this.state.collapsibleExpand4} header={productData[3].title} icon='whatshot'>
+                    <CollapsibleItem header={productData[3].title} icon='whatshot'>
                       <Row>
                         <Col s={8}>
                           {productData[3].description}
                           <div className="bbq-quantity">
                             <Row>
-                              <Input s={12} type='select' label="Quantity" defaultValue='0'>
+                              <Input s={12} type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct3Quantity} value={currentQuantity3Input}>
                                 <option value='0'>0</option>
                                 <option value='1'>1</option>
                                 <option value='2'>2</option>
@@ -369,7 +393,7 @@ export default class NewOrder extends Component {
               <AltNumberList3/>
               <NumberList4/></Col>
             <Col s={6} className='neworder-white-line'>
-              <Map ref="location" onInput={this._getInputLocation} value={this.currentLocationInput} />
+              <Map _handlePlacesChanged={this._handlePlacesChanged} onInput={this._getInputLocation} value={this.currentLocationInput} />
               <Button className="drop-off-btn" onClick={this._handleListItem2}>Back</Button>
               <Button className="drop-off-btn drop-off-two" onClick={this._handleListItem4}>Continue</Button>
             </Col>
@@ -389,10 +413,16 @@ export default class NewOrder extends Component {
             <Col s={6} className='neworder-white-line'>
               <div className="order-summary">
                 <h2>Order Overview</h2>
-                <p>drop off date: {masterDeliveryDate}</p>
-                <p>drop off time: {masterDeliveryTime}</p>
-                <p>pick up date: {masterPickupDate}</p>
-                <p>pick up time: {masterPickupTime}</p>
+                { currentQuantity0Input > 0 ? <p>{productData[0].title} Quantity: {currentQuantity0Input}</p> : null}
+                { currentQuantity1Input > 0 ? <p>{productData[1].title} Quantity: {currentQuantity1Input}</p> : null}
+                { currentQuantity2Input > 0 ? <p>{productData[2].title} Quantity: {currentQuantity2Input}</p> : null}
+                { currentQuantity3Input > 0 ? <p>{productData[3].title} Quantity: {currentQuantity3Input}</p> : null}
+                <p>Drop-off date: {masterDeliveryDate}</p>
+                <p>Drop-off time: {masterDeliveryTime}</p>
+                <p>Pickup date: {masterPickupDate}</p>
+                <p>Pickup time: {masterPickupTime}</p>
+                <p>Dropoff & pickup address: {places[0].formatted_address}</p>
+                <p>Total cost: $ {productPrice0 + productPrice1 + productPrice2 + productPrice3}</p>
               </div>
               <CardCheckout/>
               <Button onClick={this._handleListItem3}>Back</Button>

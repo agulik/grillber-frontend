@@ -24,6 +24,11 @@ var masterDeliveryTime = ""
 var masterPickupDate = ""
 var masterPickupTime = ""
 
+const product0IdArray = []
+const product1IdArray = []
+const product2IdArray = []
+const product3IdArray = []
+
 export default class NewOrder extends Component {
   constructor(props) {
     super(props);
@@ -95,6 +100,47 @@ export default class NewOrder extends Component {
 
   _handleListItem4 = () => {
 
+    let {currentQuantity0Input, currentQuantity1Input, currentQuantity2Input, currentQuantity3Input} = this.state
+    let {productData} = this.state
+
+    currentQuantity0Input = parseInt(currentQuantity0Input)
+    currentQuantity1Input = parseInt(currentQuantity1Input)
+    currentQuantity2Input = parseInt(currentQuantity2Input)
+    currentQuantity3Input = parseInt(currentQuantity3Input)
+
+    if (currentQuantity0Input === 1) {
+      console.log("hello");
+         product0IdArray.push(productData[0].id[0])
+    } if (currentQuantity0Input === 2) {
+        product0IdArray.push(productData[0].id[0], productData[1].id[1])
+    } if (currentQuantity0Input === 3) {
+        product0IdArray.push(productData[0].id[0], productData[1].id[1], productData[0].id[2])
+    } if (currentQuantity1Input === 1) {
+        product1IdArray.push(productData[1].id[0])
+    } if (currentQuantity1Input === 2) {
+        product1IdArray.push(productData[1].id[0], productData[1].id[1])
+    } if (currentQuantity1Input === 3) {
+        product1IdArray.push(productData[1].id[0], productData[1].id[1], productData[0].id[2])
+    } if (currentQuantity2Input === 1) {
+        product2IdArray.push(productData[2].id[0])
+    } if (currentQuantity2Input === 2) {
+        product2IdArray.push(productData[2].id[0], productData[2].id[1])
+    } if (currentQuantity2Input === 3) {
+        product2IdArray.push(productData[2].id[0], productData[2].id[1], productData[2].id[2])
+    } if (currentQuantity3Input === 1) {
+        product3IdArray.push(productData[3].id[0])
+    } if (currentQuantity3Input === 2) {
+        product3IdArray.push(productData[3].id[0], productData[3].id[1])
+    } if (currentQuantity3Input === 3) {
+        product3IdArray.push(productData[3].id[0], productData[3].id[1], productData[3].id[2])
+    }
+
+    // console.log(productData[0].id[0], productData[0].id[1])
+    console.log(product0IdArray)
+    console.log(product1IdArray)
+    console.log(product2IdArray)
+    console.log(product3IdArray)
+
     this.setState({
       listNum1: false,
       listNum2: false,
@@ -112,9 +158,8 @@ export default class NewOrder extends Component {
 
 
   _handleConfirmOrder = () => {
-    // let {deliveryDate, deliveryTime, pickupDate, pickupTime} = this.state
+    let {productId, deliveryDate, pickupDate, location } = this.state
 
-    // generate all data from order and send off to database
   }
 
   _saveDeliveryDate = (deliveryDate) => {

@@ -34,6 +34,7 @@ var productPrice0 = ''
 var productPrice1 = ''
 var productPrice2 = ''
 var productPrice3 = ''
+var totalProductPrice = ''
 
 // var date1 = ''
 // var date2 = ''
@@ -151,15 +152,15 @@ export default class NewOrder extends Component {
         console.log("hello");
            product0IdArray.push(productData[0].id[0])
       } if (currentQuantity0Input === 2) {
-          product0IdArray.push(productData[0].id[0], productData[1].id[1])
+          product0IdArray.push(productData[0].id[0], productData[0].id[1])
       } if (currentQuantity0Input === 3) {
-          product0IdArray.push(productData[0].id[0], productData[1].id[1], productData[0].id[2])
+          product0IdArray.push(productData[0].id[0], productData[0].id[1], productData[0].id[2])
       } if (currentQuantity1Input === 1) {
           product1IdArray.push(productData[1].id[0])
       } if (currentQuantity1Input === 2) {
           product1IdArray.push(productData[1].id[0], productData[1].id[1])
       } if (currentQuantity1Input === 3) {
-          product1IdArray.push(productData[1].id[0], productData[1].id[1], productData[0].id[2])
+          product1IdArray.push(productData[1].id[0], productData[1].id[1], productData[1].id[2])
       } if (currentQuantity2Input === 1) {
           product2IdArray.push(productData[2].id[0])
       } if (currentQuantity2Input === 2) {
@@ -193,6 +194,8 @@ export default class NewOrder extends Component {
       }
 
       console.log(productPrice0, productPrice1)
+
+      totalProductPrice = productPrice0 + productPrice1 + productPrice2 + productPrice3
 
       this.setState({
         listNum1: false,
@@ -422,7 +425,7 @@ export default class NewOrder extends Component {
                 <p>Pickup date: {masterPickupDate}</p>
                 <p>Pickup time: {masterPickupTime}</p>
                 <p>Dropoff & pickup address: {places[0].formatted_address}</p>
-                <p>Total cost: $ {productPrice0 + productPrice1 + productPrice2 + productPrice3}</p>
+                <p>Total cost: $ {totalProductPrice}</p>
               </div>
               <CardCheckout/>
               <Button onClick={this._handleListItem3}>Back</Button>

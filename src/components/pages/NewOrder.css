@@ -81,6 +81,15 @@ popout-panels i.material-icons:hover {
   color: #ffffff;
 }
 
+.over {
+  color: orange;
+  display: inline;
+}
+
+.overRes {
+  display: inline;
+}
+
 a.rc-time-picker-panel-clear-btn::after {
   display: none;
 }

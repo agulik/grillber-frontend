@@ -141,10 +141,7 @@ export default class NewOrder extends Component {
     } if (currentQuantity3Input === 3) {
         product0IdArray.push(productData[3].id[0], productData[3].id[1], productData[3].id[2])
     }
-// DEFINE UNDEFINED
-    var deliveryDate;
-    var pickupDate;
-// END   
+  
     var date1 = moment(deliveryDate);
     var date2 = moment(pickupDate);
     var timeDiff = Math.abs(date2.valueOf() - date1.valueOf());

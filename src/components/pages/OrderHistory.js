@@ -12,13 +12,17 @@ class OrderHistory extends Component {
     this.state = {};
   }
 
-  compoonentDidMount() {
+  componentDidMount() {
+    console.log("hello")
       api.getOrderHistory()
-      .then((orderHistory) => {
-        this.setState({
-          orderHistory: orderHistory
-        })
-      })
+      .then((orderHistory) => console.log(orderHistory)
+
+      // {
+      //   this.setState({
+      //     orderHistory: orderHistory
+      //   })
+      // }
+    )
     }
 
   render() {

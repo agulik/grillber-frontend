@@ -18,7 +18,6 @@ import moment from 'moment';
 import api from '../../api';
 import CardCheckout from './CardCheckout';
 
-
 var masterDeliveryDate = ""
 var masterDeliveryTime = ""
 var masterPickupDate = ""
@@ -116,23 +115,23 @@ export default class NewOrder extends Component {
     } if (currentQuantity0Input === 3) {
         product0IdArray.push(productData[0].id[0], productData[1].id[1], productData[0].id[2])
     } if (currentQuantity1Input === 1) {
-        product1IdArray.push(productData[1].id[0])
+        product0IdArray.push(productData[1].id[0])
     } if (currentQuantity1Input === 2) {
-        product1IdArray.push(productData[1].id[0], productData[1].id[1])
+        product0IdArray.push(productData[1].id[0], productData[1].id[1])
     } if (currentQuantity1Input === 3) {
-        product1IdArray.push(productData[1].id[0], productData[1].id[1], productData[0].id[2])
+        product0IdArray.push(productData[1].id[0], productData[1].id[1], productData[0].id[2])
     } if (currentQuantity2Input === 1) {
-        product2IdArray.push(productData[2].id[0])
+        product0IdArray.push(productData[2].id[0])
     } if (currentQuantity2Input === 2) {
-        product2IdArray.push(productData[2].id[0], productData[2].id[1])
+        product0IdArray.push(productData[2].id[0], productData[2].id[1])
     } if (currentQuantity2Input === 3) {
-        product2IdArray.push(productData[2].id[0], productData[2].id[1], productData[2].id[2])
+        product0IdArray.push(productData[2].id[0], productData[2].id[1], productData[2].id[2])
     } if (currentQuantity3Input === 1) {
-        product3IdArray.push(productData[3].id[0])
+        product0IdArray.push(productData[3].id[0])
     } if (currentQuantity3Input === 2) {
-        product3IdArray.push(productData[3].id[0], productData[3].id[1])
+        product0IdArray.push(productData[3].id[0], productData[3].id[1])
     } if (currentQuantity3Input === 3) {
-        product3IdArray.push(productData[3].id[0], productData[3].id[1], productData[3].id[2])
+        product0IdArray.push(productData[3].id[0], productData[3].id[1], productData[3].id[2])
     }
 
     this.setState({
@@ -140,7 +139,7 @@ export default class NewOrder extends Component {
       listNum2: false,
       listNum3: false,
       listNum4: true,
-      productId: [product0IdArray, product1IdArray, product2IdArray, product3IdArray]
+      productId: product0IdArray
        });
 
   }
@@ -153,9 +152,12 @@ export default class NewOrder extends Component {
 
 
   _handleConfirmOrder = () => {
-    let {productId, deliveryDate, pickupDate, location } = this.state
+    let {productId, deliveryDate, pickupDate, places, user } = this.state
+    places = places[0].formatted_address
 
-    api.submitBookingRequest (productId, deliveryDate, pickupDate, location)
+    console.log(places)
+
+    api.submitBookingRequest (productId, deliveryDate, pickupDate, places, user)
     // .then(res => console.log(res))
     .catch(console.error);
   }
@@ -258,6 +260,17 @@ export default class NewOrder extends Component {
      });
   }
 
+  componentDidMount() {
+    let token = localStorage.token;
+    if(token) {
+      api.getUser(token)
+      .then((user) => {
+        this.setState({
+          user: user.users_id
+        })
+      })
+    }
+  }
 
   render() {
     const {listNum1, listNum2, listNum3, listNum4} = this.state
@@ -269,9 +282,7 @@ export default class NewOrder extends Component {
       currentQuantity2Input,
       currentQuantity3Input
     } = this.state
-    const {places, productId} = this.state
-
-    console.log(productId)
+    const {places, productId, user} = this.state
 
     if (listNum1) {
       return (

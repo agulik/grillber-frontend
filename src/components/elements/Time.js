@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import TimePicker from 'rc-time-picker';
 
-const format = 'hh:mm';
+const format = 'HH:mm';
 const now = moment().hour(0).minute(0);
 
 

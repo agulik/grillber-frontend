@@ -19,16 +19,26 @@ import moment from 'moment';
 import api from '../../api';
 import CardCheckout from './CardCheckout';
 
-
 var masterDeliveryDate = ""
 var masterDeliveryTime = ""
 var masterPickupDate = ""
 var masterPickupTime = ""
 
+
 const product0IdArray = []
 const product1IdArray = []
 const product2IdArray = []
 const product3IdArray = []
+
+var productPrice0 = ''
+var productPrice1 = ''
+var productPrice2 = ''
+var productPrice3 = ''
+
+// var date1 = ''
+// var date2 = ''
+// var timeDiff = ''
+// var diffDays = ''
 
 export default class NewOrder extends Component {
   constructor(props) {
@@ -38,15 +48,7 @@ export default class NewOrder extends Component {
       listNum2: false,
       listNum3: false,
       listNum4: false,
-      productList: [],
-      collapsibleClick1: false,
-      collapsibleClick2: false,
-      collapsibleClick3: false,
-      collapsibleClick4: false,
-      collapsibleExpand1: false,
-      collapsibleExpand2: false,
-      collapsibleExpand3: false,
-      collapsibleExpand4: false
+      productList: []
     };
   }
 
@@ -110,43 +112,55 @@ export default class NewOrder extends Component {
     currentQuantity3Input = parseInt(currentQuantity3Input)
 
     if (currentQuantity0Input === 1) {
-      console.log("hello");
          product0IdArray.push(productData[0].id[0])
     } if (currentQuantity0Input === 2) {
         product0IdArray.push(productData[0].id[0], productData[1].id[1])
     } if (currentQuantity0Input === 3) {
         product0IdArray.push(productData[0].id[0], productData[1].id[1], productData[0].id[2])
     } if (currentQuantity1Input === 1) {
-        product1IdArray.push(productData[1].id[0])
+        product0IdArray.push(productData[1].id[0])
     } if (currentQuantity1Input === 2) {
-        product1IdArray.push(productData[1].id[0], productData[1].id[1])
+        product0IdArray.push(productData[1].id[0], productData[1].id[1])
     } if (currentQuantity1Input === 3) {
-        product1IdArray.push(productData[1].id[0], productData[1].id[1], productData[0].id[2])
+        product0IdArray.push(productData[1].id[0], productData[1].id[1], productData[0].id[2])
     } if (currentQuantity2Input === 1) {
-        product2IdArray.push(productData[2].id[0])
+        product0IdArray.push(productData[2].id[0])
     } if (currentQuantity2Input === 2) {
-        product2IdArray.push(productData[2].id[0], productData[2].id[1])
+        product0IdArray.push(productData[2].id[0], productData[2].id[1])
     } if (currentQuantity2Input === 3) {
-        product2IdArray.push(productData[2].id[0], productData[2].id[1], productData[2].id[2])
+        product0IdArray.push(productData[2].id[0], productData[2].id[1], productData[2].id[2])
     } if (currentQuantity3Input === 1) {
-        product3IdArray.push(productData[3].id[0])
+        product0IdArray.push(productData[3].id[0])
     } if (currentQuantity3Input === 2) {
-        product3IdArray.push(productData[3].id[0], productData[3].id[1])
+        product0IdArray.push(productData[3].id[0], productData[3].id[1])
     } if (currentQuantity3Input === 3) {
-        product3IdArray.push(productData[3].id[0], productData[3].id[1], productData[3].id[2])
+        product0IdArray.push(productData[3].id[0], productData[3].id[1], productData[3].id[2])
     }
 
-    // console.log(productData[0].id[0], productData[0].id[1])
-    console.log(product0IdArray)
-    console.log(product1IdArray)
-    console.log(product2IdArray)
-    console.log(product3IdArray)
+    var date1 = moment(deliveryDate);
+    var date2 = moment(pickupDate);
+    var timeDiff = Math.abs(date2.valueOf() - date1.valueOf());
+    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+    if (diffDays && product0IdArray.length !== 0) {
+        productPrice0 = diffDays * productData[0].priceDaily * product0IdArray.length
+    }
+    if (diffDays && product1IdArray.length !== 0) {
+        productPrice1 = diffDays * productData[1].priceDaily * product1IdArray.length
+    }
+    if (diffDays && product2IdArray.length !== 0) {
+        productPrice2 = diffDays * productData[2].priceDaily * product2IdArray.length
+    }
+    if (diffDays && product3IdArray.length !== 0) {
+        productPrice3 = diffDays * productData[3].priceDaily * product3IdArray.length
+    }
 
     this.setState({
       listNum1: false,
       listNum2: false,
       listNum3: false,
-      listNum4: true
+      listNum4: true,
+      productId: product0IdArray
        });
 
   }
@@ -157,33 +171,39 @@ export default class NewOrder extends Component {
     })
   }
 
-
   _handleConfirmOrder = () => {
-    let {productId, deliveryDate, pickupDate, location } = this.state
+    let {productId, deliveryDate, pickupDate, places, user } = this.state
+    places = places[0].formatted_address
 
+    console.log(places)
+
+    api.submitBookingRequest (productId, deliveryDate, pickupDate, places, user)
+    // .then(res => console.log(res))
+    .catch(console.error);
   }
 
   _saveDeliveryDate = (deliveryDate) => {
-    masterDeliveryDate = moment(deliveryDate).format('YYYY-MM-DD');
+    masterDeliveryDate = moment(deliveryDate).format('MM-DD-YYYY');
     this.setState({
       deliveryDate: deliveryDate
     })
   }
 
   _saveDeliveryTime = (deliveryTime) => {
-    masterDeliveryTime = moment(deliveryTime).format('hh:mm');
+    masterDeliveryTime = moment(deliveryTime).format('HH:mm');
     this.setState({deliveryTime})
   }
 
   _savePickupDate = (pickupDate) => {
-    masterPickupDate = moment(pickupDate).format('YYYY-MM-DD');
+    masterPickupDate = moment(pickupDate).format('MM-DD-YYYY');
     this.setState({pickupDate})
   }
 
   _savePickupTime = (pickupTime) => {
-    masterPickupTime = moment(pickupTime).format('hh:mm');
+    masterPickupTime = moment(pickupTime).format('HH:mm');
     this.setState({pickupTime})
   }
+
 
   _saveProduct0Quantity = (event) => {
     let {currentQuantity0Input} = this.state
@@ -209,58 +229,18 @@ export default class NewOrder extends Component {
     this.setState({currentQuantity3Input: value3})
   }
 
-  _handleCollapsibleClick1 = () => {
-    this.setState({
-      collapsibleClick1: true,
-      collapsibleExpand1: true,
-      collapsibleClick2: false,
-      collapsibleExpand2: false,
-      collapsibleClick3: false,
-      collapsibleExpand3: false,
-      collapsibleClick4: false,
-      collapsibleExpand4: false,
-     });
-  }
 
-  _handleCollapsibleClick2 = () => {
-    this.setState({
-      collapsibleClick1: false,
-      collapsibleExpand1: false,
-      collapsibleClick2: true,
-      collapsibleExpand2: true,
-      collapsibleClick3: false,
-      collapsibleExpand3: false,
-      collapsibleClick4: false,
-      collapsibleExpand4: false,
-     });
+  componentDidMount() {
+    let token = localStorage.token;
+    if(token) {
+      api.getUser(token)
+      .then((user) => {
+        this.setState({
+          user: user.users_id
+        })
+      })
+    }
   }
-
-  _handleCollapsibleClick3 = () => {
-    this.setState({
-      collapsibleClick1: false,
-      collapsibleExpand1: false,
-      collapsibleClick2: false,
-      collapsibleExpand2: false,
-      collapsibleClick3: true,
-      collapsibleExpand3: true,
-      collapsibleClick4: false,
-      collapsibleExpand4: false,
-     });
-  }
-
-  _handleCollapsibleClick4 = () => {
-    this.setState({
-      collapsibleClick1: false,
-      collapsibleExpand1: false,
-      collapsibleClick2: false,
-      collapsibleExpand2: false,
-      collapsibleClick3: false,
-      collapsibleExpand3: false,
-      collapsibleClick4: true,
-      collapsibleExpand4: true,
-     });
-  }
-
 
   render() {
     const {listNum1, listNum2, listNum3, listNum4} = this.state
@@ -272,7 +252,8 @@ export default class NewOrder extends Component {
       currentQuantity2Input,
       currentQuantity3Input
     } = this.state
-    const {places} = this.state
+
+    const {places, productId, user} = this.state
 
     if (listNum1) {
       return (
@@ -316,7 +297,7 @@ export default class NewOrder extends Component {
               <div className="popout-panels">
                 <Col s={6} className='neworder-white-line'>
                   <Collapsible popout className="new-order-product-description">
-                    <CollapsibleItem expanded={this.state.collapsibleExpand1} onClick={this._handleCollapsibleClick1} header={productData[0].title} icon='whatshot'>
+                    <CollapsibleItem header={productData[0].title} icon='whatshot'>
                       <Row>
                         <Col s={8}>
                           {productData[0].description}
@@ -328,6 +309,8 @@ export default class NewOrder extends Component {
                                 <option value='2'>2</option>
                                 <option value='3'>3</option>
                               </Input>
+                              <p>Daily Price: {productData[0].priceDaily}</p>
+                              <p>Weekly Price: {productData[0].priceWeekly}</p>
                             </Row>
                           </div>
                         </Col>
@@ -335,9 +318,9 @@ export default class NewOrder extends Component {
                           <img alt='' className="new-order-images" src={productData[0].imageFrontUrl} />
                           <img alt='' className="new-order-images" src={productData[0].imageOpenUrl} />
                         </Col>
-                    </Row>
+                      </Row>
                     </CollapsibleItem>
-                    <CollapsibleItem expanded={this.state.collapsibleExpand2} onClick={this._handleCollapsibleClick2} header={productData[1].title} icon='whatshot'>
+                    <CollapsibleItem header={productData[1].title} icon='whatshot'>
                       <Row>
                         <Col s={8}>
                           {productData[1].description}
@@ -349,6 +332,8 @@ export default class NewOrder extends Component {
                                 <option value='2'>2</option>
                                 <option value='3'>3</option>
                               </Input>
+                              <p>Daily Price: {productData[1].priceDaily}</p>
+                              <p>Weekly Price: {productData[1].priceWeekly}</p>
                             </Row>
                           </div>
                         </Col>
@@ -356,9 +341,9 @@ export default class NewOrder extends Component {
                           <img alt='' className="new-order-images" src={productData[1].imageFrontUrl} />
                           <img alt='' className="new-order-images" src={productData[1].imageOpenUrl} />
                         </Col>
-                    </Row>
+                      </Row>
                     </CollapsibleItem>
-                    <CollapsibleItem expanded={this.state.collapsibleExpand3} onClick={this._handleCollapsibleClick3} header={productData[2].title} icon='whatshot'>
+                    <CollapsibleItem header={productData[2].title} icon='whatshot'>
                       <Row>
                         <Col s={8}>
                           {productData[2].description}
@@ -370,6 +355,8 @@ export default class NewOrder extends Component {
                                 <option value='2'>2</option>
                                 <option value='3'>3</option>
                               </Input>
+                              <p>Daily Price: {productData[2].priceDaily}</p>
+                              <p>Weekly Price: {productData[2].priceWeekly}</p>
                             </Row>
                           </div>
                         </Col>
@@ -377,9 +364,9 @@ export default class NewOrder extends Component {
                           <img alt='' className="new-order-images" src={productData[2].imageFrontUrl} />
                           <img alt='' className="new-order-images" src={productData[2].imageOpenUrl} />
                         </Col>
-                    </Row>
+                      </Row>
                     </CollapsibleItem>
-                    <CollapsibleItem expanded={this.state.collapsibleExpand4} onClick={this._handleCollapsibleClick4} header={productData[3].title} icon='whatshot'>
+                    <CollapsibleItem header={productData[3].title} icon='whatshot'>
                       <Row>
                         <Col s={8}>
                           {productData[3].description}
@@ -391,6 +378,8 @@ export default class NewOrder extends Component {
                                 <option value='2'>2</option>
                                 <option value='3'>3</option>
                               </Input>
+                              <p>Daily Price: {productData[3].priceDaily}</p>
+                              <p>Weekly Price: {productData[3].priceWeekly}</p>
                             </Row>
                           </div>
                         </Col>
@@ -398,7 +387,7 @@ export default class NewOrder extends Component {
                           <img alt='' className="new-order-images" src={productData[3].imageFrontUrl} />
                           <img alt='' className="new-order-images" src={productData[3].imageOpenUrl} />
                         </Col>
-                    </Row>
+                      </Row>
                     </CollapsibleItem>
                   </Collapsible>
                   <Button onClick={this._handleListItem1}>Back</Button>
@@ -446,7 +435,7 @@ export default class NewOrder extends Component {
                 <p>Drop-off: {masterDeliveryDate} at {masterDeliveryTime}</p>
                 <p>Pick-up: {masterPickupDate} at {masterPickupTime}</p>
                 <p>Dropoff & pickup address: {places[0].formatted_address}</p>
-                <p>Total cost: </p>
+                <p>Total cost: $ {productPrice0 + productPrice1 + productPrice2 + productPrice3}</p>
               </div>
             </Col>
           </Row>

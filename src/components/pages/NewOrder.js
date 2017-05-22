@@ -19,6 +19,7 @@ import moment from 'moment';
 import api from '../../api';
 import CardCheckout from './CardCheckout';
 
+
 var masterDeliveryDate = ""
 var masterDeliveryTime = ""
 var masterPickupDate = ""
@@ -34,11 +35,8 @@ var productPrice0 = ''
 var productPrice1 = ''
 var productPrice2 = ''
 var productPrice3 = ''
+var totalProductPrice = ''
 
-// var date1 = ''
-// var date2 = ''
-// var timeDiff = ''
-// var diffDays = ''
 
 export default class NewOrder extends Component {
   constructor(props) {
@@ -80,7 +78,8 @@ export default class NewOrder extends Component {
       }
       else {
         if (productData[position].id.indexOf(products[i].id) === -1) {
-          productData[position].id.push(products[i].id);
+        productData[position].id.push(products[i].id);
+
         }
       }
     }
@@ -104,19 +103,62 @@ export default class NewOrder extends Component {
 
   }
 
+
+  _handlePlacesChanged = (places) => {
+    this.setState({
+      places: places
+    })
+  }
+
+  _handleConfirmOrder = () => {
+     let {productId, deliveryDate, pickupDate, places, user } = this.state
+     places = places[0].formatted_address
+
+     api.submitBookingRequest (productId, deliveryDate, pickupDate, places, user)
+     // .then(res => console.log(res))
+   }
+
+  _saveDeliveryDate = (deliveryDate) => {
+    masterDeliveryDate = moment(deliveryDate).format('MM-DD-YYYY');
+    this.setState({
+      deliveryDate: deliveryDate
+    })
+  }
+
+  _saveDeliveryTime = (deliveryTime) => {
+    masterDeliveryTime = moment(deliveryTime).format('HH:mm');
+    this.setState({deliveryTime})
+  }
+
+  _savePickupDate = (pickupDate) => {
+    masterPickupDate = moment(pickupDate).format('MM-DD-YYYY');
+    this.setState({pickupDate})
+  }
+
+  _savePickupTime = (pickupTime) => {
+    masterPickupTime = moment(pickupTime).format('HH:mm');
+    this.setState({pickupTime})
+  }
+
+
   _handleListItem4 = () => {
 
     let {currentQuantity0Input, currentQuantity1Input, currentQuantity2Input, currentQuantity3Input} = this.state
-    let {productData, deliveryDate, pickupDate} = this.state
+    let {productData} = this.state
+    let {productId, deliveryDate, pickupDate} = this.state
+
 
     currentQuantity0Input = parseInt(currentQuantity0Input)
     currentQuantity1Input = parseInt(currentQuantity1Input)
     currentQuantity2Input = parseInt(currentQuantity2Input)
     currentQuantity3Input = parseInt(currentQuantity3Input)
 
+
     let quantity = [parseInt(currentQuantity0Input), parseInt(currentQuantity1Input), parseInt(currentQuantity2Input),parseInt(currentQuantity3Input)];
 
+
     if (currentQuantity0Input === 1) {
+
          product0IdArray.push(productData[0].id[0])
     } if (currentQuantity0Input === 2) {
         product0IdArray.push(productData[0].id[0], productData[0].id[1])
@@ -161,7 +203,12 @@ export default class NewOrder extends Component {
     }
 
     let finalProductArray = Array.from(new Set(product0IdArray))
-    console.log(finalProductArray)
+
+      console.log(finalProductArray)
+
+    console.log(productPrice0, productPrice1)
+
+    totalProductPrice = productPrice0 + productPrice1 + productPrice2 + productPrice3
 
     this.setState({
       listNum1: false,
@@ -214,7 +261,6 @@ export default class NewOrder extends Component {
     this.setState({pickupTime})
   }
 
-
   _saveProduct0Quantity = (event) => {
     let {currentQuantity0Input} = this.state
     let value0 = event.target.value;
@@ -239,7 +285,6 @@ export default class NewOrder extends Component {
     this.setState({currentQuantity3Input: value3})
   }
 
-
   componentDidMount() {
     let token = localStorage.token;
     if(token) {
@@ -262,7 +307,6 @@ export default class NewOrder extends Component {
       currentQuantity2Input,
       currentQuantity3Input
     } = this.state
-
     const {places, productId, user} = this.state
 
     if (listNum1) {
@@ -446,8 +490,11 @@ export default class NewOrder extends Component {
                  <li><p className="over">Drop-off:</p><p className="overRes"> {masterDeliveryDate} at {masterDeliveryTime}</p></li>
                  <li><p className="over">Pick-up: </p><p className="overRes"> {masterPickupDate} at {masterPickupTime}</p></li>
                  <li><p className="over">Dropoff & pickup address: </p><p className="overRes"> {places[0].formatted_address}</p></li>
-                 <li><p className="over">Total cost: </p><p className="overRes">$ {productPrice0 + productPrice1 + productPrice2 + productPrice3}</p></li>
+                 <li><p className="over">Total cost: </p><p className="overRes">$ {totalProductPrice}</p></li>
                 </ul>
+                <CardCheckout/>
+                <Button onClick={this._handleListItem3}>Back</Button>
+                <Button className="drop-off-two" onClick={this._handleConfirmOrder}>Place order</Button>
               </div>
             </Col>
           </Row>

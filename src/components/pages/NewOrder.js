@@ -221,20 +221,20 @@ export default class NewOrder extends Component {
               <NumberList3/>
               <NumberList4/></Col>
             <Col s={6} className='neworder-white-line'>
-              <div className="new-order-delivery">
-                <h2>Delivery Time:</h2>
-                <br/>
-                <Date data={deliveryDate} saveData={this._saveDeliveryDate} className="new-order-date"/>
-                <Time data={deliveryTime} saveData={this._saveDeliveryTime} className="new-order-time"/>
-              </div>
-              <br/>
-              <div className="new-order-pickup">
-                <h2>Pickup Time:</h2>
-                <br/>
-                <Date data={pickupDate} saveData={this._savePickupDate} className="new-order-date"/>
-                <Time data={pickupTime} saveData={this._savePickupTime} className="new-order-time"/>
-              </div>
-              <Button onClick={this._handleListItem2}>Continue</Button>
+                <div className="new-order-delivery">
+                  <h2>Delivery Time:</h2>
+                  <br/>
+                  <Date data={deliveryDate} saveData={this._saveDeliveryDate} className="new-order-date"/>
+                  <Time data={deliveryTime} saveData={this._saveDeliveryTime} className="new-order-time"/>
+                  <br/>
+                  <div className="new-order-pickup">
+                    <h2>Pickup Time:</h2>
+                    <br/>
+                    <Date data={pickupDate} saveData={this._savePickupDate} className="new-order-date"/>
+                    <Time data={pickupTime} saveData={this._savePickupTime} className="new-order-time"/>
+                  </div>
+                  <Button onClick={this._handleListItem2}>Continue</Button>
+                </div>
             </Col>
           </Row>
         </div>
@@ -375,14 +375,14 @@ export default class NewOrder extends Component {
             <Col s={6} className='neworder-white-line'>
               <div className="order-summary">
                 <h2>Order Overview</h2>
-                <p>drop off date: {masterDeliveryDate}</p>
-                <p>drop off time: {masterDeliveryTime}</p>
-                <p>pick up date: {masterPickupDate}</p>
-                <p>pick up time: {masterPickupTime}</p>
+                <p>Drop-off date: {masterDeliveryDate}</p>
+                <p>Drop-off time: {masterDeliveryTime}</p>
+                <p>Pick-up date: {masterPickupDate}</p>
+                <p>Pick-up time: {masterPickupTime}</p>
+                <CardCheckout className="drop-off-two"/>
+                <Button onClick={this._handleListItem3}>Back</Button>
+                <Button className="drop-off-two" onClick={this._handleConfirmOrder}>Place order</Button>
               </div>
-              <CardCheckout/>
-              <Button onClick={this._handleListItem3}>Back</Button>
-              <Button className="drop-off-two" onClick={this._handleConfirmOrder}>Place order</Button>
             </Col>
           </Row>
         </div>

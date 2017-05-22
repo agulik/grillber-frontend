@@ -4,6 +4,14 @@
   background-color: #161616
 }
 
+.new-order-delivery {
+  padding-left: 25px;
+}
+
+.new-order-delivery h2 {
+  padding-left: 0;
+}
+
 .neworder-white-line {
   border-left: 1px solid #f4efee;
 }
@@ -16,18 +24,23 @@
   margin-left: 20px;
 }
 
+
 .new-order-time {
   margin-left: 20px;
 }
 
-.new-order-date {
+.new-order-date input {
   margin-left: 20px;
-
 }
 
-input {
+.react-datepicker__input-container input{
+  color: white;
+  text-align: center;
+}
+
+.rc-time-picker-input {
   color: white !important;
-  text-align: center !important;
+  text-align: center;
 }
 
 .popout-panels i.material-icons {

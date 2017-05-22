@@ -14,27 +14,30 @@ class OrderHistory extends Component {
   }
 
   componentDidMount() {
-    console.log("hello")
-      api.getOrderHistory()
-      .then((orderHistory) => console.log(orderHistory)
+    api.getOrderHistory()
+    .then((orderHistory) => {
+      this.setState({
+        orderHistory: orderHistory
+      })
+      // console.log(order.dropDate, order.pickUpDate, order.bookingTotal, order.title)
+    })
+  }
 
-      // {
-      //   this.setState({
-      //     orderHistory: orderHistory
-      //   })
-      // }
-    )
-    }
+
 
   render() {
 
-    let {orderHistory} = this.state;
+    let {orderHistory, user} = this.state;
+    console.log(orderHistory)
 
     if (orderHistory) {
       return (
         <div className='home'>
           <GrillberNav />
-          <p className='grillberorder-history'>{orderHistory}</p>
+          <p className='grillberorder-history'>drop off date: {orderHistory[0].dropDate}</p>
+          <p className='grillberorder-history'>pick up date: {orderHistory[0].pickUpDate}</p>
+          <p className='grillberorder-history'>booking total: {orderHistory[0].bookingTotal}</p>
+          <p className='grillberorder-history'>bbq models: {orderHistory[0].title}</p>
         </div>
         )
       }

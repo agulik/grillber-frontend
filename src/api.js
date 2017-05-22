@@ -47,13 +47,15 @@ class Api {
 
   getOrderHistory = () => {
     let token = localStorage.token
-    console.log(token)
-    return superagent
-    .get(`${API_HOST}/bookings/${token}`)
-    .send({token})
-    .set('Authorization', `token ${token}`)
-    .set('Accept', 'application/json')
-    .then(res => res.body)
+    return this.getUser(token)
+      .then((user) => {
+        return superagent
+        .get(`${API_HOST}/bookings/${user.users_id}`)
+        .send({token})
+        .set('Authorization', `token ${token}`)
+        .set('Accept', 'application/json')
+        .then(res => res.body)
+      })
   }
 
   submitBookingRequest = (productId, dropDate, pickupDate, places, user) => {

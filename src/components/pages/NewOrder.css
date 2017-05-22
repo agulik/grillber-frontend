@@ -22,6 +22,12 @@
 
 .new-order-date {
   margin-left: 20px;
+
+}
+
+input {
+  color: white !important;
+  text-align: center !important;
 }
 
 .popout-panels i.material-icons {
@@ -53,7 +59,7 @@ popout-panels i.material-icons:hover {
 
 .new-order-images {
   height: 150px;
-  length: 150px;
+  width: 150px;
   margin-right: 80px;
 }
 

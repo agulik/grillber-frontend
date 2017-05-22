@@ -10,6 +10,7 @@ class Date extends Component {
         dateFormat="YYYY/MM/DD"
         selected={this.props.data}
         onChange={this.props.saveData}
+        placeholderText="select a date"
     />;
   }
 }

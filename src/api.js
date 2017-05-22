@@ -54,7 +54,18 @@ class Api {
     .set('Accept', 'application/json')
     .then(res => res.body)
   }
-  
+
+  submitBookingRequest = () => {
+    // let token = localStorage.token
+    //
+    // superagent
+    // .post(`${API_HOST}/bookings`)
+    // .send({ productId, dropDate, pickupDate, location })
+    // .catch((e) => {
+    //   console.log('error', e)
+    // })
+  }
+
 }
 
 export default new Api();

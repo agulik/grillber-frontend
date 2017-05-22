@@ -25,6 +25,11 @@ var masterDeliveryTime = ""
 var masterPickupDate = ""
 var masterPickupTime = ""
 
+const product0IdArray = []
+const product1IdArray = []
+const product2IdArray = []
+const product3IdArray = []
+
 export default class NewOrder extends Component {
   constructor(props) {
     super(props);
@@ -83,6 +88,8 @@ export default class NewOrder extends Component {
 
   _handleListItem3 = () => {
 
+    const {product0, product1, product2, product3} = this.state
+
     this.setState({
       listNum1: false,
       listNum2: false,
@@ -94,10 +101,46 @@ export default class NewOrder extends Component {
 
   _handleListItem4 = () => {
 
-    let {location} = this.refs;
+    let {currentQuantity0Input, currentQuantity1Input, currentQuantity2Input, currentQuantity3Input} = this.state
+    let {productData} = this.state
 
-    let lat = location.state.bounds.f.b;
-    let lng = location.state.bounds.b.b
+    currentQuantity0Input = parseInt(currentQuantity0Input)
+    currentQuantity1Input = parseInt(currentQuantity1Input)
+    currentQuantity2Input = parseInt(currentQuantity2Input)
+    currentQuantity3Input = parseInt(currentQuantity3Input)
+
+    if (currentQuantity0Input === 1) {
+      console.log("hello");
+         product0IdArray.push(productData[0].id[0])
+    } if (currentQuantity0Input === 2) {
+        product0IdArray.push(productData[0].id[0], productData[1].id[1])
+    } if (currentQuantity0Input === 3) {
+        product0IdArray.push(productData[0].id[0], productData[1].id[1], productData[0].id[2])
+    } if (currentQuantity1Input === 1) {
+        product1IdArray.push(productData[1].id[0])
+    } if (currentQuantity1Input === 2) {
+        product1IdArray.push(productData[1].id[0], productData[1].id[1])
+    } if (currentQuantity1Input === 3) {
+        product1IdArray.push(productData[1].id[0], productData[1].id[1], productData[0].id[2])
+    } if (currentQuantity2Input === 1) {
+        product2IdArray.push(productData[2].id[0])
+    } if (currentQuantity2Input === 2) {
+        product2IdArray.push(productData[2].id[0], productData[2].id[1])
+    } if (currentQuantity2Input === 3) {
+        product2IdArray.push(productData[2].id[0], productData[2].id[1], productData[2].id[2])
+    } if (currentQuantity3Input === 1) {
+        product3IdArray.push(productData[3].id[0])
+    } if (currentQuantity3Input === 2) {
+        product3IdArray.push(productData[3].id[0], productData[3].id[1])
+    } if (currentQuantity3Input === 3) {
+        product3IdArray.push(productData[3].id[0], productData[3].id[1], productData[3].id[2])
+    }
+
+    // console.log(productData[0].id[0], productData[0].id[1])
+    console.log(product0IdArray)
+    console.log(product1IdArray)
+    console.log(product2IdArray)
+    console.log(product3IdArray)
 
     this.setState({
       listNum1: false,
@@ -108,11 +151,16 @@ export default class NewOrder extends Component {
 
   }
 
+  _handlePlacesChanged = (places) => {
+    this.setState({
+      places: places
+    })
+  }
+
 
   _handleConfirmOrder = () => {
-    // let {deliveryDate, deliveryTime, pickupDate, pickupTime} = this.state
+    let {productId, deliveryDate, pickupDate, location } = this.state
 
-    // generate all data from order and send off to database
   }
 
   _saveDeliveryDate = (deliveryDate) => {
@@ -137,8 +185,29 @@ export default class NewOrder extends Component {
     this.setState({pickupTime})
   }
 
-  _saveLocation = (location) => this.setState({location})
+  _saveProduct0Quantity = (event) => {
+    let {currentQuantity0Input} = this.state
+    let value0 = event.target.value;
+    this.setState({currentQuantity0Input: value0})
+  }
 
+  _saveProduct1Quantity = (event) => {
+    let {currentQuantity1Input} = this.state
+    let value1 = event.target.value;
+    this.setState({currentQuantity1Input: value1})
+  }
+
+  _saveProduct2Quantity = (event) => {
+    let {currentQuantity2Input} = this.state
+    let value2 = event.target.value;
+    this.setState({currentQuantity2Input: value2})
+  }
+
+  _saveProduct3Quantity = (event) => {
+    let {currentQuantity3Input} = this.state
+    let value3 = event.target.value;
+    this.setState({currentQuantity3Input: value3})
+  }
 
   _handleCollapsibleClick1 = () => {
     this.setState({
@@ -192,23 +261,18 @@ export default class NewOrder extends Component {
      });
   }
 
-  // helper function to be passed down as props to the child component (searchBox)
-  // we need to retrieve the exact final input of what was rendered in that searchBox
-
-  _getInputLocation = (event) => {
-
-      let value = event.target.value;
-
-      this.setState({currentLocationInput: value})
-
-      console.log(value)
-
-
-  }
 
   render() {
     const {listNum1, listNum2, listNum3, listNum4} = this.state
     const {deliveryDate, deliveryTime, pickupDate, pickupTime, productData} = this.state
+    const {product0, product1, product2, product3} = this.state
+    const {
+      currentQuantity0Input,
+      currentQuantity1Input,
+      currentQuantity2Input,
+      currentQuantity3Input
+    } = this.state
+    const {places} = this.state
 
     if (listNum1) {
       return (
@@ -258,7 +322,7 @@ export default class NewOrder extends Component {
                           {productData[0].description}
                           <div className="bbq-quantity">
                             <Row>
-                              <Input s={12} type='select' label="Quantity" defaultValue='0'>
+                              <Input s={12} type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct0Quantity} value={currentQuantity0Input}>
                                 <option value='0'>0</option>
                                 <option value='1'>1</option>
                                 <option value='2'>2</option>
@@ -279,7 +343,7 @@ export default class NewOrder extends Component {
                           {productData[1].description}
                           <div className="bbq-quantity">
                             <Row>
-                              <Input s={12} type='select' label="Quantity" defaultValue='0'>
+                              <Input s={12} type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct1Quantity} value={currentQuantity1Input}>
                                 <option value='0'>0</option>
                                 <option value='1'>1</option>
                                 <option value='2'>2</option>
@@ -300,7 +364,7 @@ export default class NewOrder extends Component {
                           {productData[2].description}
                           <div className="bbq-quantity">
                             <Row>
-                              <Input s={12} type='select' label="Quantity" defaultValue='0'>
+                              <Input s={12} type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct2Quantity} value={currentQuantity2Input}>
                                 <option value='0'>0</option>
                                 <option value='1'>1</option>
                                 <option value='2'>2</option>
@@ -321,7 +385,7 @@ export default class NewOrder extends Component {
                           {productData[3].description}
                           <div className="bbq-quantity">
                             <Row>
-                              <Input s={12} type='select' label="Quantity" defaultValue='0'>
+                              <Input s={12} type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct3Quantity} value={currentQuantity3Input}>
                                 <option value='0'>0</option>
                                 <option value='1'>1</option>
                                 <option value='2'>2</option>
@@ -355,7 +419,7 @@ export default class NewOrder extends Component {
               <AltNumberList3/>
               <NumberList4/></Col>
             <Col s={6} className='neworder-white-line'>
-              <Map ref="location" onInput={this._getInputLocation} value={this.currentLocationInput} />
+              <Map _handlePlacesChanged={this._handlePlacesChanged} onInput={this._getInputLocation} value={this.currentLocationInput} />
               <Button className="drop-off-btn" onClick={this._handleListItem2}>Back</Button>
               <Button className="drop-off-btn drop-off-two" onClick={this._handleListItem4}>Continue</Button>
             </Col>
@@ -375,13 +439,16 @@ export default class NewOrder extends Component {
             <Col s={6} className='neworder-white-line'>
               <div className="order-summary">
                 <h2>Order Overview</h2>
+                { currentQuantity0Input > 0 ? <p>{productData[0].title} Quantity: {currentQuantity0Input}</p> : null}
+                { currentQuantity1Input > 0 ? <p>{productData[1].title} Quantity: {currentQuantity1Input}</p> : null}
+                { currentQuantity2Input > 0 ? <p>{productData[2].title} Quantity: {currentQuantity2Input}</p> : null}
+                { currentQuantity3Input > 0 ? <p>{productData[3].title} Quantity: {currentQuantity3Input}</p> : null}
                 <p>Drop-off date: {masterDeliveryDate}</p>
                 <p>Drop-off time: {masterDeliveryTime}</p>
                 <p>Pick-up date: {masterPickupDate}</p>
                 <p>Pick-up time: {masterPickupTime}</p>
-                <CardCheckout className="drop-off-two"/>
-                <Button onClick={this._handleListItem3}>Back</Button>
-                <Button className="drop-off-two" onClick={this._handleConfirmOrder}>Place order</Button>
+                <p>Dropoff & pickup address: {places[0].formatted_address}</p>
+                <p>Total cost: </p>
               </div>
             </Col>
           </Row>

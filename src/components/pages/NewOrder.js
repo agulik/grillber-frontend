@@ -135,17 +135,12 @@ export default class NewOrder extends Component {
         product3IdArray.push(productData[3].id[0], productData[3].id[1], productData[3].id[2])
     }
 
-    // console.log(productData[0].id[0], productData[0].id[1])
-    console.log(product0IdArray)
-    console.log(product1IdArray)
-    console.log(product2IdArray)
-    console.log(product3IdArray)
-
     this.setState({
       listNum1: false,
       listNum2: false,
       listNum3: false,
-      listNum4: true
+      listNum4: true,
+      productId: [product0IdArray, product1IdArray, product2IdArray, product3IdArray]
        });
 
   }
@@ -159,6 +154,8 @@ export default class NewOrder extends Component {
 
   _handleConfirmOrder = () => {
     let {productId, deliveryDate, pickupDate, location } = this.state
+
+    api.submitBookingRequest (productId, deliveryDate, pickupDate, location)
 
   }
 
@@ -271,7 +268,9 @@ export default class NewOrder extends Component {
       currentQuantity2Input,
       currentQuantity3Input
     } = this.state
-    const {places} = this.state
+    const {places, productId} = this.state
+
+    console.log(productId)
 
     if (listNum1) {
       return (

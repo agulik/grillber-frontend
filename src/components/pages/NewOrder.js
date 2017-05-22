@@ -299,7 +299,7 @@ export default class NewOrder extends Component {
               <NumberList4/></Col>
               <div className="popout-panels">
                 <Col s={6} className='neworder-white-line'>
-                  <Collapsible popout className="new-order-product-description">
+                  <Collapsible className="new-order-product-description">
                     <CollapsibleItem header={productData[0].title} icon='whatshot'>
                       <Row>
                         <Col s={8}>

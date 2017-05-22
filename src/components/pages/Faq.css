@@ -4,6 +4,11 @@
   justify-content: center;
   margin-left: 100px;
   text-align: center;
-  width: 600px;
+  width: 80%;
   color: #ffffff;
+}
+
+.faq-head {
+  font-size: 2em;
+  color: #fd9727;
 }

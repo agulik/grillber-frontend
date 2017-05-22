@@ -19,16 +19,21 @@
 .login-form {
   max-width: 80vw;
   padding-left: 50px;
+  padding-right: 50px;
 }
 
-  .next-section i.material-icons:hover {
-    color: #fbcd9b;
-  }
-
-.next-section {
-  padding-top: 10px;
-  padding-left: 50px;
+.login-form > a {
+  float: right;
 }
+
+/*.next-section i.material-icons:hover {*/
+/*    color: #fbcd9b;*/
+/*  }*/
+
+/*.next-section {*/
+/*  padding-top: 10px;*/
+/*  padding-left: 50px;*/
+/*}*/
 
 .error {
   padding-left: 10px;

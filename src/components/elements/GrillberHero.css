@@ -23,6 +23,7 @@
 
 .grillber-hero-background h2 {
   font-size: 1.8rem;
+  font-weight: 700;
   color: #fd9727;
   line-height: 18vh;
   margin: 0;
@@ -31,6 +32,7 @@
 
 .tagline {
   font-size: 2.4rem;
+  font-weight: 700;
   color: #ffffff;
   width: 500px;
   padding-top: 50px;
@@ -56,7 +58,10 @@
 }
 
 .learn-more-contents h2 {
-  color: #ffffff;
+    color: #ffffff;
+    font-size: 4em;
+    font-weight: 700;
+    padding: 0;
 }
 
 .learn-more-contents h2:hover {
@@ -69,4 +74,14 @@
 
 .learn-more-contents p:hover {
   color: #fbcd9b;
+}
+
+.card-panel {
+    font-size: 10pt;
+    transition: box-shadow .25s;
+    padding: 24px;
+    margin: .5rem 0 1rem 0;
+    border-radius: 9px;
+    background-color: #fff; 
+    margin-right: 12px;
 }

@@ -18,7 +18,6 @@ import moment from 'moment';
 import api from '../../api';
 import CardCheckout from './CardCheckout';
 
-
 var masterDeliveryDate = ""
 var masterDeliveryTime = ""
 var masterPickupDate = ""
@@ -101,6 +100,69 @@ export default class NewOrder extends Component {
 
   }
 
+  _handleListItem4 = () => {
+
+    let {currentQuantity0Input, currentQuantity1Input, currentQuantity2Input, currentQuantity3Input} = this.state
+    let {productData} = this.state
+
+    currentQuantity0Input = parseInt(currentQuantity0Input)
+    currentQuantity1Input = parseInt(currentQuantity1Input)
+    currentQuantity2Input = parseInt(currentQuantity2Input)
+    currentQuantity3Input = parseInt(currentQuantity3Input)
+
+    if (currentQuantity0Input === 1) {
+         product0IdArray.push(productData[0].id[0])
+    } if (currentQuantity0Input === 2) {
+        product0IdArray.push(productData[0].id[0], productData[1].id[1])
+    } if (currentQuantity0Input === 3) {
+        product0IdArray.push(productData[0].id[0], productData[1].id[1], productData[0].id[2])
+    } if (currentQuantity1Input === 1) {
+        product0IdArray.push(productData[1].id[0])
+    } if (currentQuantity1Input === 2) {
+        product0IdArray.push(productData[1].id[0], productData[1].id[1])
+    } if (currentQuantity1Input === 3) {
+        product0IdArray.push(productData[1].id[0], productData[1].id[1], productData[0].id[2])
+    } if (currentQuantity2Input === 1) {
+        product0IdArray.push(productData[2].id[0])
+    } if (currentQuantity2Input === 2) {
+        product0IdArray.push(productData[2].id[0], productData[2].id[1])
+    } if (currentQuantity2Input === 3) {
+        product0IdArray.push(productData[2].id[0], productData[2].id[1], productData[2].id[2])
+    } if (currentQuantity3Input === 1) {
+        product0IdArray.push(productData[3].id[0])
+    } if (currentQuantity3Input === 2) {
+        product0IdArray.push(productData[3].id[0], productData[3].id[1])
+    } if (currentQuantity3Input === 3) {
+        product0IdArray.push(productData[3].id[0], productData[3].id[1], productData[3].id[2])
+    }
+
+    var date1 = moment(deliveryDate);
+    var date2 = moment(pickupDate);
+    var timeDiff = Math.abs(date2.valueOf() - date1.valueOf());
+    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+    if (diffDays && product0IdArray.length !== 0) {
+        productPrice0 = diffDays * productData[0].priceDaily * product0IdArray.length
+    }
+    if (diffDays && product1IdArray.length !== 0) {
+        productPrice1 = diffDays * productData[1].priceDaily * product1IdArray.length
+    }
+    if (diffDays && product2IdArray.length !== 0) {
+        productPrice2 = diffDays * productData[2].priceDaily * product2IdArray.length
+    }
+    if (diffDays && product3IdArray.length !== 0) {
+        productPrice3 = diffDays * productData[3].priceDaily * product3IdArray.length
+    }
+
+    this.setState({
+      listNum1: false,
+      listNum2: false,
+      listNum3: false,
+      listNum4: true,
+      productId: product0IdArray
+       });
+
+  }
 
   _handlePlacesChanged = (places) => {
     this.setState({
@@ -109,8 +171,14 @@ export default class NewOrder extends Component {
   }
 
   _handleConfirmOrder = () => {
-    let {productId, deliveryDate, pickupDate, location } = this.state
+    let {productId, deliveryDate, pickupDate, places, user } = this.state
+    places = places[0].formatted_address
 
+    console.log(places)
+
+    api.submitBookingRequest (productId, deliveryDate, pickupDate, places, user)
+    // .then(res => console.log(res))
+    .catch(console.error);
   }
 
   _saveDeliveryDate = (deliveryDate) => {
@@ -135,73 +203,6 @@ export default class NewOrder extends Component {
     this.setState({pickupTime})
   }
 
-
-    _handleListItem4 = () => {
-
-      let {currentQuantity0Input, currentQuantity1Input, currentQuantity2Input, currentQuantity3Input} = this.state
-      let {productData} = this.state
-      let {productId, deliveryDate, pickupDate} = this.state
-
-      currentQuantity0Input = parseInt(currentQuantity0Input)
-      currentQuantity1Input = parseInt(currentQuantity1Input)
-      currentQuantity2Input = parseInt(currentQuantity2Input)
-      currentQuantity3Input = parseInt(currentQuantity3Input)
-
-      if (currentQuantity0Input === 1) {
-        console.log("hello");
-           product0IdArray.push(productData[0].id[0])
-      } if (currentQuantity0Input === 2) {
-          product0IdArray.push(productData[0].id[0], productData[1].id[1])
-      } if (currentQuantity0Input === 3) {
-          product0IdArray.push(productData[0].id[0], productData[1].id[1], productData[0].id[2])
-      } if (currentQuantity1Input === 1) {
-          product1IdArray.push(productData[1].id[0])
-      } if (currentQuantity1Input === 2) {
-          product1IdArray.push(productData[1].id[0], productData[1].id[1])
-      } if (currentQuantity1Input === 3) {
-          product1IdArray.push(productData[1].id[0], productData[1].id[1], productData[0].id[2])
-      } if (currentQuantity2Input === 1) {
-          product2IdArray.push(productData[2].id[0])
-      } if (currentQuantity2Input === 2) {
-          product2IdArray.push(productData[2].id[0], productData[2].id[1])
-      } if (currentQuantity2Input === 3) {
-          product2IdArray.push(productData[2].id[0], productData[2].id[1], productData[2].id[2])
-      } if (currentQuantity3Input === 1) {
-          product3IdArray.push(productData[3].id[0])
-      } if (currentQuantity3Input === 2) {
-          product3IdArray.push(productData[3].id[0], productData[3].id[1])
-      } if (currentQuantity3Input === 3) {
-          product3IdArray.push(productData[3].id[0], productData[3].id[1], productData[3].id[2])
-      }
-
-      var date1 = moment(deliveryDate);
-      var date2 = moment(pickupDate);
-      var timeDiff = Math.abs(date2.valueOf() - date1.valueOf());
-      var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-
-      if (diffDays && product0IdArray.length !== 0) {
-          productPrice0 = diffDays * productData[0].priceDaily * product0IdArray.length
-      }
-      if (diffDays && product1IdArray.length !== 0) {
-          productPrice1 = diffDays * productData[1].priceDaily * product1IdArray.length
-      }
-      if (diffDays && product2IdArray.length !== 0) {
-          productPrice2 = diffDays * productData[2].priceDaily * product2IdArray.length
-      }
-      if (diffDays && product3IdArray.length !== 0) {
-          productPrice3 = diffDays * productData[3].priceDaily * product3IdArray.length
-      }
-
-      console.log(productPrice0, productPrice1)
-
-      this.setState({
-        listNum1: false,
-        listNum2: false,
-        listNum3: false,
-        listNum4: true
-         });
-
-    }
 
   _saveProduct0Quantity = (event) => {
     let {currentQuantity0Input} = this.state
@@ -228,6 +229,18 @@ export default class NewOrder extends Component {
   }
 
 
+  componentDidMount() {
+    let token = localStorage.token;
+    if(token) {
+      api.getUser(token)
+      .then((user) => {
+        this.setState({
+          user: user.users_id
+        })
+      })
+    }
+  }
+
   render() {
     const {listNum1, listNum2, listNum3, listNum4} = this.state
     const {deliveryDate, deliveryTime, pickupDate, pickupTime, productData} = this.state
@@ -238,7 +251,8 @@ export default class NewOrder extends Component {
       currentQuantity2Input,
       currentQuantity3Input
     } = this.state
-    const {places, collapsibleClick1} = this.state
+
+    const {places, productId, user} = this.state
 
     if (listNum1) {
       return (

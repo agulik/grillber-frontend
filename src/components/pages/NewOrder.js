@@ -443,7 +443,7 @@ export default class NewOrder extends Component {
                 { currentQuantity1Input > 0 ? <p>{productData[1].title} Quantity: {currentQuantity1Input}</p> : null}
                 { currentQuantity2Input > 0 ? <p>{productData[2].title} Quantity: {currentQuantity2Input}</p> : null}
                 { currentQuantity3Input > 0 ? <p>{productData[3].title} Quantity: {currentQuantity3Input}</p> : null}
-                <p>Drop-off date: {masterDeliveryDate}</p>
+                <p>Drop-off date: </p><p> {masterDeliveryDate}</p>
                 <p>Drop-off time: {masterDeliveryTime}</p>
                 <p>Pick-up date: {masterPickupDate}</p>
                 <p>Pick-up time: {masterPickupTime}</p>

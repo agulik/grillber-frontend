@@ -1,4 +1,5 @@
 /* global google */
+/* eslint-disable */
 import _ from "lodash";
 import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
@@ -17,6 +18,7 @@ const INPUT_STYLE = {
   fontSize: `14px`,
   outline: `none`,
   textOverflow: `ellipses`,
+  backgroundColor: `white`
 };
 
 const places = ""
@@ -99,7 +101,7 @@ class Map extends Component {
     return (
         <MyGoogleMap
           containerElement={
-            <div style={{ height: 300+'px' }} />
+            <div style={{ height: 300+'px', paddingLeft: 20+'px', paddingRight: 20+'px' }} />
           }
           mapElement={
             <div style={{ height: 350+'px' }} />

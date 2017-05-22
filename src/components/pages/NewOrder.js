@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, {Component} from 'react';
 import {Button} from 'react-materialize';
 import GrillberNav from '../elements/GrillberNav';
@@ -36,10 +37,6 @@ var productPrice2 = ''
 var productPrice3 = ''
 var totalProductPrice = ''
 
-// var date1 = ''
-// var date2 = ''
-// var timeDiff = ''
-// var diffDays = ''
 
 export default class NewOrder extends Component {
   constructor(props) {
@@ -80,7 +77,9 @@ export default class NewOrder extends Component {
         productData.push(products[i])
       }
       else {
+        if (productData[position].id.indexOf(products[i].id) === -1) {
         productData[position].id.push(products[i].id);
+        }
       }
     }
     this.setState({
@@ -110,9 +109,12 @@ export default class NewOrder extends Component {
   }
 
   _handleConfirmOrder = () => {
-    let {productId, deliveryDate, pickupDate, location } = this.state
+     let {productId, deliveryDate, pickupDate, places, user } = this.state
+     places = places[0].formatted_address
 
-  }
+     api.submitBookingRequest (productId, deliveryDate, pickupDate, places, user)
+     // .then(res => console.log(res))
+   }
 
   _saveDeliveryDate = (deliveryDate) => {
     masterDeliveryDate = moment(deliveryDate).format('MM-DD-YYYY');
@@ -148,31 +150,33 @@ export default class NewOrder extends Component {
     currentQuantity2Input = parseInt(currentQuantity2Input)
     currentQuantity3Input = parseInt(currentQuantity3Input)
 
+let quantity = [parseInt(currentQuantity0Input), parseInt(currentQuantity1Input), parseInt(currentQuantity2Input),parseInt(currentQuantity3Input)];
+
     if (currentQuantity0Input === 1) {
-      console.log("hello");
+
          product0IdArray.push(productData[0].id[0])
     } if (currentQuantity0Input === 2) {
         product0IdArray.push(productData[0].id[0], productData[0].id[1])
     } if (currentQuantity0Input === 3) {
         product0IdArray.push(productData[0].id[0], productData[0].id[1], productData[0].id[2])
     } if (currentQuantity1Input === 1) {
-        product1IdArray.push(productData[1].id[0])
+        product0IdArray.push(productData[1].id[0])
     } if (currentQuantity1Input === 2) {
-        product1IdArray.push(productData[1].id[0], productData[1].id[1])
+        product0IdArray.push(productData[1].id[0], productData[1].id[1])
     } if (currentQuantity1Input === 3) {
-        product1IdArray.push(productData[1].id[0], productData[1].id[1], productData[1].id[2])
+        product0IdArray.push(productData[1].id[0], productData[1].id[1], productData[1].id[2])
     } if (currentQuantity2Input === 1) {
-        product2IdArray.push(productData[2].id[0])
+        product0IdArray.push(productData[2].id[0])
     } if (currentQuantity2Input === 2) {
-        product2IdArray.push(productData[2].id[0], productData[2].id[1])
+        product0IdArray.push(productData[2].id[0], productData[2].id[1])
     } if (currentQuantity2Input === 3) {
-        product2IdArray.push(productData[2].id[0], productData[2].id[1], productData[2].id[2])
+        product0IdArray.push(productData[2].id[0], productData[2].id[1], productData[2].id[2])
     } if (currentQuantity3Input === 1) {
-        product3IdArray.push(productData[3].id[0])
+        product0IdArray.push(productData[3].id[0])
     } if (currentQuantity3Input === 2) {
-        product3IdArray.push(productData[3].id[0], productData[3].id[1])
+        product0IdArray.push(productData[3].id[0], productData[3].id[1])
     } if (currentQuantity3Input === 3) {
-        product3IdArray.push(productData[3].id[0], productData[3].id[1], productData[3].id[2])
+        product0IdArray.push(productData[3].id[0], productData[3].id[1], productData[3].id[2])
     }
 
     var date1 = moment(deliveryDate);
@@ -193,6 +197,9 @@ export default class NewOrder extends Component {
         productPrice3 = diffDays * productData[3].priceDaily * product3IdArray.length
     }
 
+    let finalProductArray = Array.from(new Set(product0IdArray))
+        console.log(finalProductArray)
+
     console.log(productPrice0, productPrice1)
 
     totalProductPrice = productPrice0 + productPrice1 + productPrice2 + productPrice3
@@ -201,8 +208,9 @@ export default class NewOrder extends Component {
       listNum1: false,
       listNum2: false,
       listNum3: false,
-      listNum4: true
-       });
+      listNum4: true,
+      productId: product0IdArray
+      });
 
     }
 
@@ -230,6 +238,17 @@ export default class NewOrder extends Component {
     this.setState({currentQuantity3Input: value3})
   }
 
+  componentDidMount() {
+    let token = localStorage.token;
+    if(token) {
+      api.getUser(token)
+      .then((user) => {
+        this.setState({
+          user: user.users_id
+        })
+      })
+    }
+  }
 
   render() {
     const {listNum1, listNum2, listNum3, listNum4} = this.state
@@ -241,7 +260,7 @@ export default class NewOrder extends Component {
       currentQuantity2Input,
       currentQuantity3Input
     } = this.state
-    const {places, collapsibleClick1} = this.state
+    const {places, productId, user} = this.state
 
     if (listNum1) {
       return (
@@ -254,20 +273,20 @@ export default class NewOrder extends Component {
               <NumberList3/>
               <NumberList4/></Col>
             <Col s={6} className='neworder-white-line'>
-              <div className="new-order-delivery">
-                <h2>Delivery Time:</h2>
-                <br/>
-                <Date data={deliveryDate} saveData={this._saveDeliveryDate} className="new-order-date"/>
-                <Time data={deliveryTime} saveData={this._saveDeliveryTime} className="new-order-time"/>
-              </div>
-              <br/>
-              <div className="new-order-pickup">
-                <h2>Pickup Time:</h2>
-                <br/>
-                <Date data={pickupDate} saveData={this._savePickupDate} className="new-order-date"/>
-                <Time data={pickupTime} saveData={this._savePickupTime} className="new-order-time"/>
-              </div>
-              <Button onClick={this._handleListItem2}>Continue</Button>
+                <div className="new-order-delivery">
+                  <h2>Delivery Time:</h2>
+                  <br/>
+                  <Date data={deliveryDate} saveData={this._saveDeliveryDate} className="new-order-date"/>
+                  <Time data={deliveryTime} saveData={this._saveDeliveryTime} className="new-order-time"/>
+                  <br/>
+                  <div className="new-order-pickup">
+                    <h2>Pickup Time:</h2>
+                    <br/>
+                    <Date data={pickupDate} saveData={this._savePickupDate} className="new-order-date"/>
+                    <Time data={pickupTime} saveData={this._savePickupTime} className="new-order-time"/>
+                  </div>
+                  <Button onClick={this._handleListItem2}>Continue</Button>
+                </div>
             </Col>
           </Row>
         </div>
@@ -284,7 +303,7 @@ export default class NewOrder extends Component {
               <NumberList4/></Col>
               <div className="popout-panels">
                 <Col s={6} className='neworder-white-line'>
-                  <Collapsible popout className="new-order-product-description">
+                  <Collapsible className="new-order-product-description">
                     <CollapsibleItem header={productData[0].title} icon='whatshot'>
                       <Row>
                         <Col s={8}>
@@ -420,16 +439,16 @@ export default class NewOrder extends Component {
                 { currentQuantity1Input > 0 ? <p>{productData[1].title} Quantity: {currentQuantity1Input}</p> : null}
                 { currentQuantity2Input > 0 ? <p>{productData[2].title} Quantity: {currentQuantity2Input}</p> : null}
                 { currentQuantity3Input > 0 ? <p>{productData[3].title} Quantity: {currentQuantity3Input}</p> : null}
-                <p>Drop-off date: {masterDeliveryDate}</p>
-                <p>Drop-off time: {masterDeliveryTime}</p>
-                <p>Pickup date: {masterPickupDate}</p>
-                <p>Pickup time: {masterPickupTime}</p>
-                <p>Dropoff & pickup address: {places[0].formatted_address}</p>
-                <p>Total cost: $ {totalProductPrice}</p>
+                <ul>
+                 <li><p className="over">Drop-off:</p><p className="overRes"> {masterDeliveryDate} at {masterDeliveryTime}</p></li>
+                 <li><p className="over">Pick-up: </p><p className="overRes"> {masterPickupDate} at {masterPickupTime}</p></li>
+                 <li><p className="over">Dropoff & pickup address: </p><p className="overRes"> {places[0].formatted_address}</p></li>
+                 <li><p className="over">Total cost: </p><p className="overRes">$ {totalProductPrice}</p></li>
+                </ul>
+                <CardCheckout/>
+                <Button onClick={this._handleListItem3}>Back</Button>
+                <Button className="drop-off-two" onClick={this._handleConfirmOrder}>Place order</Button>
               </div>
-              <CardCheckout/>
-              <Button onClick={this._handleListItem3}>Back</Button>
-              <Button className="drop-off-two" onClick={this._handleConfirmOrder}>Place order</Button>
             </Col>
           </Row>
         </div>

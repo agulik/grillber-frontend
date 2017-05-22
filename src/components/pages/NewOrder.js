@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React, {Component} from 'react';
+import { Link } from 'react-router';
 import {Button} from 'react-materialize';
 import GrillberNav from '../elements/GrillberNav';
 import './NewOrder.css';
@@ -493,7 +494,7 @@ export default class NewOrder extends Component {
                 </ul>
                 <CardCheckout/>
                 <Button onClick={this._handleListItem3}>Back</Button>
-                <Button className="drop-off-two" onClick={this._handleConfirmOrder}>Place order</Button>
+                <Link to="orderconfirmation"><Button className="drop-off-two" onClick={this._handleConfirmOrder}>Place order</Button></Link>
               </div>
             </Col>
           </Row>

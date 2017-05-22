@@ -10,6 +10,7 @@ import OrderHistory from './components/pages/OrderHistory';
 import NewOrder from './components/pages/NewOrder';
 import Settings from './components/pages/Settings';
 import Faq from './components/pages/Faq';
+import ConfirmedOrderPage from './components/pages/ConfirmedOrderPage'; 
 
 
 
@@ -38,6 +39,7 @@ const routes = (
             <Route path="orders/history" component={OrderHistory} onEnter={requireAuth} />
             <Route path="user/settings" component={Settings} onEnter={requireAuth} />
             <Route path="faq" component={Faq} onEnter={requireAuth}/>
+            <Route path="orderconfirmation" component={ConfirmedOrderPage} onEnter={requireAuth} />
         </Route>
     </Router>
 );

@@ -19,6 +19,7 @@ const INPUT_STYLE = {
   textOverflow: `ellipses`,
 };
 
+const places = ""
 
 const MyGoogleMap = withGoogleMap(props => (
   <GoogleMap
@@ -34,8 +35,6 @@ const MyGoogleMap = withGoogleMap(props => (
       onPlacesChanged={props.onPlacesChanged}
       inputPlaceholder="Search a location"
       inputStyle={INPUT_STYLE}
-      // onInput={this.props._getInputLocation}
-      // value={this.props.currentLocationInput}
     />
     {props.markers.map((marker, index) => (
       <Marker position={marker.position} key={index} />
@@ -80,6 +79,8 @@ class Map extends Component {
   handlePlacesChanged() {
     const places = this._searchBox.getPlaces();
 
+    this.props._handlePlacesChanged(places)
+
     const markers = places.map(place => ({
       position: place.geometry.location,
     }));
@@ -94,6 +95,7 @@ class Map extends Component {
 
 
   render() {
+
     return (
         <MyGoogleMap
           containerElement={

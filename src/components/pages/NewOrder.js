@@ -24,6 +24,13 @@ var masterDeliveryTime = ""
 var masterPickupDate = ""
 var masterPickupTime = ""
 
+// var date1 = new Date("7/13/2010");
+// var date2 = new Date("12/15/2010");
+// var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+// var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+// console.log(diffDays);
+
+
 export default class NewOrder extends Component {
   constructor(props) {
     super(props);
@@ -77,6 +84,7 @@ export default class NewOrder extends Component {
     this.setState({
       productData: productData
     })
+    console.log(productData[0].id[0])
     })
   }
 
@@ -262,6 +270,8 @@ export default class NewOrder extends Component {
                                 <option value='2'>2</option>
                                 <option value='3'>3</option>
                               </Input>
+                              <p>Daily Price: {productData[0].priceDaily}</p>
+                              <p>Weekly Price: {productData[0].priceWeekly}</p>
                             </Row>
                           </div>
                         </Col>
@@ -283,6 +293,8 @@ export default class NewOrder extends Component {
                                 <option value='2'>2</option>
                                 <option value='3'>3</option>
                               </Input>
+                              <p>Daily Price: {productData[1].priceDaily}</p>
+                              <p>Weekly Price: {productData[1].priceWeekly}</p>
                             </Row>
                           </div>
                         </Col>
@@ -304,6 +316,8 @@ export default class NewOrder extends Component {
                                 <option value='2'>2</option>
                                 <option value='3'>3</option>
                               </Input>
+                              <p>Daily Price: {productData[2].priceDaily}</p>
+                              <p>Weekly Price: {productData[2].priceWeekly}</p>
                             </Row>
                           </div>
                         </Col>
@@ -325,6 +339,8 @@ export default class NewOrder extends Component {
                                 <option value='2'>2</option>
                                 <option value='3'>3</option>
                               </Input>
+                              <p>Daily Price: {productData[3].priceDaily}</p>
+                              <p>Weekly Price: {productData[3].priceWeekly}</p>
                             </Row>
                           </div>
                         </Col>

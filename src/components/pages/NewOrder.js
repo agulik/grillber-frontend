@@ -19,6 +19,7 @@ import moment from 'moment';
 import api from '../../api';
 import CardCheckout from './CardCheckout';
 
+
 var masterDeliveryDate = ""
 var masterDeliveryTime = ""
 var masterPickupDate = ""
@@ -34,11 +35,8 @@ var productPrice0 = ''
 var productPrice1 = ''
 var productPrice2 = ''
 var productPrice3 = ''
+var totalProductPrice = ''
 
-// var date1 = ''
-// var date2 = ''
-// var timeDiff = ''
-// var diffDays = ''
 
 export default class NewOrder extends Component {
   constructor(props) {
@@ -79,7 +77,9 @@ export default class NewOrder extends Component {
         productData.push(products[i])
       }
       else {
+        if (productData[position].id.indexOf(products[i].id) === -1) {
         productData[position].id.push(products[i].id);
+        }
       }
     }
     this.setState({
@@ -101,72 +101,6 @@ export default class NewOrder extends Component {
 
   }
 
-  _handleListItem4 = () => {
-
-    let {currentQuantity0Input, currentQuantity1Input, currentQuantity2Input, currentQuantity3Input} = this.state
-    let {productData} = this.state
-
-    currentQuantity0Input = parseInt(currentQuantity0Input)
-    currentQuantity1Input = parseInt(currentQuantity1Input)
-    currentQuantity2Input = parseInt(currentQuantity2Input)
-    currentQuantity3Input = parseInt(currentQuantity3Input)
-
-    if (currentQuantity0Input === 1) {
-         product0IdArray.push(productData[0].id[0])
-    } if (currentQuantity0Input === 2) {
-        product0IdArray.push(productData[0].id[0], productData[1].id[1])
-    } if (currentQuantity0Input === 3) {
-        product0IdArray.push(productData[0].id[0], productData[1].id[1], productData[0].id[2])
-    } if (currentQuantity1Input === 1) {
-        product0IdArray.push(productData[1].id[0])
-    } if (currentQuantity1Input === 2) {
-        product0IdArray.push(productData[1].id[0], productData[1].id[1])
-    } if (currentQuantity1Input === 3) {
-        product0IdArray.push(productData[1].id[0], productData[1].id[1], productData[0].id[2])
-    } if (currentQuantity2Input === 1) {
-        product0IdArray.push(productData[2].id[0])
-    } if (currentQuantity2Input === 2) {
-        product0IdArray.push(productData[2].id[0], productData[2].id[1])
-    } if (currentQuantity2Input === 3) {
-        product0IdArray.push(productData[2].id[0], productData[2].id[1], productData[2].id[2])
-    } if (currentQuantity3Input === 1) {
-        product0IdArray.push(productData[3].id[0])
-    } if (currentQuantity3Input === 2) {
-        product0IdArray.push(productData[3].id[0], productData[3].id[1])
-    } if (currentQuantity3Input === 3) {
-        product0IdArray.push(productData[3].id[0], productData[3].id[1], productData[3].id[2])
-    }
-// DEFINE UNDEFINED
-    var deliveryDate;
-    var pickupDate;
-// END   
-    var date1 = moment(deliveryDate);
-    var date2 = moment(pickupDate);
-    var timeDiff = Math.abs(date2.valueOf() - date1.valueOf());
-    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-
-    if (diffDays && product0IdArray.length !== 0) {
-        productPrice0 = diffDays * productData[0].priceDaily * product0IdArray.length
-    }
-    if (diffDays && product1IdArray.length !== 0) {
-        productPrice1 = diffDays * productData[1].priceDaily * product1IdArray.length
-    }
-    if (diffDays && product2IdArray.length !== 0) {
-        productPrice2 = diffDays * productData[2].priceDaily * product2IdArray.length
-    }
-    if (diffDays && product3IdArray.length !== 0) {
-        productPrice3 = diffDays * productData[3].priceDaily * product3IdArray.length
-    }
-
-    this.setState({
-      listNum1: false,
-      listNum2: false,
-      listNum3: false,
-      listNum4: true,
-      productId: product0IdArray
-       });
-
-  }
 
   _handlePlacesChanged = (places) => {
     this.setState({
@@ -175,15 +109,12 @@ export default class NewOrder extends Component {
   }
 
   _handleConfirmOrder = () => {
-    let {productId, deliveryDate, pickupDate, places, user } = this.state
-    places = places[0].formatted_address
+     let {productId, deliveryDate, pickupDate, places, user } = this.state
+     places = places[0].formatted_address
 
-    console.log(places)
-
-    api.submitBookingRequest (productId, deliveryDate, pickupDate, places, user)
-    // .then(res => console.log(res))
-    .catch(console.error);
-  }
+     api.submitBookingRequest (productId, deliveryDate, pickupDate, places, user)
+     // .then(res => console.log(res))
+   }
 
   _saveDeliveryDate = (deliveryDate) => {
     masterDeliveryDate = moment(deliveryDate).format('MM-DD-YYYY');
@@ -207,6 +138,81 @@ export default class NewOrder extends Component {
     this.setState({pickupTime})
   }
 
+
+  _handleListItem4 = () => {
+
+    let {currentQuantity0Input, currentQuantity1Input, currentQuantity2Input, currentQuantity3Input} = this.state
+    let {productData} = this.state
+    let {productId, deliveryDate, pickupDate} = this.state
+
+    currentQuantity0Input = parseInt(currentQuantity0Input)
+    currentQuantity1Input = parseInt(currentQuantity1Input)
+    currentQuantity2Input = parseInt(currentQuantity2Input)
+    currentQuantity3Input = parseInt(currentQuantity3Input)
+
+let quantity = [parseInt(currentQuantity0Input), parseInt(currentQuantity1Input), parseInt(currentQuantity2Input),parseInt(currentQuantity3Input)];
+
+    if (currentQuantity0Input === 1) {
+
+         product0IdArray.push(productData[0].id[0])
+    } if (currentQuantity0Input === 2) {
+        product0IdArray.push(productData[0].id[0], productData[0].id[1])
+    } if (currentQuantity0Input === 3) {
+        product0IdArray.push(productData[0].id[0], productData[0].id[1], productData[0].id[2])
+    } if (currentQuantity1Input === 1) {
+        product0IdArray.push(productData[1].id[0])
+    } if (currentQuantity1Input === 2) {
+        product0IdArray.push(productData[1].id[0], productData[1].id[1])
+    } if (currentQuantity1Input === 3) {
+        product0IdArray.push(productData[1].id[0], productData[1].id[1], productData[1].id[2])
+    } if (currentQuantity2Input === 1) {
+        product0IdArray.push(productData[2].id[0])
+    } if (currentQuantity2Input === 2) {
+        product0IdArray.push(productData[2].id[0], productData[2].id[1])
+    } if (currentQuantity2Input === 3) {
+        product0IdArray.push(productData[2].id[0], productData[2].id[1], productData[2].id[2])
+    } if (currentQuantity3Input === 1) {
+        product0IdArray.push(productData[3].id[0])
+    } if (currentQuantity3Input === 2) {
+        product0IdArray.push(productData[3].id[0], productData[3].id[1])
+    } if (currentQuantity3Input === 3) {
+        product0IdArray.push(productData[3].id[0], productData[3].id[1], productData[3].id[2])
+    }
+
+    var date1 = moment(deliveryDate);
+    var date2 = moment(pickupDate);
+    var timeDiff = Math.abs(date2.valueOf() - date1.valueOf());
+    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+    if (diffDays && product0IdArray.length !== 0) {
+        productPrice0 = diffDays * productData[0].priceDaily * product0IdArray.length
+    }
+    if (diffDays && product1IdArray.length !== 0) {
+        productPrice1 = diffDays * productData[1].priceDaily * product1IdArray.length
+    }
+    if (diffDays && product2IdArray.length !== 0) {
+        productPrice2 = diffDays * productData[2].priceDaily * product2IdArray.length
+    }
+    if (diffDays && product3IdArray.length !== 0) {
+        productPrice3 = diffDays * productData[3].priceDaily * product3IdArray.length
+    }
+
+    let finalProductArray = Array.from(new Set(product0IdArray))
+        console.log(finalProductArray)
+
+    console.log(productPrice0, productPrice1)
+
+    totalProductPrice = productPrice0 + productPrice1 + productPrice2 + productPrice3
+
+    this.setState({
+      listNum1: false,
+      listNum2: false,
+      listNum3: false,
+      listNum4: true,
+      productId: product0IdArray
+      });
+
+    }
 
   _saveProduct0Quantity = (event) => {
     let {currentQuantity0Input} = this.state
@@ -232,7 +238,6 @@ export default class NewOrder extends Component {
     this.setState({currentQuantity3Input: value3})
   }
 
-
   componentDidMount() {
     let token = localStorage.token;
     if(token) {
@@ -255,7 +260,6 @@ export default class NewOrder extends Component {
       currentQuantity2Input,
       currentQuantity3Input
     } = this.state
-
     const {places, productId, user} = this.state
 
     if (listNum1) {
@@ -439,8 +443,11 @@ export default class NewOrder extends Component {
                  <li><p className="over">Drop-off:</p><p className="overRes"> {masterDeliveryDate} at {masterDeliveryTime}</p></li>
                  <li><p className="over">Pick-up: </p><p className="overRes"> {masterPickupDate} at {masterPickupTime}</p></li>
                  <li><p className="over">Dropoff & pickup address: </p><p className="overRes"> {places[0].formatted_address}</p></li>
-                 <li><p className="over">Total cost: </p><p className="overRes">$ {productPrice0 + productPrice1 + productPrice2 + productPrice3}</p></li>
+                 <li><p className="over">Total cost: </p><p className="overRes">$ {totalProductPrice}</p></li>
                 </ul>
+                <CardCheckout/>
+                <Button onClick={this._handleListItem3}>Back</Button>
+                <Button className="drop-off-two" onClick={this._handleConfirmOrder}>Place order</Button>
               </div>
             </Col>
           </Row>

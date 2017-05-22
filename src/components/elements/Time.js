@@ -20,7 +20,7 @@ class Time extends Component {
         value={this.props.data}
         onChange={this.props.saveData}
         showSecond={false}
-        defaultValue={now}
+        placeholder='Select a time'
         className="xxx"
         format={format}
       />

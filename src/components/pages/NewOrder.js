@@ -236,7 +236,6 @@ export default class NewOrder extends Component {
 
     api.submitBookingRequest (productId, deliveryDate, pickupDate, places, user)
     // .then(res => console.log(res))
-    .catch(console.error);
   }
 
   _saveDeliveryDate = (deliveryDate) => {

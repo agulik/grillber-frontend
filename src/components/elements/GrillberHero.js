@@ -18,18 +18,26 @@ export default(props) => (
           <div className="panels">
             <Row>
               <Col s={4}>
-                <CardPanel className="teal lighten-4 black-text">
-                    <span>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.</span>
+                <CardPanel className="card-panel">
+                    <img src={'http://copy9.com/wp-content/uploads/2015/12/track-someone-mobile-phone.jpg'} alt="convenience" className="learnPic"/>
+                    <p className="cardTitle">Convenience</p>
+                    <span>Get a BBQ grill and accessories delivered wherever you need at the tap of a button. 
+                          Whether it’s a family gathering or a sporting event, we’ve got you covered!</span>
                 </CardPanel>
               </Col>
               <Col s={4}>
-                <CardPanel className="teal lighten-4 black-text">
-                    <span>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.</span>
+                <CardPanel className="card-panel">
+                    <img src={'http://www.pccorp.com/wp-content/uploads/2014/08/BBQ-2.jpg'} alt="convenience" className="learnPic"/>
+                    <p className="cardTitle">Affordable Luxury</p>
+                    <span>We stock only the best quality grills on the market and offer them for hourly or daily rental at a juicy price. </span>
                 </CardPanel>
               </Col>
               <Col s={4}>
-                <CardPanel className="teal lighten-4 black-text">
-                    <span>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.</span>
+                <CardPanel className="card-panel">
+                    <img src={'http://www.improvementscatalog.com/RoomForImprovements/wp-content/uploads/2015/05/bbq_party.jpg'} alt="convenience" className="learnPic"/>
+                    <p className="cardTitle">Quality</p>
+                    <span>All grills come pre-inspected with a full tank of propane.
+                    We take care of the maintenance so you can focus on the important stuff - like  becoming the next grill boss.</span>
                 </CardPanel>
               </Col>
             </Row>

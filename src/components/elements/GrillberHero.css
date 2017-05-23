@@ -58,10 +58,10 @@
 }
 
 .learn-more-contents h2 {
-    color: #ffffff;
-    font-size: 4em;
-    font-weight: 700;
-    padding: 0;
+  color: #ffffff;
+  font-size: 4em;
+  font-weight: 700;
+  padding: 0;
 }
 
 .learn-more-contents h2:hover {
@@ -77,11 +77,24 @@
 }
 
 .card-panel {
-    font-size: 10pt;
-    transition: box-shadow .25s;
-    padding: 24px;
-    margin: .5rem 0 1rem 0;
-    border-radius: 9px;
-    background-color: #fff; 
-    margin-right: 12px;
+  font-size: 10pt;
+  transition: box-shadow .25s;
+  padding: 24px;
+  margin: .5rem 0 1rem 0;
+  border-radius: 9px;
+  background-color: #fff !important;
+  margin-right: 12px;
+  height: 310px;
+}
+
+.cardTitle {
+  color: black !important;
+  font-size: 1.6em !important;
+  font-weight: 700;
+}
+
+.learnPic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
 }

@@ -364,7 +364,7 @@ export default class NewOrder extends Component {
                         </Col>
                         <Col s={4}>
                           <img alt='' className="new-order-images" src={productData[0].imageOpenUrl} />
-                          <Input s={12} type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct0Quantity} value={currentQuantity0Input}>
+                          <Input s={12} className='new-order-input' type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct0Quantity} value={currentQuantity0Input}>
                             <option value='0'>0</option>
                             <option value='1'>1</option>
                             <option value='2'>2</option>
@@ -386,7 +386,7 @@ export default class NewOrder extends Component {
                         </Col>
                         <Col s={4}>
                           <img alt='' className="new-order-images" src={productData[1].imageOpenUrl} />
-                          <Input s={12} type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct1Quantity} value={currentQuantity1Input}>
+                          <Input s={12} className='new-order-input' type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct1Quantity} value={currentQuantity1Input}>
                             <option value='0'>0</option>
                             <option value='1'>1</option>
                             <option value='2'>2</option>
@@ -408,7 +408,7 @@ export default class NewOrder extends Component {
                         </Col>
                         <Col s={4}>
                           <img alt='' className="new-order-images" src={productData[2].imageOpenUrl} />
-                          <Input s={12} type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct2Quantity} value={currentQuantity2Input}>
+                          <Input s={12} className='new-order-input' type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct2Quantity} value={currentQuantity2Input}>
                             <option value='0'>0</option>
                             <option value='1'>1</option>
                             <option value='2'>2</option>
@@ -430,7 +430,7 @@ export default class NewOrder extends Component {
                         </Col>
                         <Col s={4}>
                           <img alt='' className="new-order-images" src={productData[3].imageOpenUrl} />
-                          <Input s={12} type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct3Quantity} value={currentQuantity3Input}>
+                          <Input s={12} className='new-order-input' type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct3Quantity} value={currentQuantity3Input}>
                             <option value='0'>0</option>
                             <option value='1'>1</option>
                             <option value='2'>2</option>

@@ -351,7 +351,7 @@ export default class NewOrder extends Component {
               <div className="popout-panels">
                 <Col s={6} className='neworder-white-line'>
                   <Collapsible className="new-order-product-description">
-                    <CollapsibleItem header={productData[0].title} icon='whatshot' className='new-order-collapsible1'>
+                    <CollapsibleItem header={productData[0].title} icon='whatshot'>
                       <Row>
                         <Col s={8}>
                           <p className='new-order-product0-description'>{productData[0].description}</p>
@@ -489,8 +489,11 @@ export default class NewOrder extends Component {
                  <li><p className="over">Total cost: </p><p className="overRes">$ {totalProductPrice}</p></li>
                 </ul>
                 <CardCheckout/>
-                <Button onClick={this._handleListItem3}>Back</Button>
-                <Link to="orderconfirmation"><Button className="drop-off-two" onClick={this._handleConfirmOrder}>Place order</Button></Link>
+                <br/>
+                <div className='new-order-last-btns'>
+                  <Button onClick={this._handleListItem3}>Back</Button>
+                  <Link to="orderconfirmation"><Button className="drop-off-two" onClick={this._handleConfirmOrder}>Place order</Button></Link>
+                </div>
               </div>
             </Col>
           </Row>

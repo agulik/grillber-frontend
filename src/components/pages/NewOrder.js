@@ -351,95 +351,91 @@ export default class NewOrder extends Component {
               <div className="popout-panels">
                 <Col s={6} className='neworder-white-line'>
                   <Collapsible className="new-order-product-description">
-                    <CollapsibleItem header={productData[0].title} icon='whatshot'>
+                    <CollapsibleItem header={productData[0].title} icon='whatshot' className='new-order-collapsible1'>
                       <Row>
                         <Col s={8}>
-                          {productData[0].description}
+                          <p className='new-order-product0-description'>{productData[0].description}</p>
                           <div className="bbq-quantity">
                             <Row>
-                              <Input s={12} type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct0Quantity} value={currentQuantity0Input}>
-                                <option value='0'>0</option>
-                                <option value='1'>1</option>
-                                <option value='2'>2</option>
-                                <option value='3'>3</option>
-                              </Input>
-                              <p>Daily Price: {productData[0].priceDaily}</p>
-                              <p>Weekly Price: {productData[0].priceWeekly}</p>
+                              <p>Daily Price: ${productData[0].priceDaily}</p>
+                              <p>Weekly Price: ${productData[0].priceWeekly}</p>
                             </Row>
                           </div>
                         </Col>
                         <Col s={4}>
-                          <img alt='' className="new-order-images" src={productData[0].imageFrontUrl} />
                           <img alt='' className="new-order-images" src={productData[0].imageOpenUrl} />
+                          <Input s={12} type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct0Quantity} value={currentQuantity0Input}>
+                            <option value='0'>0</option>
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                            <option value='3'>3</option>
+                          </Input>
                         </Col>
                       </Row>
                     </CollapsibleItem>
                     <CollapsibleItem header={productData[1].title} icon='whatshot'>
                       <Row>
                         <Col s={8}>
-                          {productData[1].description}
+                          <p className='new-order-product1-description'>{productData[1].description}</p>
                           <div className="bbq-quantity">
                             <Row>
-                              <Input s={12} type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct1Quantity} value={currentQuantity1Input}>
-                                <option value='0'>0</option>
-                                <option value='1'>1</option>
-                                <option value='2'>2</option>
-                                <option value='3'>3</option>
-                              </Input>
-                              <p>Daily Price: {productData[1].priceDaily}</p>
-                              <p>Weekly Price: {productData[1].priceWeekly}</p>
+                              <p>Daily Price: ${productData[1].priceDaily}</p>
+                              <p>Weekly Price: ${productData[1].priceWeekly}</p>
                             </Row>
                           </div>
                         </Col>
                         <Col s={4}>
-                          <img alt='' className="new-order-images" src={productData[1].imageFrontUrl} />
                           <img alt='' className="new-order-images" src={productData[1].imageOpenUrl} />
+                          <Input s={12} type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct1Quantity} value={currentQuantity1Input}>
+                            <option value='0'>0</option>
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                            <option value='3'>3</option>
+                          </Input>
                         </Col>
                       </Row>
                     </CollapsibleItem>
                     <CollapsibleItem header={productData[2].title} icon='whatshot'>
                       <Row>
                         <Col s={8}>
-                          {productData[2].description}
+                          <p>{productData[2].description}</p>
                           <div className="bbq-quantity">
                             <Row>
-                              <Input s={12} type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct2Quantity} value={currentQuantity2Input}>
-                                <option value='0'>0</option>
-                                <option value='1'>1</option>
-                                <option value='2'>2</option>
-                                <option value='3'>3</option>
-                              </Input>
-                              <p>Daily Price: {productData[2].priceDaily}</p>
-                              <p>Weekly Price: {productData[2].priceWeekly}</p>
+                              <p>Daily Price: ${productData[2].priceDaily}</p>
+                              <p>Weekly Price: ${productData[2].priceWeekly}</p>
                             </Row>
                           </div>
                         </Col>
                         <Col s={4}>
-                          <img alt='' className="new-order-images" src={productData[2].imageFrontUrl} />
                           <img alt='' className="new-order-images" src={productData[2].imageOpenUrl} />
+                          <Input s={12} type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct2Quantity} value={currentQuantity2Input}>
+                            <option value='0'>0</option>
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                            <option value='3'>3</option>
+                          </Input>
                         </Col>
                       </Row>
                     </CollapsibleItem>
                     <CollapsibleItem header={productData[3].title} icon='whatshot'>
                       <Row>
                         <Col s={8}>
-                          {productData[3].description}
+                          <p className='new-order-product3-description'>{productData[3].description}</p>
                           <div className="bbq-quantity">
                             <Row>
-                              <Input s={12} type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct3Quantity} value={currentQuantity3Input}>
-                                <option value='0'>0</option>
-                                <option value='1'>1</option>
-                                <option value='2'>2</option>
-                                <option value='3'>3</option>
-                              </Input>
-                              <p>Daily Price: {productData[3].priceDaily}</p>
-                              <p>Weekly Price: {productData[3].priceWeekly}</p>
+                              <p>Daily Price: ${productData[3].priceDaily}</p>
+                              <p>Weekly Price: ${productData[3].priceWeekly}</p>
                             </Row>
                           </div>
                         </Col>
                         <Col s={4}>
-                          <img alt='' className="new-order-images" src={productData[3].imageFrontUrl} />
                           <img alt='' className="new-order-images" src={productData[3].imageOpenUrl} />
+                          <Input s={12} type='select' label="Quantity" defaultValue='0' onChange={this._saveProduct3Quantity} value={currentQuantity3Input}>
+                            <option value='0'>0</option>
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                            <option value='3'>3</option>
+                          </Input>
                         </Col>
                       </Row>
                     </CollapsibleItem>

@@ -1,7 +1,7 @@
 .new-order {
   height: 100vh;
   width: 100vw;
-  background-color: #161616
+  background-color: #161616;
 }
 
 .new-order-delivery {
@@ -73,7 +73,7 @@ popout-panels i.material-icons:hover {
 .new-order-images {
   height: 150px;
   width: 150px;
-  margin-right: 80px;
+  margin-left: 40px;
 }
 
 .order-summary {
@@ -96,6 +96,12 @@ a.rc-time-picker-panel-clear-btn::after {
 
 .new-order-product-description {
   color: #ffffff;
+  background-color: #ffffff;
+}
+
+.new-order-product-description p {
+  color: black;
+  font-size: 13px;
 }
 
 .bbq-quantity {
@@ -194,4 +200,20 @@ a.rc-time-picker-panel-clear-btn::after {
     box-shadow: none;
     text-shadow: none !important;
     border-radius: 4px;
+}
+
+.new-order-product0-description {
+  margin-bottom: 60px;
+}
+
+.new-order-product1-description {
+  margin-bottom: 60px;
+}
+
+.new-order-product3-description {
+  margin-bottom: 115px;
+}
+
+.testingtesting {
+  color:
 }

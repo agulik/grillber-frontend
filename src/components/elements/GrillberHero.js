@@ -20,7 +20,7 @@ export default(props) => (
               <Col s={4}>
                 <CardPanel className="card-panel">
                     <div className="picCircle">
-                    <img src={'http://copy9.com/wp-content/uploads/2015/12/track-someone-mobile-phone.jpg'} alt="convenience" className="learnPic"/>
+                      <img src={'http://copy9.com/wp-content/uploads/2015/12/track-someone-mobile-phone.jpg'} alt="convenience" className="learnPic"/>
                     </div>
                     <p className="cardTitle">Convenience</p>
                     <span>Get a BBQ grill and accessories delivered wherever you need at the tap of a button. 
@@ -30,7 +30,7 @@ export default(props) => (
               <Col s={4}>
                 <CardPanel className="card-panel">
                     <div className="picCircle">
-                    <img src={'http://www.pccorp.com/wp-content/uploads/2014/08/BBQ-2.jpg'} alt="Affordable" className="learnPic"/>
+                      <img src={'http://www.pccorp.com/wp-content/uploads/2014/08/BBQ-2.jpg'} alt="Affordable" className="learnPic"/>
                     </div>
                     <p className="cardTitle">Affordable Luxury</p>
                     <span>We stock only the best quality grills on the market and offer them for hourly or daily rental at a juicy price. </span>
@@ -39,7 +39,7 @@ export default(props) => (
               <Col s={4}>
                 <CardPanel className="card-panel">
                     <div className="picCircle">
-                    <img src={'http://www.pastbook.com/txt/assets/bbq1.jpg'} alt="Quality" className="learnPic"/>
+                      <img src={'http://www.pastbook.com/txt/assets/bbq1.jpg'} alt="Quality" className="learnPic"/>
                     </div>
                     <p className="cardTitle">Quality</p>
                     <span>All grills come pre-inspected with a full tank of propane.

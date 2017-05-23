@@ -203,6 +203,10 @@ a.rc-time-picker-panel-clear-btn::after {
     border-radius: 4px;
 }
 
+button.StripeCheckout {
+  margin-bottom: 15px;
+}
+
 .new-order-product0-description {
   margin-bottom: 60px;
 }
@@ -221,4 +225,8 @@ a.rc-time-picker-panel-clear-btn::after {
 
 .new-order-last-btns {
   margin-bottom: 30px;
+}
+
+.new-order-input {
+  color: black;
 }

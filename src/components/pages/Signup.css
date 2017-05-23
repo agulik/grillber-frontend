@@ -39,3 +39,8 @@
   padding-left: 10px;
   color: #e74c3c;
 }
+
+.signup-form .row .col.s6 {
+  padding-left: 0px;
+  padding-right: 0px;
+}

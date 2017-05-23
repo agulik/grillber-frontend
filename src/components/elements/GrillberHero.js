@@ -14,7 +14,7 @@ export default(props) => (
         </div>
         <div className="learn-more-contents">
           <h2>You ask, we deliver!</h2>
-          <p>Throwing the best BBQ on the block has just become easier!</p>
+          <p id='throwing-bbq'>Throwing the best BBQ on the block has just become easier!</p>
           <div className="panels">
             <Row>
               <Col s={4}>
@@ -23,7 +23,7 @@ export default(props) => (
                       <img src={'http://copy9.com/wp-content/uploads/2015/12/track-someone-mobile-phone.jpg'} alt="convenience" className="learnPic"/>
                     </div>
                     <p className="cardTitle">Convenience</p>
-                    <span>Get a BBQ grill and accessories delivered wherever you need at the tap of a button. 
+                    <span>Get a BBQ grill and accessories delivered wherever you need at the tap of a button.
                           Whether it’s a family gathering or a sporting event, we’ve got you covered!</span>
                 </CardPanel>
               </Col>

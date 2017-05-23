@@ -64,27 +64,20 @@
   padding: 0;
 }
 
-.learn-more-contents h2:hover {
-  color: #ffffff;
-}
-
 .learn-more-contents p {
-  color: #fbcd9b;
-}
-
-.learn-more-contents p:hover {
-  color: #fbcd9b;
+   color: #fbcd9b;
 }
 
 .card-panel {
   font-size: 10pt;
   transition: box-shadow .25s;
   padding: 24px;
-  margin: .5rem 0 1rem 0;
+  margin: .5rem;
   border-radius: 9px;
   background-color: #fff !important;
   margin-right: 12px;
   height: 335px;
+  width: 300px;
 }
 
 .cardTitle {
@@ -111,4 +104,16 @@
   margin: 0 auto;
   height: 100%;
   width: auto;
+}
+
+#throwing-bbq {
+  color: #fbcd9b;
+}
+
+.panels {
+  padding-left: 5%;
+  padding-right: 5%;
+  display: flex;
+  align-content: space-between;
+  margin-top: 15px;
 }

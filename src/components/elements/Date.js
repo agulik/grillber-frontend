@@ -12,6 +12,7 @@ class Date extends Component {
         selected={this.props.data}
         onChange={this.props.saveData}
         placeholderText='Select a date'
+
     />;
   }
 }

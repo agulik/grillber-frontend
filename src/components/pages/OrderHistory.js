@@ -36,7 +36,7 @@ class OrderHistory extends Component {
           <GrillberNav />
           <p className='grillberorder-history'>drop off date: {orderHistory[0].dropDate}</p>
           <p className='grillberorder-history'>pick up date: {orderHistory[0].pickUpDate}</p>
-          <p className='grillberorder-history'>booking total: {orderHistory[0].bookingTotal}</p>
+          <p className='grillberorder-history'>booking total: ${orderHistory[0].bookingTotal}</p>
           <p className='grillberorder-history'>bbq models: {orderHistory[0].title}</p>
         </div>
         )

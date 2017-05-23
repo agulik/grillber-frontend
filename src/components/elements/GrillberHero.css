@@ -84,7 +84,7 @@
   border-radius: 9px;
   background-color: #fff !important;
   margin-right: 12px;
-  height: 310px;
+  height: 335px;
 }
 
 .cardTitle {
@@ -93,8 +93,22 @@
   font-weight: 700;
 }
 
-.learnPic {
+.picCircle {
   width: 100px;
   height: 100px;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
   border-radius: 50%;
+}
+
+.learnPic {
+  display: inline;
+  margin: 0 auto;
+  height: 100%;
+  width: auto;
 }

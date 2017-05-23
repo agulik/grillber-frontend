@@ -1,4 +1,5 @@
 /* eslint no-console:0 */
+/* eslint-disable */
 import 'rc-time-picker/assets/index.css'; // Change CSS to match the date compenent
 
 import React, { Component } from 'react';

@@ -110,8 +110,8 @@ export default class Signup extends Component {
             <Input s={6} className="right-side" label="Last Name" ref="lastname" />
             <Input s={12} label="Phone" onInput={this._handlePhoneInput} value={currentInput} ref="phone"/>
             <Input s={12} type="email" label="Email" ref="email" />
-            <Input s={12} type="password" label="password" ref="password" onInput={this._handlePasswordInput} />
-            <Input s={12} type="password" label="confirm password" ref="confirmpassword" onKeyUp={this._handleEnter}/>
+            <Input s={12} type="password" label="Password" ref="password" onInput={this._handlePasswordInput} />
+            <Input s={12} type="password" label="Confirm Password" ref="confirmpassword" onKeyUp={this._handleEnter}/>
           </Row>
             <Button onClick={this._handleSignUp}>Sign up</Button>
             <span className="error">{error}</span>

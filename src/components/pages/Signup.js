@@ -106,8 +106,8 @@ export default class Signup extends Component {
             <p>Sign up to experience the convenience of grilling anywhere</p>
           </div>
           <Row>
-            <Input s={6} label="First Name" type="text" ref="firstname" />
-            <Input s={6} label="Last Name" ref="lastname" />
+            <Input s={6} className="left-side" label="First Name" type="text" ref="firstname" />
+            <Input s={6} className="right-side" label="Last Name" ref="lastname" />
             <Input s={12} label="Phone" onInput={this._handlePhoneInput} value={currentInput} ref="phone"/>
             <Input s={12} type="email" label="Email" ref="email" />
             <Input s={12} type="password" label="password" ref="password" onInput={this._handlePasswordInput} />

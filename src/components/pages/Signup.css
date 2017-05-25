@@ -26,6 +26,11 @@
   float: right;
 }
 
+.signup-form .row .col.s6 {
+     padding-left: 0px;
+     padding-right: 0px;
+}
+
 /*.next-section i.material-icons:hover {*/
 /*  color: #fbcd9b;*/
 /*}*/
